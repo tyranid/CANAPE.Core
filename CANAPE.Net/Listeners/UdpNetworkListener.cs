@@ -36,7 +36,6 @@ namespace CANAPE.Net.Listeners
         IPEndPoint _localEndpoint;
         Logger _logger;
         bool _broadcast;
-        bool _reuseaddr;
         IPAddress[] _multicastGroups;
         Task _receive_task;
 
@@ -46,15 +45,13 @@ namespace CANAPE.Net.Listeners
         /// <param name="bindAddress">The address to bind to</param>
         /// <param name="broadcast">Set whether the socket is broadcast enabled</param>
         /// <param name="multicastGroups">A list of multicast groups to join</param>
-        /// <param name="reuseaddr">Set whether the listener should be bound with SO_REUSEADDR flag</param>
         /// <param name="logger">Logger to report errors to</param>
-        public UdpNetworkListener(IPEndPoint bindAddress, IPAddress[] multicastGroups , bool broadcast, bool reuseaddr, Logger logger)
+        public UdpNetworkListener(IPEndPoint bindAddress, IPAddress[] multicastGroups , bool broadcast, Logger logger)
         {
             _conns = new Dictionary<IPEndPoint, LockedQueue<byte[]>>();
             _logger = logger;
             _localEndpoint = bindAddress;
             _broadcast = broadcast;
-            _reuseaddr = reuseaddr;
             _multicastGroups = multicastGroups ?? new IPAddress[0];
             ReopenConnection();
             if (_localEndpoint.Port == 0)
@@ -72,7 +69,7 @@ namespace CANAPE.Net.Listeners
         /// <param name="broadcast"></param>
         /// <param name="logger"></param>
         public UdpNetworkListener(bool anyBind, bool ipv6, int port, bool broadcast, Logger logger) 
-            : this(TcpNetworkListener.BuildEndpoint(anyBind, ipv6, port), null, broadcast, false, logger)
+            : this(TcpNetworkListener.BuildEndpoint(anyBind, ipv6, port), null, broadcast, logger)
         {
         }
 
@@ -100,8 +97,7 @@ namespace CANAPE.Net.Listeners
                 {
                 }
             }
-            _clientSocket = new UdpClient();                                   
-            _clientSocket.ExclusiveAddressUse = !_reuseaddr;
+            _clientSocket = new UdpClient();
             _clientSocket.Client.Bind(_localEndpoint);
             _clientSocket.EnableBroadcast = _broadcast;
             foreach (IPAddress addr in _multicastGroups)
