@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BaseNodeConfig_CommentDescription" xml:space="preserve">
+    <value>Associated text comment for node</value>
+  </data>
+  <data name="BaseNodeConfig_EnabledDescription" xml:space="preserve">
+    <value>If True then this node handles data, otherwise it is passed automatically to the next node in the chain</value>
+  </data>
+  <data name="BaseNodeConfig_FiltersDescription" xml:space="preserve">
+    <value>Data frame filter list</value>
+  </data>
+  <data name="BaseNodeConfig_HiddenDescription" xml:space="preserve">
+    <value>Indicates if this node should be hidden from most viewers</value>
+  </data>
+  <data name="BaseNodeConfig_LabelDescription" xml:space="preserve">
+    <value>Textual name of the node</value>
+  </data>
+  <data name="BaseNodeConfig_LogInputDescription" xml:space="preserve">
+    <value>Specifies all input packets should be logged, useful for debugging purposes</value>
+  </data>
+  <data name="BaseNodeConfig_LogOutputDescription" xml:space="preserve">
+    <value>Specifies all output packets should be logged, useful for debugging purposes</value>
+  </data>
+  <data name="BaseNodeConfig_MatchAllFiltersDescription" xml:space="preserve">
+    <value>If True all the filters in the list must match for the node to handle the data</value>
+  </data>
+  <data name="BaseNodeConfig_PropertiesDescription" xml:space="preserve">
+    <value>Textual key/value pairs to provide arbitrary values to the node</value>
+  </data>
+  <data name="BaseNodeConfig_SelectionPathDescription" xml:space="preserve">
+    <value>The path in incoming frames on which you want this node to act (/ indicates the entire frame)</value>
+  </data>
+  <data name="BinaryDocument_DefaultName" xml:space="preserve">
+    <value>Binary Document</value>
+  </data>
+  <data name="CANAPEProject_InsecureType" xml:space="preserve">
+    <value>Type '{0}' is potentially insecure</value>
+  </data>
+  <data name="CANAPEProject_InvalidDefaultProxy" xml:space="preserve">
+    <value>Cannot set the default proxy client to the default factory</value>
+  </data>
+  <data name="CANAPEProject_InvalidVersion" xml:space="preserve">
+    <value>Version of project ({0}) is older than the current version of CANAPE ({1})</value>
+  </data>
+  <data name="CANAPEProject_NoVersion" xml:space="preserve">
+    <value>No version information in CANAPE project</value>
+  </data>
+  <data name="CANAPEProject_OlderVersion" xml:space="preserve">
+    <value>Version of project ({0}) is older than the current version of CANAPE ({1})</value>
+  </data>
+  <data name="DecisionNodeConfig_PathNameDescription" xml:space="preserve">
+    <value>The path name to send the frame if filters match</value>
+  </data>
+  <data name="DelayNodeConfig_PacketDelayMsDescription" xml:space="preserve">
+    <value>Specify a packet delay in milli-seconds</value>
+  </data>
+  <data name="DirectNode_InvalidPacketDelay" xml:space="preserve">
+    <value>Packet delay must be greater or equal to 0</value>
+  </data>
+  <data name="DynamicNodeConfig_ClassNameDescription" xml:space="preserve">
+    <value>The full type name of the class implementing this node</value>
+  </data>
+  <data name="DynamicNodeConfig_ScriptDescription" xml:space="preserve">
+    <value>Script container to use for this node</value>
+  </data>
+  <data name="EditPacketNodeConfig_ColorDescription" xml:space="preserve">
+    <value>The colour to show in the edit window</value>
+  </data>
+  <data name="EditPacketNodeConfig_TagDescription" xml:space="preserve">
+    <value>The textual tag to show in an edit window</value>
+  </data>
+  <data name="FixedProxyDocument_ErrorCreatingService" xml:space="preserve">
+    <value>Error creating fixed proxy </value>
+  </data>
+  <data name="FixedProxyDocument_MustProvideValidLocalPort" xml:space="preserve">
+    <value>Must provide a valid local port</value>
+  </data>
+  <data name="FixedProxyDocument_MustProvideValidPort" xml:space="preserve">
+    <value>Must provide a valid port</value>
+  </data>
+  <data name="FixedProxyDocument_ToString" xml:space="preserve">
+    <value>{0} - {1} Fixed Proxy listening on port {2} going to {3}:{4}</value>
+  </data>
+  <data name="GenericProxyDocument_ErrorCreatingService" xml:space="preserve">
+    <value>Error creating network service</value>
+  </data>
+  <data name="GenericProxyDocument_MustSpecifyAValidPort" xml:space="preserve">
+    <value>Must provide a valid local TCP port</value>
+  </data>
+  <data name="HttpNetworkLayerFactory_Description" xml:space="preserve">
+    <value>A layer which implements a HTTP request and response parser</value>
+  </data>
+  <data name="HttpNetworkLayerFactory_Name" xml:space="preserve">
+    <value>HTTP Network Layer</value>
+  </data>
+  <data name="HttpProxyDocument_MustProvideCertificateForSsl" xml:space="preserve">
+    <value>Must provide a certificate if not auto generating SSL cert</value>
+  </data>
+  <data name="HttpProxyDocument_ToString" xml:space="preserve">
+    <value>{0} - HTTP Proxy listening on port {1}</value>
+  </data>
+  <data name="HttpReverseProxyDocument_ToString1" xml:space="preserve">
+    <value>{0} - HTTP Reverse Proxy listening on port {1}</value>
+  </data>
+  <data name="IpProxyListenerFactory_InvalidPortNumber" xml:space="preserve">
+    <value>Port value must be between 0 (for auto-bind) to 65535 inclusive</value>
+  </data>
+  <data name="LayerSectionFilterFactory_MustSpecifyGraph" xml:space="preserve">
+    <value>Must specify a graph for layer section</value>
+  </data>
+  <data name="LayerSectionFilterFactory_MustSpecifyInputNode" xml:space="preserve">
+    <value>Must specify an input node to bind to</value>
+  </data>
+  <data name="LayerSectionFilterFactory_MustSpecifyOutputNode" xml:space="preserve">
+    <value>Must specify an output node to bind to</value>
+  </data>
+  <data name="LayerSectionNodeConfig_GraphDescription" xml:space="preserve">
+    <value>The netgraph to contain in this node</value>
+  </data>
+  <data name="LayerSectionNodeConfig_IsolatedGraphDescription" xml:space="preserve">
+    <value>The specifies that the graphs meta should be isolated</value>
+  </data>
+  <data name="LayerSectionNodeConfig_LayersDescription" xml:space="preserve">
+    <value>The list of layers to instantiate</value>
+  </data>
+  <data name="LayerSectionNodeFactory_MustSpecifyLinkedNode" xml:space="preserve">
+    <value>Must specify a linked node for layer section</value>
+  </data>
+  <data name="LibraryNodeConfig_ClassNameDescription" xml:space="preserve">
+    <value>The name of the library class</value>
+  </data>
+  <data name="LogPacketConfig_ColorDescription" xml:space="preserve">
+    <value>The color of the entry when placed into the log</value>
+  </data>
+  <data name="LogPacketConfig_ConvertToBytesDescription" xml:space="preserve">
+    <value>If True all logged packets will be converted to a basic byte form before storage</value>
+  </data>
+  <data name="LogPacketConfig_TagDescription" xml:space="preserve">
+    <value>A textual description of the log entry</value>
+  </data>
+  <data name="NetAutoClientDocument_InvalidConncurrentConnections" xml:space="preserve">
+    <value>Must specify maximum concurrent connections greater than 0</value>
+  </data>
+  <data name="NetAutoClientDocument_InvalidTimeout" xml:space="preserve">
+    <value>Must specify a positive timeout value</value>
+  </data>
+  <data name="NetAutoClientDocument_NoFactory" xml:space="preserve">
+    <value>Must specify a client to use</value>
+  </data>
+  <data name="NetGraphContainerConfig_DirectionDescription" xml:space="preserve">
+    <value>Direction of flow for the node</value>
+  </data>
+  <data name="NetGraphContainerConfig_GraphDescription" xml:space="preserve">
+    <value>The netgraph to contain in this node</value>
+  </data>
+  <data name="NetGraphContainerConfig_LinkedNodeDescription" xml:space="preserve">
+    <value>A container node which links with this one</value>
+  </data>
+  <data name="NetGraphDocument_PropertiesDescription" xml:space="preserve">
+    <value>Properties set on the graph itself</value>
+  </data>
+  <data name="NetServerDocument_ErrorCreatingServer" xml:space="preserve">
+    <value>Error creating server</value>
+  </data>
+  <data name="NetServerDocument_MustSpecifyServer" xml:space="preserve">
+    <value>Must specify a server to run</value>
+  </data>
+  <data name="NetServerDocument_ValidPort" xml:space="preserve">
+    <value>Must provide a valid network port</value>
+  </data>
+  <data name="NetServiceDocument_CannotSetupListener" xml:space="preserve">
+    <value>Cannot setup a network listener, no supported IP protocol</value>
+  </data>
+  <data name="PacketLogDiffDocument_DefaultName" xml:space="preserve">
+    <value>Packet Diff</value>
+  </data>
+  <data name="ScriptDataEndpointFactory_InvalidType" xml:space="preserve">
+    <value>Scripted object is not a data endpoint type</value>
+  </data>
+  <data name="ScriptDataEndpointFactory_ScriptDescription" xml:space="preserve">
+    <value>Script container to use for this node</value>
+  </data>
+  <data name="ScriptDocument_CannotFindDocument" xml:space="preserve">
+    <value>Can not find a script document called '{0}'</value>
+  </data>
+  <data name="ScriptDocument_DefaultName" xml:space="preserve">
+    <value>{0} Script</value>
+  </data>
+  <data name="ScriptNetworkLayerFactory_ClassNameDescription" xml:space="preserve">
+    <value>The full type name of the class implementing this layer</value>
+  </data>
+  <data name="ScriptNetworkLayerFactory_Description" xml:space="preserve">
+    <value>A layer implemented by a dynamic script</value>
+  </data>
+  <data name="ScriptNetworkLayerFactory_InvalidType" xml:space="preserve">
+    <value>Could not create INetworkLayer or IDataStreamParser type from script {0}</value>
+  </data>
+  <data name="ScriptNetworkLayerFactory_Name" xml:space="preserve">
+    <value>Scripted Layer</value>
+  </data>
+  <data name="ScriptNetworkLayerFactory_ScriptDescription" xml:space="preserve">
+    <value>Script container to use for this layer</value>
+  </data>
+  <data name="ScriptNetworkLayerFactory_SpecifyClassName" xml:space="preserve">
+    <value>The class name for scripted layer '{0}' must be specified</value>
+  </data>
+  <data name="ScriptNetworkLayerFactory_SpecifyScript" xml:space="preserve">
+    <value>The script for scripted layer '{0}' must be specified</value>
+  </data>
+  <data name="ScriptProxyFactory_CannotCreateScript" xml:space="preserve">
+    <value>Cannot get PAC script object, falling back to direct connection</value>
+  </data>
+  <data name="ScriptTestDocument_MustProvideClassname" xml:space="preserve">
+    <value>Must provide a classname for the test</value>
+  </data>
+  <data name="SslLayerSectionNodeConfig_GraphDescription" xml:space="preserve">
+    <value>The netgraph to contain in this node</value>
+  </data>
+  <data name="SslLayerSectionNodeConfig_IsolatedGraphDescription" xml:space="preserve">
+    <value>The specifies that the graphs meta should be isolated</value>
+  </data>
+  <data name="SslLayerSectionNodeConfig_SslConfigDescription" xml:space="preserve">
+    <value>The layer's SSL configuration</value>
+  </data>
+  <data name="SslNetworkLayerFactory_Description" xml:space="preserve">
+    <value>SSL Network Layer</value>
+  </data>
+  <data name="SslNetworkLayerFactory_Name" xml:space="preserve">
+    <value>SSL Layer</value>
+  </data>
+  <data name="StateGraphDocument_GlobalStateDescription" xml:space="preserve">
+    <value>Whether the state is in the global scope</value>
+  </data>
+  <data name="StateGraphDocument_MetaNameDescription" xml:space="preserve">
+    <value>The name of the meta which determines this state</value>
+  </data>
+  <data name="StateGraphEntry_ColorDescription" xml:space="preserve">
+    <value>The color of log packets</value>
+  </data>
+  <data name="StateGraphEntry_GraphDescription" xml:space="preserve">
+    <value>The graph which implements this state</value>
+  </data>
+  <data name="StateGraphEntry_LayersDescription" xml:space="preserve">
+    <value>List of layers to apply to the section</value>
+  </data>
+  <data name="StateGraphEntry_LogPacketsDescription" xml:space="preserve">
+    <value>Whether to log packets for this state</value>
+  </data>
+  <data name="StateGraphEntry_SslConfigDescription" xml:space="preserve">
+    <value>Configure SSL for this layer</value>
+  </data>
+  <data name="StateGraphEntry_StateNameDescription" xml:space="preserve">
+    <value>The state name to select on</value>
+  </data>
+  <data name="SwitchNodeConfig_DropUnknownDescription" xml:space="preserve">
+    <value>If true will drop packets which do not have a matching path, otherwise will send to default</value>
+  </data>
+  <data name="SwitchNodeConfig_ModeDescription" xml:space="preserve">
+    <value>Specify the mechanism used to match the correct path</value>
+  </data>
+  <data name="TextDocument_DefaultName" xml:space="preserve">
+    <value>Text Document</value>
+  </data>
+</root>
