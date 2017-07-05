@@ -145,7 +145,7 @@ namespace CANAPE.Security.Cryptography.X509Certificates
             AsymmetricKeyEntry key_entry = new AsymmetricKeyEntry(bcSubjectKey.Private);
             store.SetKeyEntry("main", key_entry, new[] { entry });
             MemoryStream stm = new MemoryStream();
-            store.Save(stm, null, new SecureRandom());
+            store.Save(stm, new char[0], new SecureRandom());
             return new SystemX509.X509Certificate2(stm.ToArray(), String.Empty, SystemX509.X509KeyStorageFlags.Exportable);
         }
     }

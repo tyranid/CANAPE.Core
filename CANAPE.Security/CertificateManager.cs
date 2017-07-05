@@ -135,7 +135,7 @@ namespace CANAPE.Security.Cryptography.X509Certificates
         /// <param name="password">Password for PFX file.</param>
         public static void SetRootCert(string filename, string password)
         {
-            SetRootCert(CertificateUtils.ImportFromPFX(filename, null));
+            SetRootCert(CertificateUtils.ImportFromPFX(filename, password));
         }
 
         /// <summary>
