@@ -7,9 +7,9 @@ macOS should be suitable as well as recompiling for .NET framework and Mono.
 To use either compile with Visual Studio 2017 with .NET Core support or from the command line do the 
 following:
 
-```bash
-cd CANAPE.Core
+```cd CANAPE.Core
 dotnet restore
-dotnet build -c Release
-dotnet exec CANAPE.Cli/bin/Release/netcoreapp1.1/CANAPE.Cli.dll --c CANAPE.Cli/Examples/SocksProxy.csx
+dotnet build CANAPE.Cli/CANAPE.Cli.csproj -c Release -f netcoreapp1.1
+cd CANAPE.Cli/bin/Release/netcoreapp1.1
+dotnet exec CANAPE.Cli.dll Examples/SocksProxy.csx --color
 ```
