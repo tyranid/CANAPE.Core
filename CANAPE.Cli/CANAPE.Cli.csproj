@@ -2,48 +2,15 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
-    <Authors>James Forshaw</Authors>
-    <Company>James Forshaw</Company>
-    <Description>CANAPE Core CLI Tool</Description>
-    <PackageProjectUrl>https://github.com/tyranid/CANAPE.Core</PackageProjectUrl>
+    <TargetFrameworks>netcoreapp1.1;net462</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.CommandLineUtils" Version="1.1.1" />
+    <None Include="..\CANAPE\CANAPE.licenseheader" Link="CANAPE.licenseheader" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CANAPE.Net.Protocols\CANAPE.Net.Protocols.csproj" />
-    <ProjectReference Include="..\CANAPE.Net.Templates\CANAPE.Net.Templates.csproj" />
-    <ProjectReference Include="..\CANAPE.Net\CANAPE.Net.csproj" />
-    <ProjectReference Include="..\CANAPE.Security\CANAPE.Security.csproj" />
-    <ProjectReference Include="..\CANAPE\CANAPE.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Examples\DnsServer.csx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Examples\FixedProxy.csx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Examples\FixedProxy_WithTLS.csx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Examples\HttpProxy.csx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Examples\ReverseHttpProxy.csx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Examples\SocksProxy.csx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Examples\TcpClient.csx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <ProjectReference Include="..\CANAPE.Cli.Lib\CANAPE.Cli.Lib.csproj" />
   </ItemGroup>
 
 </Project>

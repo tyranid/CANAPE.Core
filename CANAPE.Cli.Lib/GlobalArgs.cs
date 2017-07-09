@@ -26,6 +26,7 @@ namespace CANAPE.Cli
     public class GlobalArgs
     {
         public readonly string[] args;
+
         public GlobalArgs(IEnumerable<string> args_values)
         {
             args = args_values.ToArray();
