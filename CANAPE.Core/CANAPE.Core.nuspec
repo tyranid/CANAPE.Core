@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>CANAPE.Core</id>
+    <version>1.0.0</version>
+    <authors>James Forshaw</authors>
+    <owners>James Forshaw</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/tyranid/CANAPE.Core/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/tyranid/CANAPE.Core</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/tyranid/CANAPE.Core/master/logo.png</iconUrl>
+    <description>Meta package for the CANAPE.Core network library.</description>
+    <releaseNotes>v1.0.0
+------
+* Initial release</releaseNotes>
+    <copyright>Copyright James Forshaw 2017, 2018</copyright>
+    <tags>networking, security</tags>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="CANAPE.Net.Protocols" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="CANAPE.Net.Templates" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="CANAPE.Net" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="CANAPE.Security" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="CANAPE" version="1.0.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>
