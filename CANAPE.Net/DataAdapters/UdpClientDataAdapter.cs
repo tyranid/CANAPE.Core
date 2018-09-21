@@ -35,6 +35,7 @@ namespace CANAPE.DataAdapters
         /// </summary>
         /// <param name="client">The UDP client</param>
         /// <param name="hostname">The hostname to connected to</param>
+        /// <param name="endpoint">The end point to connect to.</param>
         public UdpClientDataAdapter(UdpClient client, string hostname, IPEndPoint endpoint)
         {
             _client = client;
