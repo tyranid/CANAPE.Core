@@ -14,6 +14,7 @@
     <PackageReleaseNotes>v1.0.0
 ------
 * Initial release</PackageReleaseNotes>
+    <Product>CANAPE.Core</Product>
   </PropertyGroup>
 
   <ItemGroup>

@@ -14,6 +14,7 @@
 ------
 * Initial release</PackageReleaseNotes>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Product>CANAPE.Core</Product>
   </PropertyGroup>
 
   <ItemGroup>
