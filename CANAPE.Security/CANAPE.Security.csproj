@@ -13,7 +13,7 @@
     <PackageReleaseNotes>v1.0.0
 ------
 * Initial release</PackageReleaseNotes>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Product>CANAPE.Core</Product>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>

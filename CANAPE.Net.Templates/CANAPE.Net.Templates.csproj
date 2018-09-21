@@ -15,6 +15,7 @@
 * Initial release</PackageReleaseNotes>
     <Product>CANAPE.Core</Product>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
