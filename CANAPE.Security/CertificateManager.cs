@@ -142,7 +142,6 @@ namespace CANAPE.Security.Cryptography.X509Certificates
         /// Set the CANAPE root CA from a PFX file.
         /// </summary>
         /// <param name="filename">Path to a PFX file.</param>
-        /// <param name="password">Password for PFX file.</param>
         public static void SetRootCert(string filename)
         {
             SetRootCert(filename, null);

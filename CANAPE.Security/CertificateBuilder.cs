@@ -36,7 +36,7 @@ namespace CANAPE.Security.Cryptography.X509Certificates
         /// Create a new managed RSA key, persisted into a provider
         /// </summary>
         /// <param name="keySize">Size of key to create</param>
-        /// <param name="signature">True to create a signature key, false for exchange</param>
+        /// <param name="random">Specify the secure random number generator.</param>
         /// <returns>The new key</returns>
         public static AsymmetricCipherKeyPair CreateRSAKey(int keySize, SecureRandom random)
         {

@@ -266,7 +266,6 @@ namespace CANAPE.Security.Cryptography.X509Certificates
         /// <param name="issuer">Issuer certificate, if null then self-sign</param>
         /// <param name="subjectName">Subject name</param>
         /// <param name="serialNumber">Serial number of certificate, if null then will generate a new one</param>
-        /// <param name="signature">If true create an AT_SIGNATURE key, otherwise AT_EXCHANGE</param>
         /// <param name="keySize">Size of RSA key</param>
         /// <param name="hashAlgorithm">The hash algorithm for the certificate</param>
         /// <param name="notBefore">Start date of certificate</param>
