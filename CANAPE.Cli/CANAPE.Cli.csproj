@@ -3,6 +3,17 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFrameworks>netcoreapp2.0; net471</TargetFrameworks>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Authors>James Forshaw</Authors>
+    <Description>Command Line Interface CANAPE.Core network library.</Description>
+    <Copyright>Copyright James Forshaw 2017, 2018</Copyright>
+    <PackageLicenseUrl>https://github.com/tyranid/CANAPE.Core/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/tyranid/CANAPE.Core</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/tyranid/CANAPE.Core/master/logo.png</PackageIconUrl>
+    <PackageTags>networking, security</PackageTags>
+    <PackageReleaseNotes>v1.0.0
+------
+* Initial release</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
