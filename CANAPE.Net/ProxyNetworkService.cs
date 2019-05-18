@@ -404,7 +404,7 @@ namespace CANAPE.Net
         /// 
         /// </summary>
         /// <param name="graph"></param>
-        /// <param name="token"></param>        
+        /// <param name="token"></param>
         public void ReconnectClient(NetGraph graph, ProxyToken token)
         {
             IDataAdapter client = null;
@@ -954,7 +954,7 @@ namespace CANAPE.Net
         /// Indicates the default binding mode for the service
         /// </summary>
         public NetworkLayerBinding DefaultBinding { get; set; }
-        
+
         /// <summary>
         /// Get connection history for this service.
         /// </summary>

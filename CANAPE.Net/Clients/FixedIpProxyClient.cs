@@ -29,10 +29,10 @@ namespace CANAPE.Net.Clients
     /// </summary>
     public class FixedIpProxyClient : IpProxyClient
     {
-        private string _hostname;
-        private int _port;
-        private bool _ipv6;
-        private IpProxyToken.IpClientType _clientType;
+        private readonly string _hostname;
+        private readonly int _port;
+        private readonly bool _ipv6;
+        private readonly IpProxyToken.IpClientType _clientType;
 
         /// <summary>
         /// Constructor

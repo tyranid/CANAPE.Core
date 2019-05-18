@@ -84,7 +84,7 @@ namespace CANAPE.Net.Listeners
         /// <param name="port">The TCP port</param>
         /// <param name="logger">Logger to report errors to</param>
         /// <param name="nodelay">Set whether the socket will have nagle algorithm disabled</param>
-        public TcpNetworkListener(bool anyBind, bool ipv6, int port, Logger logger, bool nodelay) 
+        public TcpNetworkListener(bool anyBind, bool ipv6, int port, Logger logger, bool nodelay)
             : this(BuildEndpoint(anyBind, ipv6, port), logger, nodelay)
         {
         }
@@ -93,12 +93,12 @@ namespace CANAPE.Net.Listeners
         /// Constructor
         /// </summary>
         /// <param name="anyBind">True to bind to all addresses, otherwise just localhost</param>
-        /// <param name="ipv6">Whether to use IPv6</param>        
+        /// <param name="ipv6">Whether to use IPv6</param>
         /// <param name="logger">Logger to report errors to</param>
         /// <param name="nodelay">Set whether the socket will have nagle algorithm disabled</param>
-        public TcpNetworkListener(bool anyBind, bool ipv6, Logger logger, bool nodelay) 
+        public TcpNetworkListener(bool anyBind, bool ipv6, Logger logger, bool nodelay)
             : this(anyBind, ipv6, 0, logger, nodelay)
-        {            
+        {
         }
 
         private async Task SetupClient(TcpClient client)
@@ -133,7 +133,7 @@ namespace CANAPE.Net.Listeners
 
         private async Task AcceptCallback(TcpListener listener)
         {
-            List<Task> pending_tasks = new List<Task>();            
+            List<Task> pending_tasks = new List<Task>();
             while (true)
             {
                 try
@@ -249,7 +249,7 @@ namespace CANAPE.Net.Listeners
         /// <returns>Description of listener</returns>
         public override string ToString()
         {
-            return String.Format(Properties.Resources.IpNetworkListener_ToStringFormat, "TCP", _listener.LocalEndpoint);
+            return string.Format(Properties.Resources.IpNetworkListener_ToStringFormat, "TCP", _listener.LocalEndpoint);
         }
     }
 }

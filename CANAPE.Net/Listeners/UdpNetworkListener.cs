@@ -46,7 +46,7 @@ namespace CANAPE.Net.Listeners
         /// <param name="broadcast">Set whether the socket is broadcast enabled</param>
         /// <param name="multicastGroups">A list of multicast groups to join</param>
         /// <param name="logger">Logger to report errors to</param>
-        public UdpNetworkListener(IPEndPoint bindAddress, IPAddress[] multicastGroups , bool broadcast, Logger logger)
+        public UdpNetworkListener(IPEndPoint bindAddress, IPAddress[] multicastGroups, bool broadcast, Logger logger)
         {
             _conns = new Dictionary<IPEndPoint, LockedQueue<byte[]>>();
             _logger = logger;
@@ -68,7 +68,7 @@ namespace CANAPE.Net.Listeners
         /// <param name="port"></param>
         /// <param name="broadcast"></param>
         /// <param name="logger"></param>
-        public UdpNetworkListener(bool anyBind, bool ipv6, int port, bool broadcast, Logger logger) 
+        public UdpNetworkListener(bool anyBind, bool ipv6, int port, bool broadcast, Logger logger)
             : this(TcpNetworkListener.BuildEndpoint(anyBind, ipv6, port), null, broadcast, logger)
         {
         }
@@ -80,9 +80,9 @@ namespace CANAPE.Net.Listeners
         /// <param name="ipv6"></param>
         /// <param name="broadcast"></param>
         /// <param name="logger"></param>
-        public UdpNetworkListener(bool anyBind, bool ipv6, bool broadcast, Logger logger) 
+        public UdpNetworkListener(bool anyBind, bool ipv6, bool broadcast, Logger logger)
             : this(anyBind, ipv6, 0, broadcast, logger)
-        {            
+        {
         }
 
         private void ReopenConnection()

@@ -15,13 +15,12 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using CANAPE.Net.Clients;
 using CANAPE.Net.Layers;
 using CANAPE.NodeFactories;
-using CANAPE.Nodes;
-using System.Collections.Generic;
 using CANAPE.Utils;
+using System;
+using System.Collections.Generic;
 
 namespace CANAPE.Net.Tokens
 {
@@ -76,7 +75,7 @@ namespace CANAPE.Net.Tokens
         /// <summary>
         /// An overridable method to populate the property bag with information about this token
         /// </summary>
-        /// <param name="properties"></param>      
+        /// <param name="properties"></param>
         public virtual void PopulateBag(PropertyBag properties)
         {
             // Do nothing
@@ -89,18 +88,18 @@ namespace CANAPE.Net.Tokens
         /// </summary>
         /// <param name="finalize">Whether this is running in the finalizer or not</param>
         protected virtual void OnDispose(bool finalize)
-        {            
-            foreach(KeyValuePair<string, object> pair in State)
+        {
+            foreach (KeyValuePair<string, object> pair in State)
             {
                 IDisposable disp = pair.Value as IDisposable;
 
-                if(disp != null)
+                if (disp != null)
                 {
                     disp.Dispose();
                 }
             }
         }
-        
+
         /// <summary>
         /// Finalizer
         /// </summary>

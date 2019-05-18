@@ -99,7 +99,7 @@ namespace CANAPE.Net.Clients
                 {
                     ret = token.Address.AddressFamily == AddressFamily.InterNetworkV6;
                 }
-                else 
+                else
                 {
                     IPAddress addr;
                     if (IPAddress.TryParse(token.Hostname, out addr))
@@ -120,8 +120,8 @@ namespace CANAPE.Net.Clients
             {
                 bool isIpv6 = IsTokenIpV6(token);
 
-                TcpClient client = new TcpClient(isIpv6 ? AddressFamily.InterNetworkV6 : AddressFamily.InterNetwork);                
-                
+                TcpClient client = new TcpClient(isIpv6 ? AddressFamily.InterNetworkV6 : AddressFamily.InterNetwork);
+
                 if (token.Hostname == null)
                 {
                     client.ConnectAsync(token.Address, token.Port).Wait();
@@ -131,7 +131,7 @@ namespace CANAPE.Net.Clients
                     client.ConnectAsync(token.Hostname, token.Port).Wait();
                 }
 
-                NetUtils.PopulateBagFromSocket(client.Client, properties);                
+                NetUtils.PopulateBagFromSocket(client.Client, properties);
 
                 adapter = new TcpClientDataAdapter(client, IpProxyClient.GetDescription(token));
             }
@@ -158,7 +158,7 @@ namespace CANAPE.Net.Clients
                 bool isIpv6 = IsTokenIpV6(token);
 
                 adapter = new TcpListenerDataAdapter(new IPEndPoint(isIpv6 ? IPAddress.IPv6Any : IPAddress.Any, token.Port));
-                NetUtils.PopulateBagFromSocket(adapter.Listener.Server, properties);                
+                NetUtils.PopulateBagFromSocket(adapter.Listener.Server, properties);
             }
             catch (SocketException ex)
             {
@@ -203,7 +203,7 @@ namespace CANAPE.Net.Clients
                     throw new ArgumentException(CANAPE.Net.Properties.Resources.IpProxyClient_InvalidTokenType);
                 }
             }
-            
+
             return adapter;
         }
 
@@ -227,7 +227,7 @@ namespace CANAPE.Net.Clients
                 {
                     adapter = BindTcp(iptoken, logger, properties);
                 }
-                else 
+                else
                 {
                     throw new ArgumentException(CANAPE.Net.Properties.Resources.IpProxyClient_InvalidTokenType);
                 }

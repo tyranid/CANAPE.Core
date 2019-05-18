@@ -21,7 +21,6 @@ using CANAPE.Net.Layers;
 using CANAPE.Net.Tokens;
 using CANAPE.Net.Utils;
 using CANAPE.Nodes;
-using CANAPE.Security;
 using CANAPE.Utils;
 using System;
 using System.Collections.Generic;
@@ -42,15 +41,15 @@ namespace CANAPE.Net.Clients
 
         /// <summary>
         /// Constructor
-        /// </summary>        
+        /// </summary>
         /// <param name="hostname">Hostname to connect to</param>
         /// <param name="port">Port</param>
         /// <param name="ipv6">True for IPv6</param>
-        public HttpProxyClient(string hostname, int port, bool ipv6)            
+        public HttpProxyClient(string hostname, int port, bool ipv6)
         {
             _hostname = hostname;
             _port = port;
-            _ipv6 = ipv6;            
+            _ipv6 = ipv6;
         }
 
         private static void ConnectWithFullHttpProxyToken(Stream stm, FullHttpProxyToken token, Logger logger)
@@ -65,7 +64,7 @@ namespace CANAPE.Net.Clients
 
             if (token.Connect)
             {
-                // Send original CONNECT headers                
+                // Send original CONNECT headers
                 StringBuilder builder = new StringBuilder();
                 foreach (var s in token.Headers)
                 {
@@ -97,11 +96,11 @@ namespace CANAPE.Net.Clients
 
             token.Status = NetStatusCodes.Success;
         }
-    
+
         private static void ConnectWithIpProxyToken(Stream stm, IpProxyToken token, Logger logger)
         {
-            string hostname = token.Hostname != null ? token.Hostname : token.Address.ToString();
-            string req = String.Format("CONNECT {0}:{1} HTTP/1.0\r\n\r\n", hostname, token.Port);
+            string hostname = token.Hostname ?? token.Address.ToString();
+            string req = string.Format("CONNECT {0}:{1} HTTP/1.0\r\n\r\n", hostname, token.Port);
             byte[] reqBytes = Encoding.ASCII.GetBytes(req);
 
             stm.Write(reqBytes, 0, reqBytes.Length);
@@ -144,7 +143,7 @@ namespace CANAPE.Net.Clients
             else
             {
                 logger.LogError(CANAPE.Net.Properties.Resources.HttpProxyClient_NoResponse);
-            }            
+            }
         }
 
         private class FullHttpProxyDataAdapter : TcpClientDataAdapter
@@ -155,21 +154,21 @@ namespace CANAPE.Net.Clients
             int _destPort;
             Logger _logger;
 
-            public FullHttpProxyDataAdapter(TcpClient client, FullHttpProxyToken token, string description, Logger logger) 
+            public FullHttpProxyDataAdapter(TcpClient client, FullHttpProxyToken token, string description, Logger logger)
                 : base(client, description)
-            {                
+            {
                 _requestData = new MemoryStream();
                 _destHostname = token.Hostname;
                 _destPort = token.Port;
                 _logger = logger;
                 _waitingForHeader = true;
             }
-            
+
 
             public override void Write(DataFrame frame)
-            {               
+            {
                 if (_waitingForHeader)
-                {                                      
+                {
                     byte[] data = frame.ToArray();
 
                     _requestData.Write(data, 0, data.Length);
@@ -177,12 +176,12 @@ namespace CANAPE.Net.Clients
 
                     int nlIndex = headers.IndexOf('\n');
 
-                    if(nlIndex >= 0)
+                    if (nlIndex >= 0)
                     {
                         string[] val = headers.Substring(0, nlIndex).Split(new char[] { ' ' }, 3);
 
-                        if(val.Length > 1)
-                        {                            
+                        if (val.Length > 1)
+                        {
                             if (_destPort == 80)
                             {
                                 val[1] = String.Format("http://{0}{1}", _destHostname, val[1]);
@@ -190,10 +189,10 @@ namespace CANAPE.Net.Clients
                             else
                             {
                                 val[1] = String.Format("http://{0}:{1}{2}", _destHostname, _destPort, val[1]);
-                            }                            
+                            }
                         }
 
-                        _waitingForHeader = false;     
+                        _waitingForHeader = false;
                         _requestData = null;
 
                         base.Write((String.Join(" ", val) + headers.Substring(nlIndex)).ToDataFrame());
@@ -224,15 +223,15 @@ namespace CANAPE.Net.Clients
             if ((token is IpProxyToken) && ((IpProxyToken)token).ClientType == IpProxyToken.IpClientType.Tcp)
             {
                 TcpClient client = new TcpClient();
-                
+
                 try
                 {
                     client.ConnectAsync(_hostname, _port).Wait();
-                    
+
                     if (token is FullHttpProxyToken)
                     {
                         bool binary = false;
-                      
+
                         if ((token.Layers != null) && (token.Layers.Length > 0))
                         {
                             foreach (INetworkLayer layer in token.Layers)
@@ -273,7 +272,7 @@ namespace CANAPE.Net.Clients
                         if (token is HttpProxyToken)
                         {
                             ConnectWithHttpProxyToken(client.GetStream(), (HttpProxyToken)token, logger);
-                        }                        
+                        }
                         else
                         {
                             ConnectWithIpProxyToken(client.GetStream(), (IpProxyToken)token, logger);

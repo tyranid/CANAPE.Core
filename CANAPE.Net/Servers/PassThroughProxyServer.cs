@@ -88,14 +88,14 @@ namespace CANAPE.Net.Servers
         /// <param name="adapter">The server adapter</param>
         /// <param name="globalMeta"></param>
         /// <param name="meta"></param>
-        /// <param name="service"></param>        
+        /// <param name="service"></param>
         /// <returns>The proxy token</returns>
         public override ProxyToken Accept(IDataAdapter adapter, MetaDictionary meta, MetaDictionary globalMeta, ProxyNetworkService service)
         {
             ProxyToken token = new PassThroughToken(adapter);
             token.Layers = _layers.CreateLayers(_logger);
 
-            return token;            
+            return token;
         }
 
         /// <summary>
@@ -105,14 +105,14 @@ namespace CANAPE.Net.Servers
         /// <param name="client"></param>
         /// <param name="globalMeta"></param>
         /// <param name="meta"></param>
-        /// <param name="service"></param>        
+        /// <param name="service"></param>
         /// <returns>The data adapter</returns>
         public override IDataAdapter Complete(ProxyToken token, MetaDictionary meta, MetaDictionary globalMeta, ProxyNetworkService service, IDataAdapter client)
         {
             PassThroughToken passToken = (PassThroughToken)token;
             IDataAdapter adapter = passToken.Adapter;
             if (token.Status != NetStatusCodes.Success)
-            {               
+            {
                 return null;
             }
             else

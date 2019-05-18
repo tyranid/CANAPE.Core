@@ -28,14 +28,14 @@ namespace CANAPE.DataAdapters
     public class StreamDataAdapter : BaseDataAdapter
     {
         const int MAX_BUFFER_SIZE = 8192;
-        private Stream _stream;        
+        private Stream _stream;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="stream">The stream to read and write to</param>
         public StreamDataAdapter(Stream stream) : this(stream, null)
-        {            
+        {
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace CANAPE.DataAdapters
             {
                 ret = null;
             }
-            
+
             return ret;
         }
 
@@ -101,7 +101,7 @@ namespace CANAPE.DataAdapters
                 byte[] data = frame.ToArray();
                 _stream.Write(data, 0, data.Length);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
@@ -131,7 +131,7 @@ namespace CANAPE.DataAdapters
             {
                 _stream.Dispose();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Logger.SystemLogger.LogException(ex);
             }

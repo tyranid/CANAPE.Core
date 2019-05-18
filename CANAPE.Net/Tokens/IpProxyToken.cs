@@ -68,17 +68,17 @@ namespace CANAPE.Net.Tokens
         /// <summary>
         /// The original address at time of construction
         /// </summary>
-        public IPAddress OriginalAddress    { get; private set; }
+        public IPAddress OriginalAddress { get; private set; }
 
         /// <summary>
         /// The original port at time of construction
         /// </summary>
-        public int OriginalPort             { get; private set; }
+        public int OriginalPort { get; private set; }
 
         /// <summary>
         /// The original hostname at time of construction
         /// </summary>
-        public string OriginalHostname      { get; private set; }
+        public string OriginalHostname { get; private set; }
 
         /// <summary>
         /// 
@@ -112,7 +112,7 @@ namespace CANAPE.Net.Tokens
         /// <param name="port"></param>
         /// <param name="clientType"></param>
         /// <param name="ipv6"></param>
-        public IpProxyToken(IPAddress address, string hostname, 
+        public IpProxyToken(IPAddress address, string hostname,
             int port, IpClientType clientType, bool ipv6)
         {
             Address = address;

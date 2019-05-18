@@ -43,7 +43,7 @@ namespace CANAPE.DataAdapters
 
             if (hostname != null)
             {
-                Description = String.Format("{0}/{1}", hostname, _client.Client.RemoteEndPoint);
+                Description = string.Format("{0}/{1}", hostname, _client.Client.RemoteEndPoint);
             }
             else
             {
@@ -96,7 +96,7 @@ namespace CANAPE.DataAdapters
                 _client.Dispose();
             }
             catch (SocketException)
-            {                
+            {
             }
         }
     }

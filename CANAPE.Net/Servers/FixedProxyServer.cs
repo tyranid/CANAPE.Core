@@ -34,8 +34,8 @@ namespace CANAPE.Net.Servers
         {
             public IDataAdapter Adapter { get; set; }
 
-            public FixedProxyToken(IPAddress address, string hostname, int port, 
-                IpProxyToken.IpClientType clientType, bool ipv6, IDataAdapter adapter) 
+            public FixedProxyToken(IPAddress address, string hostname, int port,
+                IpClientType clientType, bool ipv6, IDataAdapter adapter) 
                 : base(address, hostname, port, clientType, ipv6)
             {
                 Adapter = adapter;
@@ -78,10 +78,11 @@ namespace CANAPE.Net.Servers
         /// <returns></returns>
         public override ProxyToken Accept(IDataAdapter adapter, MetaDictionary meta, MetaDictionary globalMeta, ProxyNetworkService service)
         {
-            FixedProxyToken token = new FixedProxyToken(_address, _hostName, _port, _clientType, _ipv6, adapter);
+            FixedProxyToken token = new FixedProxyToken(_address, _hostName, _port, _clientType, _ipv6, adapter)
+            {
+                Layers = _layers.CreateLayers(_logger)
+            };
 
-            token.Layers = _layers.CreateLayers(_logger);
-            
             return token;
         }
 
