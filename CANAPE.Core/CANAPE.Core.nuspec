@@ -6,7 +6,7 @@
     <authors>James Forshaw</authors>
     <owners>James Forshaw</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <licenseUrl>https://github.com/tyranid/CANAPE.Core/blob/master/LICENSE</licenseUrl>
+    <license type="expression">GPL-3.0-only</license>
     <projectUrl>https://github.com/tyranid/CANAPE.Core</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/tyranid/CANAPE.Core/master/logo.png</iconUrl>
     <description>Meta package for the CANAPE.Core network library.</description>
