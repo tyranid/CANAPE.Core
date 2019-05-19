@@ -40,7 +40,7 @@ namespace CANAPE.Net.Templates
         /// </summary>
         public GenericProxyTemplate()
             : base()
-        {            
+        {
             LocalPort = 1080;
             Filters = new ProxyFilterFactory[0];
             Client = new IpProxyClientFactory();
@@ -72,7 +72,7 @@ namespace CANAPE.Net.Templates
             {
                 throw new NetServiceException(Properties.Resources.GenericProxyDocument_MustSpecifyAValidPort);
             }
-            else 
+            else
             {
                 try
                 {
@@ -107,7 +107,7 @@ namespace CANAPE.Net.Templates
                         INetworkListener ipv6Listener = new TcpNetworkListener(AnyBind, true, LocalPort, logger, false);
 
                         if (listener != null)
-                        { 
+                        {
                             listener = new AggregateNetworkListener(listener, ipv6Listener);
                         }
                         else

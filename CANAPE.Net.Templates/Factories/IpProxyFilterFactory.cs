@@ -109,7 +109,7 @@ namespace CANAPE.Net.Templates.Factories
                 }
             }
 
-            return String.Format("Host: {0} - Port {1} - SSL {2} - Enabled {3}", 
+            return String.Format("Host: {0} - Port {1} - SSL {2} - Enabled {3}",
                 Address, Port, ssl, !Disabled);
         }
     }

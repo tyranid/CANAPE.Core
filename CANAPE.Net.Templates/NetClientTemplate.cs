@@ -47,99 +47,99 @@ namespace CANAPE.Net.Templates
             _layers = new List<INetworkLayerFactory>();
         }
 
-		/// <summary>
-		/// Get or set remote port
-		/// </summary>
-		public int Port
-		{
-			get; set;
-		}
+        /// <summary>
+        /// Get or set remote port
+        /// </summary>
+        public int Port
+        {
+            get; set;
+        }
 
-		/// <summary>
-		/// Get or set remote host
-		/// </summary>
-		public string Host
-		{
-			get; set;
-		}
+        /// <summary>
+        /// Get or set remote host
+        /// </summary>
+        public string Host
+        {
+            get; set;
+        }
 
-		/// <summary>
-		/// Get layers
-		/// </summary>
-		public IEnumerable<INetworkLayerFactory> Layers
-		{
+        /// <summary>
+        /// Get layers
+        /// </summary>
+        public IEnumerable<INetworkLayerFactory> Layers
+        {
             get { return _layers.AsReadOnly(); }
-		}
+        }
 
-		/// <summary>
-		/// Add a layer to this service
-		/// </summary>
-		/// <param name="factory">The factory to add</param>
-		public void AddLayer(INetworkLayerFactory factory)
-		{
+        /// <summary>
+        /// Add a layer to this service
+        /// </summary>
+        /// <param name="factory">The factory to add</param>
+        public void AddLayer(INetworkLayerFactory factory)
+        {
             _layers.Add(factory);
-		}
+        }
 
-		/// <summary>
-		/// Add a layer to this service.
-		/// </summary>
-		/// <typeparam name="T">The network layer type to create.</typeparam>
-		public void AddLayer<T>() where T : INetworkLayer, new()
-		{
-			AddLayer(new GenericNetworkLayerFactory<T>());
-		}
+        /// <summary>
+        /// Add a layer to this service.
+        /// </summary>
+        /// <typeparam name="T">The network layer type to create.</typeparam>
+        public void AddLayer<T>() where T : INetworkLayer, new()
+        {
+            AddLayer(new GenericNetworkLayerFactory<T>());
+        }
 
-		/// <summary>
-		/// Insert a layer into this factory
-		/// </summary>
-		/// <param name="factory">The factory to insert</param>
-		/// <param name="index">The index of the factory</param>
-		public void InsertLayer(int index, INetworkLayerFactory factory)
-		{
+        /// <summary>
+        /// Insert a layer into this factory
+        /// </summary>
+        /// <param name="factory">The factory to insert</param>
+        /// <param name="index">The index of the factory</param>
+        public void InsertLayer(int index, INetworkLayerFactory factory)
+        {
             _layers.Insert(index, factory);
-		}
+        }
 
-		/// <summary>
-		/// Remove a layer by index
-		/// </summary>
-		/// <param name="index">The index to remove the layer at</param>
-		public void RemoveLayerAt(int index)
-		{
+        /// <summary>
+        /// Remove a layer by index
+        /// </summary>
+        /// <param name="index">The index to remove the layer at</param>
+        public void RemoveLayerAt(int index)
+        {
             _layers.RemoveAt(index);
-		}
+        }
 
-		/// <summary>
-		/// Remove a layer
-		/// </summary>
-		/// <param name="factory">The layer to remove</param>
-		public void RemoveLayer(INetworkLayerFactory factory)
-		{
+        /// <summary>
+        /// Remove a layer
+        /// </summary>
+        /// <param name="factory">The layer to remove</param>
+        public void RemoveLayer(INetworkLayerFactory factory)
+        {
             _layers.Remove(factory);
-		}
+        }
 
-		/// <summary>
-		/// Get or set UDP
-		/// </summary>
-		public bool UdpEnable
-		{
-			get; set;
-		}
+        /// <summary>
+        /// Get or set UDP
+        /// </summary>
+        public bool UdpEnable
+        {
+            get; set;
+        }
 
-		/// <summary>
-		/// Get or set broadcast use for UDP
-		/// </summary>
-		public bool EnableBroadcast
-		{
-			get; set;
-		}
+        /// <summary>
+        /// Get or set broadcast use for UDP
+        /// </summary>
+        public bool EnableBroadcast
+        {
+            get; set;
+        }
 
-		/// <summary>
-		/// Get or set the client factory
-		/// </summary>
-		public IProxyClientFactory Client
-		{
-			get; set;
-		}
+        /// <summary>
+        /// Get or set the client factory
+        /// </summary>
+        public IProxyClientFactory Client
+        {
+            get; set;
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="T:CANAPE.Net.Templates.NetClientTemplate"/> uses IPv6.
@@ -159,11 +159,11 @@ namespace CANAPE.Net.Templates
             get; set;
         }
 
-		/// <summary>
-		/// Connect this instance.
-		/// </summary>
-		/// <returns>The connected data adapter</returns>
-		public IDataAdapter Connect()
+        /// <summary>
+        /// Connect this instance.
+        /// </summary>
+        /// <returns>The connected data adapter</returns>
+        public IDataAdapter Connect()
         {
             return Connect(Logger.SystemLogger);
         }
@@ -175,19 +175,19 @@ namespace CANAPE.Net.Templates
         /// <returns>The connected data adapter</returns>
         public IDataAdapter Connect(Logger logger)
         {
-			if (logger == null)
-			{
-				throw new ArgumentNullException(nameof(logger));
-			}
+            if (logger == null)
+            {
+                throw new ArgumentNullException(nameof(logger));
+            }
 
-			if ((Port <= 0) || (Port > 65535))
-			{
-				throw new NetServiceException(Properties.Resources.FixedProxyDocument_MustProvideValidPort);
-			}
-			
-			try
-			{
-				ProxyClient client = Client != null ? Client.Create(logger) 
+            if ((Port <= 0) || (Port > 65535))
+            {
+                throw new NetServiceException(Properties.Resources.FixedProxyDocument_MustProvideValidPort);
+            }
+
+            try
+            {
+                ProxyClient client = Client != null ? Client.Create(logger)
                                                             : new IpProxyClient();
                 IpProxyToken token = new IpProxyToken(null, Host, Port,
                                                       UdpEnable ? IpProxyToken.IpClientType.Udp : IpProxyToken.IpClientType.Tcp, IPv6);
@@ -197,22 +197,22 @@ namespace CANAPE.Net.Templates
                     MemoryStream initial_stm = new MemoryStream(InitialData ?? new byte[0]);
                     StreamDataAdapter initial = new StreamDataAdapter(initial_stm);
                     IDataAdapter client_adapter = initial;
-                    foreach(INetworkLayer layer in _layers.Select(f => f.CreateLayer(logger)))
+                    foreach (INetworkLayer layer in _layers.Select(f => f.CreateLayer(logger)))
                     {
-                        layer.Negotiate(ref client_adapter, ref adapter, token, logger, new MetaDictionary(), 
+                        layer.Negotiate(ref client_adapter, ref adapter, token, logger, new MetaDictionary(),
                                         new MetaDictionary(), new PropertyBag(), NetworkLayerBinding.Client);
                     }
                 }
                 return adapter;
-			}
-			catch (SocketException ex)
-			{
-				throw new NetServiceException(Properties.Resources.FixedProxyDocument_ErrorCreatingService, ex);
-			}
-			catch (IOException ex)
-			{
-				throw new NetServiceException(Properties.Resources.FixedProxyDocument_ErrorCreatingService, ex);
-			}
-		}
+            }
+            catch (SocketException ex)
+            {
+                throw new NetServiceException(Properties.Resources.FixedProxyDocument_ErrorCreatingService, ex);
+            }
+            catch (IOException ex)
+            {
+                throw new NetServiceException(Properties.Resources.FixedProxyDocument_ErrorCreatingService, ex);
+            }
+        }
     }
 }

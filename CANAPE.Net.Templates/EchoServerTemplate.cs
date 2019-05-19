@@ -22,7 +22,7 @@ namespace CANAPE.Net.Templates
     /// <summary>
     /// Echo server template.
     /// </summary>
-    public class EchoServerTemplate 
+    public class EchoServerTemplate
         : NetServerTemplate<EchoDataEndpoint, object>
     {
     }

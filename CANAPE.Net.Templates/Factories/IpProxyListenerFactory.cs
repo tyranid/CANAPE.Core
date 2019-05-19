@@ -28,12 +28,12 @@ namespace CANAPE.Net.Templates.Factories
     {
         private bool _anybind;
         private bool _ipv6;
-        private int _port;        
+        private int _port;
 
         /// <summary>
         /// Get or set whether to bind to all interfaces
         /// </summary>
-        public bool AnyBind 
+        public bool AnyBind
         {
             get { return _anybind; }
             set { _anybind = value; }
@@ -70,6 +70,6 @@ namespace CANAPE.Net.Templates.Factories
         /// </summary>
         /// <param name="logger">The logger</param>
         /// <returns>The new network listener</returns>
-        public abstract INetworkListener Create(Logger logger); 
+        public abstract INetworkListener Create(Logger logger);
     }
 }

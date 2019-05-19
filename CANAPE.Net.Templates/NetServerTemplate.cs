@@ -33,28 +33,28 @@ using System.Threading;
 
 namespace CANAPE.Net.Templates
 {
-	/// <summary>
-	/// A document representing a network server
-	/// </summary>
-	public class NetServerTemplate<T, C> : ServiceTemplate
+    /// <summary>
+    /// A document representing a network server
+    /// </summary>
+    public class NetServerTemplate<T, C> : ServiceTemplate
             where T : IDataEndpoint, IPersistNode, new() where C : new()
     {
         private class NetServerProxyClient : ProxyClient
         {
             DataEndpointFactory<T, C> _factory;
 
-            public NetServerProxyClient(DataEndpointFactory<T, C> factory) 
+            public NetServerProxyClient(DataEndpointFactory<T, C> factory)
             {
                 _factory = factory;
             }
 
-            public override IDataAdapter Connect(ProxyToken token, Logger logger, MetaDictionary meta, 
+            public override IDataAdapter Connect(ProxyToken token, Logger logger, MetaDictionary meta,
                 MetaDictionary globalMeta, PropertyBag properties)
             {
                 return new DataEndpointAdapter(_factory.Create(logger, meta, globalMeta), logger);
             }
 
-            public override IDataAdapter Bind(ProxyToken token, Logger logger, MetaDictionary meta, 
+            public override IDataAdapter Bind(ProxyToken token, Logger logger, MetaDictionary meta,
                 MetaDictionary globalMeta, PropertyBag properties)
             {
                 return null;
@@ -66,7 +66,7 @@ namespace CANAPE.Net.Templates
         /// </summary>
         public NetServerTemplate()
         {
-            LocalPort = 12345;            
+            LocalPort = 12345;
             UdpEnable = false;
             Layers = new List<INetworkLayerFactory>();
             ServerFactory = new DataEndpointFactory<T, C>();
@@ -89,7 +89,7 @@ namespace CANAPE.Net.Templates
             if ((LocalPort < 0) || (LocalPort > 65535))
             {
                 throw new NetServiceException(Properties.Resources.NetServerDocument_ValidPort);
-            }            
+            }
             else if (ServerFactory == null)
             {
                 throw new NetServiceException(Properties.Resources.NetServerDocument_MustSpecifyServer);
@@ -116,7 +116,7 @@ namespace CANAPE.Net.Templates
                             INetworkListener ipv6Listener = new TcpNetworkListener(AnyBind, true, LocalPort, logger, false);
 
                             if (listener != null)
-                            { 
+                            {
                                 listener = new AggregateNetworkListener(listener, ipv6Listener);
                             }
                             else
@@ -136,7 +136,7 @@ namespace CANAPE.Net.Templates
                         {
                             INetworkListener ipv6Listener = new UdpNetworkListener(AnyBind, true, LocalPort, EnableBroadcast, logger);
 
-                            if(listener != null)
+                            if (listener != null)
                             {
                                 listener = new AggregateNetworkListener(listener, ipv6Listener);
                             }
@@ -213,23 +213,23 @@ namespace CANAPE.Net.Templates
         /// <value>The server factory config.</value>
         public C ServerFactoryConfig { get { return ServerFactory.Config; } }
 
-		/// <summary>
-		/// Add a layer to this service
-		/// </summary>
-		/// <param name="factory">The factory to add</param>
-		public void AddLayer(INetworkLayerFactory factory)
-		{
-			Layers.Add(factory);
-		}
+        /// <summary>
+        /// Add a layer to this service
+        /// </summary>
+        /// <param name="factory">The factory to add</param>
+        public void AddLayer(INetworkLayerFactory factory)
+        {
+            Layers.Add(factory);
+        }
 
-		/// <summary>
-		/// Add a layer to this service.
-		/// </summary>
-		/// <typeparam name="L">The network layer type to create.</typeparam>
-		public void AddLayer<L>() where L : INetworkLayer, new()
-		{
-			AddLayer(new GenericNetworkLayerFactory<L>());
-		}
+        /// <summary>
+        /// Add a layer to this service.
+        /// </summary>
+        /// <typeparam name="L">The network layer type to create.</typeparam>
+        public void AddLayer<L>() where L : INetworkLayer, new()
+        {
+            AddLayer(new GenericNetworkLayerFactory<L>());
+        }
 
         /// <summary>
         /// Overridden method to get a description of server

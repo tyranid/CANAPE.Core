@@ -23,7 +23,7 @@ namespace CANAPE.Net.Templates.Factories
     /// <summary>
     /// Generic network layer factory.
     /// </summary>
-    public sealed class GenericNetworkLayerFactory<T> : BaseNetworkLayerFactory 
+    public sealed class GenericNetworkLayerFactory<T> : BaseNetworkLayerFactory
                                                 where T : INetworkLayer, new()
     {
         /// <summary>

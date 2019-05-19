@@ -24,8 +24,8 @@ namespace CANAPE.Net.Templates.Factories
     /// <summary>
     /// A factory object for a filter 
     /// </summary>
-    public abstract class ProxyFilterFactory 
-    {        
+    public abstract class ProxyFilterFactory
+    {
         /// <summary>
         /// A netgraph to use for this connection (if null then use the default)
         /// </summary>
@@ -50,7 +50,7 @@ namespace CANAPE.Net.Templates.Factories
         /// Method to create the filter
         /// </summary>
         /// <returns></returns>
-        protected abstract ProxyFilter OnCreateFilter();        
+        protected abstract ProxyFilter OnCreateFilter();
 
         /// <summary>
         /// Create the filter from the factory
@@ -68,7 +68,7 @@ namespace CANAPE.Net.Templates.Factories
                     filter.Client = Client.Create(null);
                 }
                 if (Layers != null)
-                {                    
+                {
                     filter.Layers = Layers;
                 }
                 filter.Block = Block;

@@ -84,7 +84,7 @@ namespace CANAPE.Net.Templates.Factories
                 throw new ArgumentException("Must specify a valid port number");
             }
 
-            return new SocksProxyClient(_hostname, _port, _ipv6, 
+            return new SocksProxyClient(_hostname, _port, _ipv6,
                 _v4 ? SocksProxyClient.SupportedVersion.Version4 : SocksProxyClient.SupportedVersion.Version5, _sendHostname);
         }
 

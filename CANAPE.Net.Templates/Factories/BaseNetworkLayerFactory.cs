@@ -25,7 +25,7 @@ namespace CANAPE.Net.Templates.Factories
     /// Factory object for a network layer
     /// </summary>
     public abstract class BaseNetworkLayerFactory : INetworkLayerFactory
-    {       
+    {
         /// <summary>
         /// Create the layer
         /// </summary>

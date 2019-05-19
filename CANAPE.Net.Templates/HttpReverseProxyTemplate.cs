@@ -30,7 +30,7 @@ namespace CANAPE.Net.Templates
         /// Constructor
         /// </summary>
         public HttpReverseProxyTemplate()
-        {            
+        {
             LocalPort = 80;
         }
 

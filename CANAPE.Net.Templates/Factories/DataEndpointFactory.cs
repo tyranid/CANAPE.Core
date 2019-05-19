@@ -25,13 +25,13 @@ namespace CANAPE.Net.Templates.Factories
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <typeparam name="C"></typeparam>
-    public sealed class DataEndpointFactory<T, C> 
+    public sealed class DataEndpointFactory<T, C>
         where T : IDataEndpoint, IPersistNode, new() where C : new()
     {
-		/// <summary>
-		/// Constructor
-		/// </summary>
-		public DataEndpointFactory()
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public DataEndpointFactory()
         {
             Config = new C();
         }

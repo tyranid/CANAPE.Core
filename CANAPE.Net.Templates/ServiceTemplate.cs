@@ -40,13 +40,13 @@ namespace CANAPE.Net.Templates
         {
             _globalMeta = new MetaDictionary();
         }
-        
+
         /// <summary>
         /// Net graph
         /// </summary>
         public NetGraphFactory Graph
         {
-            get; set; 
+            get; set;
         }
 
         /// <summary>
