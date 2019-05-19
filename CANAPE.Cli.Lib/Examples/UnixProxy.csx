@@ -1,15 +1,12 @@
-﻿// FixedProxy_WithTLS.csx – Simple TCP port-forwarding proxy
+﻿// UnixProxy.csx – Simple UNIX socket forwarding proxy
 // Expose methods like WriteLine and WritePackets.
 using static System.Console;
 using static CANAPE.Cli.ConsoleUtils;
 
 // Create proxy template.
-var template = new FixedProxyTemplate();
-template.LocalPort = 4443;
-template.Host = "www.nostarch.com";
-template.Port = 443;
-var tls = new TlsNetworkLayerFactory();
-template.AddLayer(tls);
+var template = new UnixSocketProxyTemplate();
+template.ListenPath = @"c:\unix\listen";
+template.ConnectPath = @"c:\unix\port";
 
 // Create proxy instance and start.
 var service = template.Create();

@@ -10,7 +10,6 @@
 
 namespace CANAPE.Net.Templates.Properties {
     using System;
-    using System.Reflection;
     
     
     /// <summary>
@@ -20,7 +19,7 @@ namespace CANAPE.Net.Templates.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -40,7 +39,7 @@ namespace CANAPE.Net.Templates.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CANAPE.Net.Templates.Properties.Resources", typeof(Resources).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CANAPE.Net.Templates.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -841,6 +840,42 @@ namespace CANAPE.Net.Templates.Properties {
         internal static string TextDocument_DefaultName {
             get {
                 return ResourceManager.GetString("TextDocument_DefaultName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error creating UNIX socket proxy..
+        /// </summary>
+        internal static string UnixSocketProxyTemplate_ErrorCreatingProxy {
+            get {
+                return ResourceManager.GetString("UnixSocketProxyTemplate_ErrorCreatingProxy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Must specify a valid connect path..
+        /// </summary>
+        internal static string UnixSocketProxyTemplate_InvalidConnectPath {
+            get {
+                return ResourceManager.GetString("UnixSocketProxyTemplate_InvalidConnectPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Must specify a valid listen path..
+        /// </summary>
+        internal static string UnixSocketProxyTemplate_InvalidListenPath {
+            get {
+                return ResourceManager.GetString("UnixSocketProxyTemplate_InvalidListenPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UNIX Socket Proxy listening on {0} connecting to {1}.
+        /// </summary>
+        internal static string UnixSocketProxyTemplate_ToString {
+            get {
+                return ResourceManager.GetString("UnixSocketProxyTemplate_ToString", resourceCulture);
             }
         }
     }

@@ -288,6 +288,9 @@
   <data name="SslNetworkLayer_ClientLogString" xml:space="preserve">
     <value>Connected SSL client with Protocol {0} IsSigned {1} IsMutuallyAuthenticated {2} IsEncrypted {3}</value>
   </data>
+  <data name="StreamSocketNetworkListener_ToString" xml:space="preserve">
+    <value>{0} {1}</value>
+  </data>
   <data name="TcpNetworkListener_AutoBind" xml:space="preserve">
     <value>TCP listener bound to {0}</value>
   </data>

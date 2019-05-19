@@ -378,4 +378,16 @@
   <data name="TextDocument_DefaultName" xml:space="preserve">
     <value>Text Document</value>
   </data>
+  <data name="UnixSocketProxyTemplate_ErrorCreatingProxy" xml:space="preserve">
+    <value>Error creating UNIX socket proxy.</value>
+  </data>
+  <data name="UnixSocketProxyTemplate_InvalidConnectPath" xml:space="preserve">
+    <value>Must specify a valid connect path.</value>
+  </data>
+  <data name="UnixSocketProxyTemplate_InvalidListenPath" xml:space="preserve">
+    <value>Must specify a valid listen path.</value>
+  </data>
+  <data name="UnixSocketProxyTemplate_ToString" xml:space="preserve">
+    <value>UNIX Socket Proxy listening on {0} connecting to {1}</value>
+  </data>
 </root>

@@ -1,4 +1,4 @@
-﻿// PortFormatProxy.csx – Simple TCP port-forwarding proxy
+﻿// FixedProxy.csx – Simple TCP port-forwarding proxy
 // Expose methods like WriteLine and WritePackets.
 using static System.Console;
 using static CANAPE.Cli.ConsoleUtils;
