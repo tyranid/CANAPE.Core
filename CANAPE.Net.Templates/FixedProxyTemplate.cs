@@ -196,17 +196,17 @@ namespace CANAPE.Net.Templates
             else if ((LocalPort < 0) || (LocalPort > 65535))
             {
                 throw new NetServiceException(Properties.Resources.FixedProxyDocument_MustProvideValidLocalPort);
-            }            
+            }
             else
             {
                 try
-                {                    
-                    ProxyServer server = new FixedProxyServer(logger, Host, Port, 
+                {
+                    ProxyServer server = new FixedProxyServer(logger, Host, Port,
                         UdpEnable ? IpProxyToken.IpClientType.Udp : IpProxyToken.IpClientType.Tcp,
                         Ipv6, Layers);
 
                     ProxyClient client = Client != null ? Client.Create(logger) : new IpProxyClient();
-                    
+
                     INetworkListener listener = null;
 
                     if (UdpEnable)
@@ -242,7 +242,7 @@ namespace CANAPE.Net.Templates
                             INetworkListener ipv6Listener = new TcpNetworkListener(AnyBind, true, LocalPort, logger, false);
 
                             if (listener != null)
-                            { 
+                            {
                                 listener = new AggregateNetworkListener(listener, ipv6Listener);
                             }
                             else
@@ -251,10 +251,10 @@ namespace CANAPE.Net.Templates
                             }
                         }
                     }
-                    
+
                     if (listener == null)
                     {
-                        throw new NetServiceException(CANAPE.Net.Templates.Properties.Resources.NetServiceDocument_CannotSetupListener);
+                        throw new NetServiceException(Properties.Resources.NetServiceDocument_CannotSetupListener);
                     }
 
                     ret = new ProxyNetworkService(listener,
@@ -282,7 +282,7 @@ namespace CANAPE.Net.Templates
         /// <returns>The description</returns>
         public override string ToString()
         {
-            return String.Format(Properties.Resources.FixedProxyDocument_ToString, 
+            return string.Format(Properties.Resources.FixedProxyDocument_ToString,
                 "", UdpEnable ? "UDP" : "TCP", LocalPort, Host, Port);
         }
     }
