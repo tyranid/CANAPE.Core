@@ -29,8 +29,18 @@ namespace CANAPE.Net.DataAdapters
         /// Constructor.
         /// </summary>
         /// <param name="client">The socket client.</param>
-        public StreamSocketDataAdapter(Socket client) 
-            : base(new NetworkStream(client, true), client.RemoteEndPoint.ToString())
+        /// <param name="description">The description for the data adapter.</param>
+        public StreamSocketDataAdapter(Socket client, string description) 
+            : base(new NetworkStream(client, true), description)
+        {
+        }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="client">The socket client.</param>
+        public StreamSocketDataAdapter(Socket client)
+            : this(client, client.RemoteEndPoint.ToString())
         {
         }
     }

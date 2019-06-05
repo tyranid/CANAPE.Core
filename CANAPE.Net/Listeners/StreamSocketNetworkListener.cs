@@ -45,9 +45,9 @@ namespace CANAPE.Net.Listeners
                 _pending.Add(client);
             }
 
-            _logger.LogVerbose(Properties.Resources.TcpNetworkListener_ConnectionLogString, client.RemoteEndPoint);
+            _logger.LogVerbose(Properties.Resources.TcpNetworkListener_ConnectionLogString, _localEndpoint);
 
-            StreamSocketDataAdapter da = new StreamSocketDataAdapter(client);
+            StreamSocketDataAdapter da = new StreamSocketDataAdapter(client, _localEndpoint.ToString());
             ClientConnectedEventArgs e = new ClientConnectedEventArgs(da);
             NetUtils.PopulateBagFromSocket(client, e.Properties);
 
