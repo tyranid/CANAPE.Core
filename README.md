@@ -5,11 +5,10 @@ It should work on any platform with .NET Standard support 2.0, so .NET Core 2.0.
 macOS should be suitable as well as recompiling for .NET framework and Mono.
 
 To use either compile with Visual Studio 2017 with .NET Core support or from the command line do the 
-following:
+following (replace netcoreapp3.0 with netcoreapp2.0 if using 2.X framework):
 
 ```cd CANAPE.Core
-dotnet restore
-dotnet build CANAPE.Cli/CANAPE.Cli.csproj -c Release -f netcoreapp2.0
-cd CANAPE.Cli/bin/Release/netcoreapp2.0
+dotnet build CANAPE.Cli/CANAPE.Cli.csproj -c Release -f netcoreapp3.0
+cd CANAPE.Cli/bin/Release/netcoreapp3.0
 dotnet exec CANAPE.Cli.dll Examples/SocksProxy.csx --color
 ```
