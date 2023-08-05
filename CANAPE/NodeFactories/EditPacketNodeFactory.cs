@@ -15,9 +15,9 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using CANAPE.Nodes;
 using CANAPE.Utils;
+using System;
 using System.Collections.Generic;
 
 namespace CANAPE.NodeFactories
@@ -26,7 +26,7 @@ namespace CANAPE.NodeFactories
     /// Factory to create an edit packet node
     /// </summary>    
     public class EditPacketNodeFactory : BaseNodeFactory
-    {        
+    {
         private ColorValue _color;
         private string _tag;
 
@@ -39,7 +39,7 @@ namespace CANAPE.NodeFactories
         /// <param name="tag">The textual tag to show in an edit window</param>
         public EditPacketNodeFactory(string label, Guid guid, ColorValue color, string tag)
             : base(label, guid)
-        {            
+        {
             _color = color;
             _tag = tag;
         }

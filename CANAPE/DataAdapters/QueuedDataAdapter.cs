@@ -15,11 +15,11 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using System.Threading;
 using CANAPE.DataFrames;
 using CANAPE.Utils;
+using System;
 using System.IO;
+using System.Threading;
 
 namespace CANAPE.DataAdapters
 {
@@ -138,7 +138,7 @@ namespace CANAPE.DataAdapters
         public DataFrame Dequeue(int readTimeout)
         {
             DataFrame ret = null;
-           
+
             if (!_inputQueue.Dequeue(readTimeout, out ret))
             {
                 // Indicates that we hit a timeout, throw an IOException
@@ -162,7 +162,7 @@ namespace CANAPE.DataAdapters
             }
             set
             {
-                if((value < 0) && (value != Timeout.Infinite))
+                if ((value < 0) && (value != Timeout.Infinite))
                 {
                     throw new ArgumentOutOfRangeException();
                 }

@@ -52,25 +52,25 @@ namespace CANAPE.Net.Layers
     {
         private string _match;
         private MatchMode _mode;
-        private bool _ignoreCase;  
+        private bool _ignoreCase;
 
         /// <summary>
         /// The match string
         /// </summary>
-        public string Match 
+        public string Match
         {
             get { return _match; }
             set
-            {                
-                _match = value ?? String.Empty;                
+            {
+                _match = value ?? String.Empty;
             }
         }
 
         /// <summary>
         /// The mode of the match
         /// </summary>
-        public MatchMode Mode 
-        { 
+        public MatchMode Mode
+        {
             get { return _mode; }
             set { _mode = value; }
         }
@@ -98,7 +98,7 @@ namespace CANAPE.Net.Layers
         /// <summary>
         /// Constructor
         /// </summary>
-        public HttpMatchEntry() 
+        public HttpMatchEntry()
             : this(String.Empty, MatchMode.None)
         {
         }
@@ -126,7 +126,7 @@ namespace CANAPE.Net.Layers
                 case MatchMode.Regex:
                     return new Regex(_match, IgnoreCase ? RegexOptions.IgnoreCase : RegexOptions.None).IsMatch(value);
                 case MatchMode.Equal:
-                    return value.Equals(_match, IgnoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal);                    
+                    return value.Equals(_match, IgnoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal);
                 default:
                     return true;
             }
@@ -162,7 +162,7 @@ namespace CANAPE.Net.Layers
         /// If true response body will be streamed rather than buffered up
         /// </summary>
         public bool ResponseStreamBody { get; set; }
-        
+
         /// <summary>
         /// Convert HTTP/1.1 content-length format response to chunked encoding (for easier manipulation)
         /// Only applicable if StreamBody has been set, otherwise the entire body is buffered anyway
@@ -202,12 +202,12 @@ namespace CANAPE.Net.Layers
         /// <returns></returns>
         public bool IsMatch(HttpRequestHeader request, HttpResponseHeader response)
         {
-          
+
             if (IsMatch(request))
             {
                 foreach (var pair in response.Headers)
                 {
-                    if(pair.Name.Equals("Content-Type", StringComparison.OrdinalIgnoreCase))
+                    if (pair.Name.Equals("Content-Type", StringComparison.OrdinalIgnoreCase))
                     {
                         return ContentTypeMatch.IsMatch(pair.Value);
                     }

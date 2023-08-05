@@ -16,7 +16,6 @@
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using CANAPE.DataAdapters;
-using CANAPE.Nodes;
 using CANAPE.Utils;
 using System;
 using System.IO;
@@ -45,7 +44,7 @@ namespace CANAPE.Nodes
             this.Description = server.Description;
 
             _thread = new Thread(StartEndpoint);
-            _thread.IsBackground = true;            
+            _thread.IsBackground = true;
         }
 
         /// <summary>
@@ -85,6 +84,6 @@ namespace CANAPE.Nodes
             }
 
             this.Coupling.Dispose();
-        }        
+        }
     }
 }

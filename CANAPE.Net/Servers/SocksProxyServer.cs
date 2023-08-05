@@ -15,15 +15,15 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using CANAPE.DataAdapters;
+using CANAPE.Net.Tokens;
+using CANAPE.Nodes;
+using CANAPE.Utils;
 using System;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
-using CANAPE.DataAdapters;
-using CANAPE.Net.Tokens;
-using CANAPE.Utils;
-using CANAPE.Nodes;
 
 namespace CANAPE.Net.Servers
 {
@@ -36,7 +36,7 @@ namespace CANAPE.Net.Servers
         /// 
         /// </summary>
         public enum SupportedVersion
-        {            
+        {
             /// <summary>
             /// 
             /// </summary>
@@ -48,7 +48,7 @@ namespace CANAPE.Net.Servers
             /// <summary>
             /// 
             /// </summary>
-            Version5,            
+            Version5,
         }
 
         /// <summary>
@@ -67,9 +67,9 @@ namespace CANAPE.Net.Servers
         /// <param name="logger"></param>
         public SocksProxyServer(Logger logger)
             : this(logger, SupportedVersion.All)
-        {            
+        {
         }
-        
+
         const byte REQUEST_SUCCEEDED = 0x5A;
         const byte REQUEST_FAILED = 0x5B;
 
@@ -110,7 +110,7 @@ namespace CANAPE.Net.Servers
 
         private ProxyToken HandleSocksv4Request(DataAdapterToStream stm)
         {
-            SocksProxyToken ret = null;                       
+            SocksProxyToken ret = null;
 
             int req = stm.ReadByte();
             ushort port = ReadUShort(stm);
@@ -119,7 +119,7 @@ namespace CANAPE.Net.Servers
             string addrName = addr.ToString();
 
             // Discard username
-            ReadZString(stm);                
+            ReadZString(stm);
 
             if ((addrBytes[0] == 0) && (addrBytes[1] == 0) && (addrBytes[2] == 0) && (addrBytes[3] != 0))
             {
@@ -146,7 +146,7 @@ namespace CANAPE.Net.Servers
 
             stm.Write(resp, 0, resp.Length);
 
-            if(token.Status == NetStatusCodes.Success)
+            if (token.Status == NetStatusCodes.Success)
             {
                 // Clear adapter value so it wont get disposed
                 token.Adapter = null;
@@ -178,14 +178,14 @@ namespace CANAPE.Net.Servers
 
             byte[] ret = new byte[2];
 
-            ret[0] = 5;                       
+            ret[0] = 5;
             if (foundAuth)
             {
-                ret[1] = 0;                
+                ret[1] = 0;
             }
             else
             {
-                ret[1] = 0xFF;                
+                ret[1] = 0xFF;
             }
 
             stm.Write(ret, 0, ret.Length);
@@ -199,7 +199,7 @@ namespace CANAPE.Net.Servers
             IPAddress addr = null;
             string addrName = null;
             bool ipv6 = false;
-            ushort port = 0;            
+            ushort port = 0;
 
             int ver = stm.ReadByte();
             int code = stm.ReadByte();
@@ -216,7 +216,7 @@ namespace CANAPE.Net.Servers
                         {
                             data = GeneralUtils.ReadBytes(stm, 4);
                             addr = new IPAddress(data);
-                            addrName = addr.ToString();                            
+                            addrName = addr.ToString();
                         }
                         break;
                     case 3: // Domain name
@@ -254,10 +254,10 @@ namespace CANAPE.Net.Servers
         private IDataAdapter HandleSocksV5Response(SocksProxyToken token)
         {
             DataAdapterToStream stm = token.Adapter;
-            byte[] returnData = new byte[10]; 
+            byte[] returnData = new byte[10];
 
             returnData[0] = 5;
-            if(token.Status == NetStatusCodes.Success)
+            if (token.Status == NetStatusCodes.Success)
             {
                 returnData[1] = 0;
             }
@@ -285,7 +285,7 @@ namespace CANAPE.Net.Servers
         }
 
         private ProxyToken HandleSocksv5Request(DataAdapterToStream stm)
-        {            
+        {
             if (HandleV5Auth(stm))
             {
                 return HandleV5RequestData(stm);
@@ -302,7 +302,7 @@ namespace CANAPE.Net.Servers
             }
             else if ((version == 4) && (_supportedVersion == SupportedVersion.Version4))
             {
-                return true; 
+                return true;
             }
             else if ((version == 5) && (_supportedVersion == SupportedVersion.Version5))
             {
@@ -352,7 +352,7 @@ namespace CANAPE.Net.Servers
 
             return HandleConnectRequest(stm);
         }
-        
+
         /// <summary>
         /// 
         /// </summary>

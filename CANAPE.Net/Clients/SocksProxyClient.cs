@@ -15,17 +15,17 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using CANAPE.DataAdapters;
+using CANAPE.Net.Tokens;
+using CANAPE.Net.Utils;
+using CANAPE.Nodes;
+using CANAPE.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using CANAPE.DataAdapters;
-using CANAPE.Net.Tokens;
-using CANAPE.Utils;
-using CANAPE.Nodes;
-using CANAPE.Net.Utils;
 
 namespace CANAPE.Net.Clients
 {
@@ -34,10 +34,10 @@ namespace CANAPE.Net.Clients
     /// </summary>
     public class SocksProxyClient : IpProxyClient
     {
-        private string  _hostname;
-        private int     _port;
-        private bool    _ipv6;
-        private bool    _sendHostName;
+        private string _hostname;
+        private int _port;
+        private bool _ipv6;
+        private bool _sendHostName;
         private SupportedVersion _version;
 
         /// <summary>
@@ -97,8 +97,8 @@ namespace CANAPE.Net.Clients
                     }
                 }
             }
-            
-            if(ret == null)
+
+            if (ret == null)
             {
                 throw new ArgumentException(CANAPE.Net.Properties.Resources.SocksProxyClient_CouldNotGetHost);
             }
@@ -133,7 +133,7 @@ namespace CANAPE.Net.Clients
             req[5] = addrbytes[1];
             req[6] = addrbytes[2];
             req[7] = addrbytes[3];
-            
+
             stm.Write(req, 0, req.Length);
 
             byte[] resp = GeneralUtils.ReadBytes(stm, 8);
@@ -150,7 +150,7 @@ namespace CANAPE.Net.Clients
 
         private void ConnectVersion4a(Stream stm, IpProxyToken token, Logger logger)
         {
-            byte[] req = new byte[9+token.Hostname.Length+1];
+            byte[] req = new byte[9 + token.Hostname.Length + 1];
             req[0] = 4;
             req[1] = 1;
             req[2] = (byte)(token.Port >> 8);
@@ -198,7 +198,7 @@ namespace CANAPE.Net.Clients
                     connect.Add((byte)token.Hostname.Length);
                     connect.AddRange(new BinaryEncoding().GetBytes(token.Hostname));
                 }
-                else if(token.Address != null)
+                else if (token.Address != null)
                 {
                     if (token.Address.AddressFamily == AddressFamily.InterNetwork)
                     {
@@ -214,7 +214,7 @@ namespace CANAPE.Net.Clients
                     }
 
                     connect.AddRange(token.Address.GetAddressBytes());
-                }                
+                }
                 else
                 {
                     throw new ArgumentException(CANAPE.Net.Properties.Resources.SocksProxyClient_InvalidProxyToken2);
@@ -274,7 +274,7 @@ namespace CANAPE.Net.Clients
                 token.Status = NetStatusCodes.ConnectFailure;
             }
         }
-        
+
         /// <summary>
         /// Connection to the socks server
         /// </summary>
@@ -290,12 +290,12 @@ namespace CANAPE.Net.Clients
         public override IDataAdapter Connect(ProxyToken token, Logger logger, MetaDictionary meta, MetaDictionary globalMeta, PropertyBag properties)
         {
             IDataAdapter ret = null;
-            
+
             if (token is IpProxyToken)
             {
                 IpProxyToken iptoken = token as IpProxyToken;
                 TcpClient client = new TcpClient();
-                
+
                 try
                 {
                     client.ConnectAsync(_hostname, _port).Wait();

@@ -105,7 +105,7 @@ namespace CANAPE.Net.Layers
         /// Should default to false as this is for testing only
         /// </summary>
         public bool VerifyServerCertificate { get; set; }
-        
+
         /// <summary>
         /// The client protocol, if SslProtocols.None then doesn't enable SSL
         /// </summary>

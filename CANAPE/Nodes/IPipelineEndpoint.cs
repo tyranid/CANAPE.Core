@@ -15,8 +15,8 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using CANAPE.DataAdapters;
+using System;
 
 namespace CANAPE.Nodes
 {
@@ -29,7 +29,7 @@ namespace CANAPE.Nodes
         /// Get or set the data adapter
         /// </summary>
         IDataAdapter Adapter { get; set; }
-        
+
         /// <summary>
         /// Start the node
         /// </summary>        

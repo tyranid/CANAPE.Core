@@ -15,9 +15,9 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using CANAPE.DataFrames;
 using System;
 using System.IO;
-using CANAPE.DataFrames;
 
 namespace CANAPE.DataAdapters
 {
@@ -28,7 +28,7 @@ namespace CANAPE.DataAdapters
     {
         private IDataAdapter _adapter;
         private byte[] _currBuf;
-        private int _currPos;        
+        private int _currPos;
         private bool _endOfStream;
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace CANAPE.DataAdapters
                 DataFrame frame = _adapter.Read();
                 byte[] buf = null;
 
-                if(frame != null)
+                if (frame != null)
                 {
                     buf = frame.ToArray();
                 }
@@ -149,8 +149,8 @@ namespace CANAPE.DataAdapters
             int len = 0;
 
             if (!_endOfStream)
-            {                
-                if(CheckDataAvailable())
+            {
+                if (CheckDataAvailable())
                 {
                     int left = _currBuf.Length - _currPos;
                     len = left < count ? left : count;
@@ -173,7 +173,7 @@ namespace CANAPE.DataAdapters
 
             if (!_endOfStream)
             {
-                if(CheckDataAvailable())
+                if (CheckDataAvailable())
                 {
                     ret = (int)_currBuf[_currPos++];
                 }

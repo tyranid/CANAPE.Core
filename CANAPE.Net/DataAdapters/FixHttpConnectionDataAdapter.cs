@@ -15,10 +15,10 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using System.IO;
 using CANAPE.DataFrames;
 using CANAPE.Utils;
+using System;
+using System.IO;
 
 namespace CANAPE.DataAdapters
 {
@@ -45,8 +45,8 @@ namespace CANAPE.DataAdapters
         /// </summary>
         /// <returns>The data frame, null on end of file</returns>
         public DataFrame Read()
-        {  
-            return _adapter.Read();            
+        {
+            return _adapter.Read();
         }
 
         /// <summary>
@@ -58,11 +58,11 @@ namespace CANAPE.DataAdapters
             if (!fixedConnection)
             {
                 string s = BinaryEncoding.Instance.GetString(frame.ToArray());
-                StringReader reader = new StringReader(s);     
+                StringReader reader = new StringReader(s);
                 string header = reader.ReadLine();
 
-                while(header != null)
-                {                   
+                while (header != null)
+                {
                     if (header.StartsWith("Connection:"))
                     {
                         s = s.Replace(header, "Connection: close");
@@ -70,7 +70,7 @@ namespace CANAPE.DataAdapters
                         break;
                     }
                     else if (header.Length == 0)
-                    {                     
+                    {
                         fixedConnection = true;
                         break;
                     }

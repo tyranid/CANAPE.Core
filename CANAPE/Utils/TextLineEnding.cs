@@ -34,6 +34,6 @@ namespace CANAPE.Utils
         /// <summary>
         /// Split on carriage return line feed pairs
         /// </summary>
-        CarriageReturnLineFeed,        
+        CarriageReturnLineFeed,
     }
 }

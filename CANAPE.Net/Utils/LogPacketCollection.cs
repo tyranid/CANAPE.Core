@@ -15,10 +15,10 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using CANAPE.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CANAPE.Utils;
 
 namespace CANAPE.Net.Utils
 {
@@ -43,14 +43,15 @@ namespace CANAPE.Net.Utils
         {
         }
 
-        private static bool EqualTag(LogPacket packet, string tag) {
+        private static bool EqualTag(LogPacket packet, string tag)
+        {
             if (packet.Tag == null)
             {
                 return false;
             }
             return packet.Tag.Equals(tag, StringComparison.CurrentCultureIgnoreCase);
         }
-        
+
         /// <summary>
         /// Get a list of packets for a tag name
         /// </summary>
@@ -148,18 +149,19 @@ namespace CANAPE.Net.Utils
         /// </summary>
         /// <param name="filename">Filename.</param>
         /// <param name="tag">Tag.</param>
-        public void WriteToFile(string filename, string tag) {
+        public void WriteToFile(string filename, string tag)
+        {
             WriteToFile(filename, p => EqualTag(p, tag));
         }
 
-		/// <summary>
-		/// Writes to file only a specific tag.
-		/// </summary>
-		/// <param name="filename">Filename.</param>
-		public void WriteToFile(string filename)
-		{
-			GeneralUtils.WritePacketsToFile(filename, this);
-		}
+        /// <summary>
+        /// Writes to file only a specific tag.
+        /// </summary>
+        /// <param name="filename">Filename.</param>
+        public void WriteToFile(string filename)
+        {
+            GeneralUtils.WritePacketsToFile(filename, this);
+        }
 
         /// <summary>
         /// Reads from file.

@@ -15,11 +15,10 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System.Net;
 using CANAPE.DataAdapters;
 using CANAPE.DataFrames;
 using CANAPE.Net.Listeners;
-using CANAPE.Utils;
+using System.Net;
 
 namespace CANAPE.Net.DataAdapters
 {

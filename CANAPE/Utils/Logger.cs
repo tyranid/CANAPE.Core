@@ -17,7 +17,6 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Reflection;
-using System.Security.Authentication;
 
 namespace CANAPE.Utils
 {
@@ -74,7 +73,7 @@ namespace CANAPE.Utils
                 Timestamp = DateTime.Now;
                 EntryType = entryType;
                 Text = text;
-                ExceptionObject = ex;                
+                ExceptionObject = ex;
                 SourceName = sourceName;
                 SourceGuid = sourceGuid;
             }
@@ -125,7 +124,7 @@ namespace CANAPE.Utils
             /// <summary>
             /// Log an error entry
             /// </summary>
-            Error = 8,            
+            Error = 8,
             /// <summary>
             /// All the levels
             /// </summary>
@@ -136,7 +135,7 @@ namespace CANAPE.Utils
         /// Specify the level of the logging
         /// </summary>
         public LogEntryType LogLevel { get; set; }
-        
+
         /// <summary>
         /// Event when log entry received
         /// </summary>

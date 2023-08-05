@@ -15,17 +15,17 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using CANAPE.DataAdapters;
+using CANAPE.Net.Tokens;
+using CANAPE.Nodes;
+using CANAPE.Security.Cryptography.X509Certificates;
+using CANAPE.Utils;
 using System;
 using System.Collections.Concurrent;
 using System.Net.Security;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
-using CANAPE.DataAdapters;
-using CANAPE.Net.Tokens;
-using CANAPE.Nodes;
-using CANAPE.Security.Cryptography.X509Certificates;
-using CANAPE.Utils;
 
 namespace CANAPE.Net.Layers
 {
@@ -33,11 +33,11 @@ namespace CANAPE.Net.Layers
     /// A layer class to implement a SSL network
     /// </summary>
     public class TlsNetworkLayer : INetworkLayer
-    {        
+    {
         TlsNetworkLayerConfig _config;
         X509Certificate _remoteCert;
-        
-        private static ConcurrentDictionary<string, X509Certificate> _certCache = 
+
+        private static ConcurrentDictionary<string, X509Certificate> _certCache =
             new ConcurrentDictionary<string, X509Certificate>();
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace CANAPE.Net.Layers
         private static int nameCounter = 0;
 
         private static void PopulateSslMeta(PropertyBag properties, SslStream stm)
-        {                       
+        {
             properties.AddValue("SslProtocol", stm.SslProtocol);
             properties.AddValue("IsSigned", stm.IsSigned);
             properties.AddValue("IsMutallyAuthenticated", stm.IsMutuallyAuthenticated);
@@ -102,8 +102,8 @@ namespace CANAPE.Net.Layers
             properties.AddValue("CipherStrength", stm.CipherStrength);
             properties.AddValue("HashAlgorithm", stm.HashAlgorithm);
             properties.AddValue("HashStrength", stm.HashStrength);
-            
-            if(stm.LocalCertificate != null)
+
+            if (stm.LocalCertificate != null)
             {
                 properties.AddValue("LocalCertificate", stm.LocalCertificate);
             }
@@ -121,7 +121,7 @@ namespace CANAPE.Net.Layers
             SslStream sslStream = new SslStream(new DataAdapterToStream(adapter), false, ValidateRemoteClientConnection);
 
             if (serverName == null)
-            {                
+            {
                 // Just generate something
                 serverName = Interlocked.Increment(ref nameCounter).ToString();
             }
@@ -130,7 +130,7 @@ namespace CANAPE.Net.Layers
             bool setReadTimeout = false;
             int oldTimeout = -1;
 
-            foreach(X509Certificate2 clientCert in _config.ClientCertificates)
+            foreach (X509Certificate2 clientCert in _config.ClientCertificates)
             {
                 clientCerts.Add(clientCert);
             }
@@ -225,7 +225,7 @@ namespace CANAPE.Net.Layers
                 sslStream.ReadTimeout = oldTimeout;
             }
 
-            logger.LogVerbose(Properties.Resources.SslNetworkLayer_ClientLogString, 
+            logger.LogVerbose(Properties.Resources.SslNetworkLayer_ClientLogString,
                 sslStream.SslProtocol, sslStream.IsSigned, sslStream.IsMutuallyAuthenticated, sslStream.IsEncrypted);
 
             PopulateSslMeta(properties.AddBag("SslServer"), sslStream);
@@ -244,7 +244,7 @@ namespace CANAPE.Net.Layers
         /// <param name="globalMeta"></param>
         /// <param name="properties"></param>
         /// <param name="defaultBinding"></param>
-        public void Negotiate(ref IDataAdapter server, ref IDataAdapter client, ProxyToken token, Logger logger, 
+        public void Negotiate(ref IDataAdapter server, ref IDataAdapter client, ProxyToken token, Logger logger,
             MetaDictionary meta, MetaDictionary globalMeta, PropertyBag properties, NetworkLayerBinding defaultBinding)
         {
             if (_config.Enabled)
@@ -296,7 +296,7 @@ namespace CANAPE.Net.Layers
         /// </summary>
         public NetworkLayerBinding Binding
         {
-            get; set; 
+            get; set;
         }
     }
 }

@@ -15,12 +15,11 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using CANAPE.DataAdapters;
 using CANAPE.Net.Tokens;
 using CANAPE.Nodes;
-using CANAPE.Security;
 using CANAPE.Utils;
+using System;
 
 namespace CANAPE.Net.Clients
 {
@@ -38,7 +37,7 @@ namespace CANAPE.Net.Clients
         public ChainProxyClient(params ProxyClient[] clients)
         {
             if (clients == null)
-            {                
+            {
                 throw new ArgumentNullException("clients");
             }
 
@@ -46,7 +45,7 @@ namespace CANAPE.Net.Clients
             {
                 throw new ArgumentException();
             }
-            
+
             _clients = clients;
         }
 

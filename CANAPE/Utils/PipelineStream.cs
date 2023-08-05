@@ -20,7 +20,7 @@ using System.IO;
 using System.Threading;
 
 namespace CANAPE.Utils
-{    
+{
     /// <summary>
     /// Class to implement a thread safe pipe byte stream
     /// inputs in blocks of bytes
@@ -36,7 +36,7 @@ namespace CANAPE.Utils
         /// <summary>
         /// Default constructor
         /// </summary>
-        public PipelineStream(CancellationToken token)            
+        public PipelineStream(CancellationToken token)
         {
             _dataQueue = new LockedQueue<byte[]>(-1, token);
             _readTimeout = Timeout.Infinite;
@@ -48,7 +48,7 @@ namespace CANAPE.Utils
         /// <param name="frame">Array of bytes to queue, 
         /// if null is passed this will cause the stream to end when all data has been read</param>
         public void Enqueue(byte[] frame)
-        {           
+        {
             _dataQueue.Enqueue(frame);
         }
 
@@ -113,7 +113,7 @@ namespace CANAPE.Utils
         /// Flush the stream (does nothing)
         /// </summary>
         public override void Flush()
-        {            
+        {
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace CANAPE.Utils
             if (!_endOfStream)
             {
                 EnsureDataAvailable();
-                
+
                 if ((_currBuf != null) && (_currBuf.Length > 0))
                 {
                     int left = _currBuf.Length - _currPos;
@@ -187,7 +187,7 @@ namespace CANAPE.Utils
 
             return len;
         }
-        
+
         /// <summary>
         /// Read a byte
         /// </summary>

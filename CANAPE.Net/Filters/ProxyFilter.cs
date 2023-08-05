@@ -15,14 +15,12 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using CANAPE.Net.Clients;
 using CANAPE.Net.Layers;
 using CANAPE.Net.Tokens;
 using CANAPE.NodeFactories;
 using CANAPE.Utils;
+using System.Collections.Generic;
 
 namespace CANAPE.Net.Filters
 {
@@ -73,7 +71,7 @@ namespace CANAPE.Net.Filters
         /// <returns></returns>
         public virtual bool Match(ProxyToken token)
         {
-            return token.Bind == Bound;            
+            return token.Bind == Bound;
         }
 
         /// <summary>

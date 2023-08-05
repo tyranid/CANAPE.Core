@@ -15,11 +15,11 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using CANAPE.DataFrames;
 using CANAPE.Utils;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using CANAPE.DataFrames;
 
 namespace CANAPE.Cli
 {
@@ -96,7 +96,7 @@ namespace CANAPE.Cli
         {
             return _supports_ansi_color && EnableColor;
         }
-        
+
         public static void WritePacket(LogPacket packet)
         {
             Console.Out.WriteLine(PacketUtils.ConvertPacketToString(packet, GetEffectiveColorMode()));
@@ -110,17 +110,17 @@ namespace CANAPE.Cli
             }
         }
 
-		public static void WritePacket(DataFrame frame)
-		{
-			Console.Out.WriteLine(PacketUtils.ConvertPacketToString(frame));
-		}
+        public static void WritePacket(DataFrame frame)
+        {
+            Console.Out.WriteLine(PacketUtils.ConvertPacketToString(frame));
+        }
 
-		public static void WritePackets(IEnumerable<DataFrame> packets)
-		{
+        public static void WritePackets(IEnumerable<DataFrame> packets)
+        {
             foreach (DataFrame packet in packets)
-			{
-				WritePacket(packet);
-			}
-		}
+            {
+                WritePacket(packet);
+            }
+        }
     }
 }

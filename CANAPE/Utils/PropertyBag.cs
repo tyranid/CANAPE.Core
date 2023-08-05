@@ -144,7 +144,7 @@ namespace CANAPE.Utils
         {
             PropertyBag bag = this;
 
-            foreach(string name in parts)
+            foreach (string name in parts)
             {
                 if (bag._bags.ContainsKey(name))
                 {
@@ -178,7 +178,7 @@ namespace CANAPE.Utils
         public dynamic GetRelativeValue(string name)
         {
             dynamic ret = null;
-            string[] parts = name.Split('.');            
+            string[] parts = name.Split('.');
 
             if (parts.Length > 0)
             {
@@ -235,7 +235,7 @@ namespace CANAPE.Utils
             {
                 foreach (KeyValuePair<string, dynamic> pair in bag.Value)
                 {
-                    yield return new KeyValuePair<string, object>(String.Format("{0}.{1}", bag.Key, pair.Key), pair.Value);                    
+                    yield return new KeyValuePair<string, object>(String.Format("{0}.{1}", bag.Key, pair.Key), pair.Value);
                 }
             }
 

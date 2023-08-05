@@ -15,10 +15,6 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using CANAPE.Utils;
 
 namespace CANAPE.Nodes
@@ -41,6 +37,6 @@ namespace CANAPE.Nodes
         /// </summary>
         /// <param name="state">The state object</param>        
         /// <param name="logger">The logger to use</param>
-        void SetState(object state, Logger logger);     
+        void SetState(object state, Logger logger);
     }
 }

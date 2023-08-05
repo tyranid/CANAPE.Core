@@ -23,7 +23,7 @@ namespace CANAPE.Net.Servers
     /// Configuration for HTTP proxy
     /// </summary>
     public class HttpProxyServerConfig
-    {       
+    {
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="T:CANAPE.Net.Servers.HttpProxyServerConfig"/>
         /// version10 proxy.

@@ -36,7 +36,7 @@ namespace CANAPE.Net.Protocols.Parser
         {
             HttpVersion ret;
 
-            if(TryParse(version, out ret))
+            if (TryParse(version, out ret))
             {
                 return ret;
             }
@@ -60,7 +60,7 @@ namespace CANAPE.Net.Protocols.Parser
             bool success = false;
 
             if (m.Success)
-            {                
+            {
                 int major;
                 int minor;
 
@@ -68,7 +68,7 @@ namespace CANAPE.Net.Protocols.Parser
                 {
                     ret = new HttpVersion(major, minor);
                     success = true;
-                }                
+                }
             }
 
             return success;
@@ -130,14 +130,14 @@ namespace CANAPE.Net.Protocols.Parser
         public override int GetHashCode()
         {
             return Major.GetHashCode() ^ Minor.GetHashCode();
-        }        
-        
+        }
+
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="major">The major version</param>
         /// <param name="minor">The minor version</param>
-        public HttpVersion(int major, int minor) 
+        public HttpVersion(int major, int minor)
         {
             Major = major;
             Minor = minor;

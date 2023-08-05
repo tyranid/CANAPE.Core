@@ -30,7 +30,7 @@ namespace CANAPE.Utils
         /// <summary>
         /// Default constructor
         /// </summary>
-        public DynamicConfigObject() : this(new Dictionary<string,dynamic>())
+        public DynamicConfigObject() : this(new Dictionary<string, dynamic>())
         {
         }
 

@@ -66,7 +66,7 @@ namespace CANAPE.Nodes
         /// </summary>
         public Logger Logger
         {
-            get; set;        
+            get; set;
         }
 
         #endregion

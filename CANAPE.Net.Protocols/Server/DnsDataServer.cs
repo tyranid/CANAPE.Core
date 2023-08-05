@@ -36,7 +36,7 @@ namespace CANAPE.NodeLibrary.Server
         {
             if (address.AddressFamily != family)
             {
-                throw new ArgumentException(String.Format("Address must be {0} family", 
+                throw new ArgumentException(String.Format("Address must be {0} family",
                     family == AddressFamily.InterNetwork ? "IPv4" : "IPv6"), "family");
             }
             return address;
@@ -182,7 +182,7 @@ namespace CANAPE.NodeLibrary.Server
         /// Validates the config.
         /// </summary>
         /// <param name="config">Config.</param>
-        protected override void  ValidateConfig(DnsDataServerConfig config)
+        protected override void ValidateConfig(DnsDataServerConfig config)
         {
             if (config.ResponseAddress.AddressFamily != AddressFamily.InterNetwork)
             {

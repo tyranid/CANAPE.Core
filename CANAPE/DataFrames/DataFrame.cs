@@ -73,21 +73,21 @@ namespace CANAPE.DataFrames
             return (T)GetInternalValue();
         }
 
-		/// <summary>
-		/// Gets the value but doesn't throw if not valid conversion. Instead returns
+        /// <summary>
+        /// Gets the value but doesn't throw if not valid conversion. Instead returns
         /// the default value for the type.
-		/// </summary>
-		/// <returns>The value.</returns>
-		/// <typeparam name="T">The type of the value you want.</typeparam>
-		public T GetValueNoThrow<T>()
-		{
+        /// </summary>
+        /// <returns>The value.</returns>
+        /// <typeparam name="T">The type of the value you want.</typeparam>
+        public T GetValueNoThrow<T>()
+        {
             object value = GetInternalValue();
             if (value is T)
             {
                 return (T)value;
             }
             return default(T);
-		}
+        }
 
         /// <summary>
         /// Convert the frame to a byte array
@@ -115,7 +115,7 @@ namespace CANAPE.DataFrames
             catch
             {
                 _length = 0;
-                _hash = "";   
+                _hash = "";
             }
         }
 
@@ -158,7 +158,7 @@ namespace CANAPE.DataFrames
         /// <returns></returns>
         public override string ToString()
         {
-            return ToDataString(); 
+            return ToDataString();
         }
     }
 }

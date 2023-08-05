@@ -15,12 +15,12 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
 using CANAPE.DataAdapters;
 using CANAPE.DataFrames;
 using CANAPE.Utils;
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace CANAPE.Nodes
@@ -109,7 +109,7 @@ namespace CANAPE.Nodes
         /// An event which indicates the graph has been shutdown
         /// </summary>
         public event EventHandler GraphShutdown;
-        
+
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -159,7 +159,7 @@ namespace CANAPE.Nodes
         }
 
         #region Meta Data Handling
-       
+
         /// <summary>
         /// Get a meta value from the public scope
         /// </summary>
@@ -263,7 +263,7 @@ namespace CANAPE.Nodes
         {
             string fullName = privateScope ? GeneralUtils.MakePrivateMetaName(Uuid, name) : name;
 
-            GlobalMeta.SetMeta(fullName, obj);            
+            GlobalMeta.SetMeta(fullName, obj);
         }
 
         /// <summary>
@@ -360,7 +360,7 @@ namespace CANAPE.Nodes
         {
             string fullName = privateScope ? GeneralUtils.MakePrivateMetaName(Uuid, name) : name;
 
-            return GlobalMeta.GetCounter(fullName, defaultValue);            
+            return GlobalMeta.GetCounter(fullName, defaultValue);
         }
 
         /// <summary>
@@ -371,7 +371,7 @@ namespace CANAPE.Nodes
         /// <returns>The current value of the counter</returns>
         public int GetGlobalCounter(string name, int defaultValue)
         {
-            return GlobalMeta.GetCounter(name, defaultValue);            
+            return GlobalMeta.GetCounter(name, defaultValue);
         }
 
         /// <summary>
@@ -417,7 +417,7 @@ namespace CANAPE.Nodes
         /// <param name="value">The value of the counter</param>        
         public void SetGlobalCounter(string name, int value)
         {
-            GlobalMeta.SetCounter(name, value);            
+            GlobalMeta.SetCounter(name, value);
         }
 
         /// <summary>
@@ -434,7 +434,7 @@ namespace CANAPE.Nodes
                 if (!Properties.TryGetValue(name, out ret))
                 {
                     ret = null;
-                }                
+                }
             }
 
             return ret;
@@ -461,7 +461,7 @@ namespace CANAPE.Nodes
             }
         }
 
-#endregion
+        #endregion
 
         /// <summary>
         /// Get a node by name
@@ -538,7 +538,7 @@ namespace CANAPE.Nodes
         /// Check if shutdown, all nodes with an inbound connection must be shutdown
         /// </summary>
         public bool CheckShutdown()
-        {            
+        {
             bool ret = true;
 
             if (!_isDisposed && _graphShutdown == 0)
@@ -555,7 +555,7 @@ namespace CANAPE.Nodes
                         }
                     }
                 }
-                
+
                 foreach (KeyValuePair<Guid, BasePipelineNode> pair in Nodes)
                 {
                     if (!pair.Value.IsShutdown && referencedNodes.Contains(pair.Value.Uuid))
@@ -653,12 +653,12 @@ namespace CANAPE.Nodes
 
             if (logPacketEvent != null)
             {
-                DataFrame logFrame = logAsBytes ? new ByteArrayDataFrame(frame.ToArray()) 
+                DataFrame logFrame = logAsBytes ? new ByteArrayDataFrame(frame.ToArray())
                     : frame.Clone();
-                
-                logPacketEvent(this, new LogPacketEventArgs(tag, Uuid, 
-                                                            logFrame, 
-                                                            color, 
+
+                logPacketEvent(this, new LogPacketEventArgs(tag, Uuid,
+                                                            logFrame,
+                                                            color,
                                                             NetworkDescription));
             }
         }
@@ -703,7 +703,7 @@ namespace CANAPE.Nodes
         /// </summary>
         public void Start()
         {
-            foreach(var pair in Nodes)
+            foreach (var pair in Nodes)
             {
                 try
                 {
@@ -731,7 +731,7 @@ namespace CANAPE.Nodes
         #region IDisposable Members
 
         void IDisposable.Dispose()
-        {            
+        {
             if (!_isDisposed)
             {
                 try

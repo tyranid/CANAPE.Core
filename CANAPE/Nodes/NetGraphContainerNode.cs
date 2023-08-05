@@ -15,12 +15,12 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using System.Collections.Generic;
 using CANAPE.DataAdapters;
 using CANAPE.DataFrames;
 using CANAPE.NodeFactories;
 using CANAPE.Utils;
+using System;
+using System.Collections.Generic;
 
 namespace CANAPE.Nodes
 {
@@ -47,7 +47,7 @@ namespace CANAPE.Nodes
 
         private class EventDataAdapter : IDataAdapter
         {
-            NetGraphContainerNode _container;        
+            NetGraphContainerNode _container;
             bool _isClosed;
 
             public EventDataAdapter(NetGraphContainerNode container)
@@ -63,7 +63,7 @@ namespace CANAPE.Nodes
             }
 
             public void Write(DataFrame frame)
-            {                
+            {
                 _container.WriteOutput(frame);
             }
 
@@ -172,8 +172,8 @@ namespace CANAPE.Nodes
         /// <param name="logger">The logger to use</param>
         /// <param name="stateDictionary">Forwarded state dictionary</param>
         /// <param name="linked">If true then we are creating a linked master node</param>
-        public NetGraphContainerNode(string name, NetGraphFactory factory,  
-            GraphDirection direction, NetGraph containerGraph, Logger logger, 
+        public NetGraphContainerNode(string name, NetGraphFactory factory,
+            GraphDirection direction, NetGraph containerGraph, Logger logger,
             Dictionary<string, object> stateDictionary, bool linked)
         {
             var clients = factory.GetNodes<ClientEndpointFactory>();
@@ -181,9 +181,9 @@ namespace CANAPE.Nodes
 
             if ((clients.Length > 0) && (servers.Length > 0))
             {
-                Guid outputNode = direction == GraphDirection.ClientToServer 
+                Guid outputNode = direction == GraphDirection.ClientToServer
                     ? servers[0].Id : clients[0].Id;
-                Guid inputNode = direction == GraphDirection.ClientToServer 
+                Guid inputNode = direction == GraphDirection.ClientToServer
                     ? clients[0].Id : servers[0].Id;
 
                 if (linked)
@@ -197,7 +197,7 @@ namespace CANAPE.Nodes
                         containerGraph.Meta, inputNode, containerGraph.ConnectionProperties, stateDictionary);
                 }
 
-                _graph.BindEndpoint(outputNode, new EventDataAdapter(this));                
+                _graph.BindEndpoint(outputNode, new EventDataAdapter(this));
 
                 _inputNode = (PipelineEndpoint)_graph.Nodes[inputNode];
                 _inputNode.Hidden = true;

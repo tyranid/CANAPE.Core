@@ -21,7 +21,7 @@ namespace CANAPE.Nodes
     /// Base persist data endpoint with a single config type
     /// </summary>
     /// <typeparam name="T">The type of configuration</typeparam>
-    public abstract class BasePersistDataEndpoint<T> : BasePersistDataEndpointRef<T, T> 
+    public abstract class BasePersistDataEndpoint<T> : BasePersistDataEndpointRef<T, T>
         where T : class, new()
     {
     }

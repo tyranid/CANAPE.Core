@@ -15,12 +15,10 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using CANAPE.DataAdapters;
 using CANAPE.Net.Tokens;
-using CANAPE.Utils;
 using CANAPE.Nodes;
-using CANAPE.Security;
+using CANAPE.Utils;
 
 namespace CANAPE.Net.Clients
 {
@@ -41,7 +39,7 @@ namespace CANAPE.Net.Clients
         /// <param name="port">The port to connect to</param>
         /// <param name="clientType">The type of connection to make</param>
         /// <param name="ipv6">Indicates whether to use ipv6</param>
-        public FixedIpProxyClient(string hostname, int port, IpProxyToken.IpClientType clientType, bool ipv6) 
+        public FixedIpProxyClient(string hostname, int port, IpProxyToken.IpClientType clientType, bool ipv6)
         {
             _hostname = hostname;
             _port = port;

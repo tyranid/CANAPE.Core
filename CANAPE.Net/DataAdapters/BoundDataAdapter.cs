@@ -15,8 +15,8 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using CANAPE.DataAdapters;
+using System;
 
 namespace CANAPE.Net.DataAdapters
 {
@@ -45,7 +45,7 @@ namespace CANAPE.Net.DataAdapters
         /// <param name="timeout">Timeout in seconds</param>
         public void Connect(int timeout)
         {
-            _boundAdapter = DoConnect(timeout);            
+            _boundAdapter = DoConnect(timeout);
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace CANAPE.Net.DataAdapters
             {
                 throw new InvalidOperationException();
             }
-        }        
+        }
 
         /// <summary>
         /// On dispose

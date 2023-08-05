@@ -15,9 +15,9 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using CANAPE.DataFrames;
 using CANAPE.Utils;
+using System;
 
 namespace CANAPE.Nodes
 {
@@ -79,7 +79,7 @@ namespace CANAPE.Nodes
     /// Log packet pipeline node
     /// </summary>
     public class LogPacketPipelineNode : BasePipelineNode
-    {        
+    {
         /// <summary>
         /// Color of the log entry
         /// </summary>
@@ -94,16 +94,16 @@ namespace CANAPE.Nodes
         /// If true then all logged frames will be converted to bytes
         /// </summary>
         public bool ConvertToBytes { get; set; }
-        
+
         /// <summary>
         /// OnInput method
         /// </summary>
         /// <param name="frame"></param>
         protected override void OnInput(DataFrame frame)
-        {            
+        {
             Graph.DoLogPacket(String.IsNullOrWhiteSpace(Tag) ? Name : Tag, Color, frame, ConvertToBytes);
-            
-            WriteOutput(frame);      
+
+            WriteOutput(frame);
         }
 
     }

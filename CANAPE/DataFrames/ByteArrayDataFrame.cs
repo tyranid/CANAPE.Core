@@ -17,34 +17,34 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 namespace CANAPE.DataFrames
 {
-	/// <summary>
-	/// Byte array data frame.
-	/// </summary>
-	public sealed class ByteArrayDataFrame : DataFrame
-	{
+    /// <summary>
+    /// Byte array data frame.
+    /// </summary>
+    public sealed class ByteArrayDataFrame : DataFrame
+    {
         private byte[] _value;
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:CANAPE.DataFrames.ByteArrayDataFrame"/> class.
-		/// </summary>
-		internal ByteArrayDataFrame()
-			: this(new byte[0])
-		{
-		}
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:CANAPE.DataFrames.ByteArrayDataFrame"/> class.
+        /// </summary>
+        internal ByteArrayDataFrame()
+            : this(new byte[0])
+        {
+        }
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:CANAPE.DataFrames.ByteArrayDataFrame"/> class.
-		/// </summary>
-		/// <param name="data">Data for frame</param>
-		internal ByteArrayDataFrame(byte[] data)
-		{
-			_value = data;
-		}
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:CANAPE.DataFrames.ByteArrayDataFrame"/> class.
+        /// </summary>
+        /// <param name="data">Data for frame</param>
+        internal ByteArrayDataFrame(byte[] data)
+        {
+            _value = data;
+        }
 
-		private byte[] CloneData()
-		{
-			return (byte[])_value.Clone();
-		}
+        private byte[] CloneData()
+        {
+            return (byte[])_value.Clone();
+        }
 
         /// <summary>
         /// Gets the internal value.
@@ -55,21 +55,21 @@ namespace CANAPE.DataFrames
             return _value;
         }
 
-		/// <summary>
-		/// Converts to a byte array
-		/// </summary>
-		/// <returns>The byte array.</returns>
-		public override byte[] ToArray()
-		{
-			return CloneData();
-		}
+        /// <summary>
+        /// Converts to a byte array
+        /// </summary>
+        /// <returns>The byte array.</returns>
+        public override byte[] ToArray()
+        {
+            return CloneData();
+        }
 
-		/// <summary>
-		/// Called on clone.
-		/// </summary>
-		protected override void OnClone()
-		{
+        /// <summary>
+        /// Called on clone.
+        /// </summary>
+        protected override void OnClone()
+        {
             _value = CloneData();
-		}
-	}
+        }
+    }
 }

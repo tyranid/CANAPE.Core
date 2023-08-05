@@ -98,7 +98,7 @@ namespace CANAPE.Security.Cryptography.X509Certificates
             {
                 throw new ArgumentException("issuer");
             }
-            
+
             X509Name issuerNameObj = issuer == null ? X509Name.GetInstance(Asn1Object.FromByteArray(subjectName.RawData))
                 : X509Name.GetInstance(Asn1Object.FromByteArray(issuer.SubjectName.RawData));
             X509Name subjectNameObj = X509Name.GetInstance(Asn1Object.FromByteArray(subjectName.RawData));

@@ -17,7 +17,6 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Globalization;
-using System.Runtime.InteropServices;
 
 namespace CANAPE.Net.Protocols.Parser
 {
@@ -26,17 +25,17 @@ namespace CANAPE.Net.Protocols.Parser
     /// </summary>
     public sealed class HttpRequestDataChunk : HttpDataChunk<HttpRequestDataChunk>
     {
-        internal HttpRequestDataChunk(HttpRequestHeader header) 
+        internal HttpRequestDataChunk(HttpRequestHeader header)
             : base(header.Headers, header.Version)
         {
             Method = header.Method;
-            Path = header.Path;            
+            Path = header.Path;
         }
 
         /// <summary>
         /// Public constructor
         /// </summary>
-        public HttpRequestDataChunk()             
+        public HttpRequestDataChunk()
         {
             Method = "GET";
             Path = "/";
@@ -75,7 +74,7 @@ namespace CANAPE.Net.Protocols.Parser
                 if (!Version.IsVersionUnknown)
                 {
                     ret = String.Format(CultureInfo.InvariantCulture, "{0} {1}", ret, Version);
-                }                
+                }
             }
             else
             {
@@ -101,7 +100,7 @@ namespace CANAPE.Net.Protocols.Parser
         protected override bool CanSendBody()
         {
             // These methods cannot send a body
-            if (Method.Equals("GET", StringComparison.OrdinalIgnoreCase) 
+            if (Method.Equals("GET", StringComparison.OrdinalIgnoreCase)
                 || Method.Equals("HEAD", StringComparison.OrdinalIgnoreCase))
             {
                 return false;

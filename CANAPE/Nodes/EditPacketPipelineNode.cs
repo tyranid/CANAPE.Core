@@ -15,9 +15,9 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using CANAPE.DataFrames;
 using CANAPE.Utils;
+using System;
 
 namespace CANAPE.Nodes
 {
@@ -53,7 +53,7 @@ namespace CANAPE.Nodes
         /// <param name="sender">The sending node</param>
         /// <param name="color">The colour to show in an edit window</param>
         /// <param name="tag">The textual tag to show in an edit window</param>
-        public EditPacketEventArgs(DataFrame frame, 
+        public EditPacketEventArgs(DataFrame frame,
                                    BasePipelineNode sender, ColorValue color, string tag)
         {
             Frame = frame;
@@ -77,7 +77,7 @@ namespace CANAPE.Nodes
         /// <param name="color">The colour to show in an edit window</param>
         /// <param name="tag">The textual tag to show in an edit window</param>
         public EditPacketPipelineNode(ColorValue color, string tag)
-        {            
+        {
             _color = color;
             _tag = tag;
         }
@@ -89,7 +89,7 @@ namespace CANAPE.Nodes
         protected override void OnInput(DataFrame frame)
         {
             frame = EditPacket(frame, _color, _tag);
-        
+
             if (frame != null)
             {
                 WriteOutput(frame);

@@ -15,9 +15,9 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using CANAPE.DataAdapters;
 using CANAPE.DataFrames;
+using System;
 
 namespace CANAPE.Net.Layers
 {
@@ -29,10 +29,10 @@ namespace CANAPE.Net.Layers
     public abstract class WrappedNetworkLayer<T, R> : BaseNetworkLayer<T, R>
         where R : class
         where T : class, R, new()
-    {        
+    {
         private class WrapperServerDataAdapter : IDataAdapter
         {
-            WrappedNetworkLayer<T,R> _networkLayer;
+            WrappedNetworkLayer<T, R> _networkLayer;
             string _description;
 
             public WrapperServerDataAdapter(WrappedNetworkLayer<T, R> networkLayer, string description)

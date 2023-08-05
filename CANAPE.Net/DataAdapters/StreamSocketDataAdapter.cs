@@ -30,7 +30,7 @@ namespace CANAPE.Net.DataAdapters
         /// </summary>
         /// <param name="client">The socket client.</param>
         /// <param name="description">The description for the data adapter.</param>
-        public StreamSocketDataAdapter(Socket client, string description) 
+        public StreamSocketDataAdapter(Socket client, string description)
             : base(new NetworkStream(client, true), description)
         {
         }

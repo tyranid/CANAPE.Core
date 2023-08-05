@@ -56,7 +56,7 @@ namespace CANAPE.Net.Clients
         /// <param name="globalMeta"></param>
         /// <param name="properties"></param>
         /// <returns></returns>
-        public override IDataAdapter Bind(ProxyToken token, Logger logger, MetaDictionary meta, 
+        public override IDataAdapter Bind(ProxyToken token, Logger logger, MetaDictionary meta,
             MetaDictionary globalMeta, PropertyBag properties)
         {
             throw new NotImplementedException();
@@ -71,7 +71,7 @@ namespace CANAPE.Net.Clients
         /// <param name="globalMeta">Global meta-data.</param>
         /// <param name="properties">Properties for the connection.</param>
         /// <returns>The connected data adapater.</returns>
-        public override IDataAdapter Connect(ProxyToken token, Logger logger, 
+        public override IDataAdapter Connect(ProxyToken token, Logger logger,
             MetaDictionary meta, MetaDictionary globalMeta, PropertyBag properties)
         {
             IDataAdapter adapter = null;

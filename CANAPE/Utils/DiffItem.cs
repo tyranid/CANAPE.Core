@@ -17,7 +17,7 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace CANAPE.Utils
-{    
+{
     /// <summary>details of one difference.</summary>
     public struct DiffItem
     {
@@ -30,5 +30,5 @@ namespace CANAPE.Utils
         public int deletedA;
         /// <summary>Number of changes in Data B.</summary>
         public int insertedB;
-    }  
+    }
 }

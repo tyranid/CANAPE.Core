@@ -15,10 +15,10 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using CANAPE.Nodes;
-using System.Collections.Generic;
 using CANAPE.Utils;
+using System;
+using System.Collections.Generic;
 
 namespace CANAPE.NodeFactories
 {
@@ -31,7 +31,7 @@ namespace CANAPE.NodeFactories
         /// The direction that this node should bind to 
         /// </summary>
         public NetGraphContainerNode.GraphDirection Direction { get; set; }
-        
+
         /// <summary>
         /// The graph factory to contain in this node
         /// </summary>
@@ -70,7 +70,7 @@ namespace CANAPE.NodeFactories
             }
 
             // Check if we have already created this node as part of a pairing
-            if(stateDictionary.ContainsKey(Id.ToString()))
+            if (stateDictionary.ContainsKey(Id.ToString()))
             {
                 return (BasePipelineNode)stateDictionary[Id.ToString()];
             }

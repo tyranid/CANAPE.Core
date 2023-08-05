@@ -79,7 +79,7 @@ namespace CANAPE.DataAdapters
         /// Constructor
         /// </summary>
         /// <param name="token">A cancellation token to use</param>
-        public CoupledDataAdapter(CancellationToken token) 
+        public CoupledDataAdapter(CancellationToken token)
             : base(token)
         {
             Coupling = new QueuingDataAdapter(this);
@@ -88,7 +88,7 @@ namespace CANAPE.DataAdapters
         /// <summary>
         /// Constructor
         /// </summary>
-        public CoupledDataAdapter() 
+        public CoupledDataAdapter()
             : this(CancellationToken.None)
         {
         }

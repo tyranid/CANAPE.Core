@@ -15,7 +15,6 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 
 namespace CANAPE.Net.Protocols.Parser
 {
@@ -24,16 +23,16 @@ namespace CANAPE.Net.Protocols.Parser
     /// </summary>
     public class HttpParserConfig
     {
-		/// <summary>
-		/// Default chunk size
-		/// </summary>
-		public const int DEFAULT_CHUNK_SIZE = 8 * 1024;
+        /// <summary>
+        /// Default chunk size
+        /// </summary>
+        public const int DEFAULT_CHUNK_SIZE = 8 * 1024;
 
-		/// <summary>
-		/// If true body will be streamed rather than buffered up
-		/// </summary>
-		public bool StreamBody { get; set; }
-        
+        /// <summary>
+        /// If true body will be streamed rather than buffered up
+        /// </summary>
+        public bool StreamBody { get; set; }
+
         /// <summary>
         /// Specify how big a chunk to read in per chunk when in streaming mode, set to 0 to disable which
         /// will send data with no buffering, this is advisory, it won't work in chunked encoding, 
@@ -62,7 +61,7 @@ namespace CANAPE.Net.Protocols.Parser
         /// </summary>
         public HttpParserConfig()
         {
-            StreamChunkSize = DEFAULT_CHUNK_SIZE;            
+            StreamChunkSize = DEFAULT_CHUNK_SIZE;
         }
     }
 }

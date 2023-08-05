@@ -15,9 +15,9 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System.IO;
 using CANAPE.DataAdapters;
 using CANAPE.Utils;
+using System.IO;
 
 namespace CANAPE.Net.Layers
 {
@@ -25,7 +25,7 @@ namespace CANAPE.Net.Layers
     /// A network layer based on a streams
     /// </summary>
     public abstract class DynamicStreamNetworkLayer : WrappedNetworkLayer<DynamicConfigObject, dynamic>
-    {        
+    {
         /// <summary>
         /// Method to implement for taking stream data
         /// </summary>

@@ -15,11 +15,11 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using CANAPE.DataAdapters;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
-using CANAPE.DataAdapters;
 
 namespace CANAPE.Net.DataAdapters
 {
@@ -76,7 +76,7 @@ namespace CANAPE.Net.DataAdapters
                 {
                     ret = new TcpClientDataAdapter(_listener.AcceptTcpClientAsync().GetAwaiter().GetResult());
                 }
-                else 
+                else
                 {
                     throw new TimeoutException();
                 }

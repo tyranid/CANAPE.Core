@@ -16,10 +16,10 @@
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
-using System.Collections.Concurrent;
-using System.Collections;
 
 namespace CANAPE.Utils
 {
@@ -30,7 +30,7 @@ namespace CANAPE.Utils
     public sealed class LockedQueue<T> : IDisposable, IEnumerable<T> where T : class
     {
         private BlockingCollection<T> _queue;
-        private CancellationToken _token; 
+        private CancellationToken _token;
 
         /// <summary>
         /// Constructor

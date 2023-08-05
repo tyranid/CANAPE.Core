@@ -49,7 +49,7 @@ namespace CANAPE.Net.Protocols.Parser
         /// <see cref="T:CANAPE.Net.Protocols.Parser.HttpResponseDataChunk"/> connect response.
         /// </summary>
         /// <value><c>true</c> if connect response; otherwise, <c>false</c>.</value>
-        public bool ConnectResponse { get; set; }        
+        public bool ConnectResponse { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:CANAPE.Net.Protocols.Parser.HttpResponseDataChunk"/> class.
@@ -75,7 +75,7 @@ namespace CANAPE.Net.Protocols.Parser
             string ret = null;
 
             if (!Version.IsVersionUnknown)
-            {                
+            {
                 if (!String.IsNullOrWhiteSpace(Message))
                 {
                     ret = String.Format(CultureInfo.InvariantCulture, "{0} {1} {2}", Version, ResponseCode, Message);
@@ -102,7 +102,7 @@ namespace CANAPE.Net.Protocols.Parser
 
             return true;
         }
-        
+
         /// <summary>
         /// Filters the length of the content.
         /// </summary>

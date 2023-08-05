@@ -15,8 +15,8 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using CANAPE.DataFrames;
+using System;
 
 namespace CANAPE.DataAdapters
 {
@@ -24,9 +24,9 @@ namespace CANAPE.DataAdapters
     /// Base class for DataAdapters
     /// </summary>
     public abstract class BaseDataAdapter : IDataAdapter
-    {        
+    {
         private bool _isDisposed;
-        
+
         #region IDataAdapter Members
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace CANAPE.DataAdapters
         /// Get or set the read timeout
         /// </summary>
         /// <exception cref="InvalidOperationException">Base version always throws InvalidOperationException</exception>
-        public virtual int ReadTimeout 
+        public virtual int ReadTimeout
         {
             get { throw new InvalidOperationException(); }
             set { throw new InvalidOperationException(); }
@@ -96,7 +96,7 @@ namespace CANAPE.DataAdapters
                 {
                     OnDispose(false);
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                 }
             }

@@ -15,7 +15,6 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using System.Text;
 
 namespace CANAPE.Utils
@@ -24,7 +23,7 @@ namespace CANAPE.Utils
     /// Encoding class to convert to and from binary data
     /// </summary>
     public sealed class BinaryEncoding : Encoding
-    {        
+    {
         private bool _encodeControl;
 
         /// <summary>
@@ -32,8 +31,8 @@ namespace CANAPE.Utils
         /// </summary>
         public static readonly BinaryEncoding Instance = new BinaryEncoding();
 
-        static char[] BinaryMapTable = { '\x2302', '\x263a', '\x263b', '\x2665', '\x2666', '\x2663', '\x2660', '\x2022', '\x25d8', '\x25cb', '\x25d9', '\x2642', '\x2640', 
-                                       '\x266a', '\x266b', '\x263c', '\x25ba', '\x25c4', '\x2195', '\x203c', '\x2591', '\x2593', '\x25ac', '\x21a8', '\x2191', '\x2193', 
+        static char[] BinaryMapTable = { '\x2302', '\x263a', '\x263b', '\x2665', '\x2666', '\x2663', '\x2660', '\x2022', '\x25d8', '\x25cb', '\x25d9', '\x2642', '\x2640',
+                                       '\x266a', '\x266b', '\x263c', '\x25ba', '\x25c4', '\x2195', '\x203c', '\x2591', '\x2593', '\x25ac', '\x21a8', '\x2191', '\x2193',
                                        '\x2192', '\x2190', '\x221f', '\x2194', '\x25b2', '\x25bc'};
 
         /// <summary>
@@ -41,14 +40,14 @@ namespace CANAPE.Utils
         /// </summary>
         public BinaryEncoding()
             : this(false)
-        {            
+        {
         }
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="encodeControl">Indicates control characters are changed</param>        
-        public BinaryEncoding(bool encodeControl) 
+        public BinaryEncoding(bool encodeControl)
         {
             _encodeControl = encodeControl;
         }
@@ -97,16 +96,16 @@ namespace CANAPE.Utils
                     {
                         int j = 0;
 
-                        for(j = 0; j < 32; ++j)
+                        for (j = 0; j < 32; ++j)
                         {
-                            if(BinaryMapTable[j] == c)
+                            if (BinaryMapTable[j] == c)
                             {
                                 bytes[byteIndex + i] = (byte)j;
                                 break;
                             }
                         }
 
-                        if(j == 32)
+                        if (j == 32)
                         {
                             bytes[byteIndex + i] = (byte)c;
                         }
@@ -139,7 +138,7 @@ namespace CANAPE.Utils
         {
             return count;
         }
-       
+
         /// <summary>
         /// 
         /// </summary>
@@ -155,7 +154,7 @@ namespace CANAPE.Utils
             {
                 for (int i = 0; i < byteCount; ++i)
                 {
-                    byte b = bytes[byteIndex = i];                    
+                    byte b = bytes[byteIndex = i];
 
                     if ((b < 32) && (b != 10) && (b != 13) && (b != 9))
                     {

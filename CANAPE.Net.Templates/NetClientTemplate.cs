@@ -15,11 +15,6 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Sockets;
 using CANAPE.DataAdapters;
 using CANAPE.Net.Clients;
 using CANAPE.Net.Layers;
@@ -27,6 +22,11 @@ using CANAPE.Net.Templates.Factories;
 using CANAPE.Net.Tokens;
 using CANAPE.Nodes;
 using CANAPE.Utils;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net.Sockets;
 
 namespace CANAPE.Net.Templates
 {

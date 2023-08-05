@@ -29,7 +29,7 @@ namespace CANAPE.NodeFactories
         /// </summary>
         /// <param name="label"></param>
         /// <param name="guid"></param>
-        public ClientEndpointFactory(string label, Guid guid) 
+        public ClientEndpointFactory(string label, Guid guid)
             : base(label, guid)
         {
         }

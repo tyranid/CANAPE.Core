@@ -17,9 +17,8 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using CANAPE.DataAdapters;
 using CANAPE.Net.Tokens;
-using CANAPE.Utils;
 using CANAPE.Nodes;
-using CANAPE.Security;
+using CANAPE.Utils;
 
 namespace CANAPE.Net.Clients
 {

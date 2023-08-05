@@ -72,7 +72,7 @@ namespace CANAPE.NodeFactories
             /// Default constructor
             /// </summary>
             public GraphNodeEntry() : this(null)
-            {                
+            {
             }
         }
 
@@ -127,7 +127,7 @@ namespace CANAPE.NodeFactories
 
         private Dictionary<string, string> _props;
         private GraphNodeEntry[] _nodes;
-        private GraphLineEntry[] _lines;        
+        private GraphLineEntry[] _lines;
 
         /// <summary>
         /// Default constructor
@@ -141,8 +141,8 @@ namespace CANAPE.NodeFactories
             Name = String.Empty;
         }
 
-        private static NetGraph CreateGraph(string name, Logger logger, NetGraph parent, MetaDictionary globalMeta, MetaDictionary meta, 
-            IEnumerable<GraphNodeEntry> nodes, IEnumerable<GraphLineEntry> lines, Dictionary<string, string> props, PropertyBag connectionProperties, 
+        private static NetGraph CreateGraph(string name, Logger logger, NetGraph parent, MetaDictionary globalMeta, MetaDictionary meta,
+            IEnumerable<GraphNodeEntry> nodes, IEnumerable<GraphLineEntry> lines, Dictionary<string, string> props, PropertyBag connectionProperties,
             Dictionary<string, object> stateDictionary)
         {
             NetGraph netGraph = new NetGraph(logger, parent, globalMeta, meta, connectionProperties);
@@ -170,7 +170,7 @@ namespace CANAPE.NodeFactories
 
                 if (l.BiDirection)
                 {
-                    netGraph.Nodes[l.DestNode].AddOutput(netGraph.Nodes[l.SourceNode], l.PathName, l.WeakPath);                    
+                    netGraph.Nodes[l.DestNode].AddOutput(netGraph.Nodes[l.SourceNode], l.PathName, l.WeakPath);
                 }
             }
 
@@ -185,7 +185,7 @@ namespace CANAPE.NodeFactories
 
                 node.SetupShutdownOutputs();
             }
-            
+
             return netGraph;
         }
 
@@ -206,13 +206,13 @@ namespace CANAPE.NodeFactories
         {
             Dictionary<Guid, List<GraphLineEntry>> forwardLines = new Dictionary<Guid, List<GraphLineEntry>>();
             Dictionary<Guid, List<GraphLineEntry>> backwardLines = new Dictionary<Guid, List<GraphLineEntry>>();
-            Dictionary<Guid, GraphNodeEntry> nodesByGuid = new Dictionary<Guid,GraphNodeEntry>();
+            Dictionary<Guid, GraphNodeEntry> nodesByGuid = new Dictionary<Guid, GraphNodeEntry>();
             List<GraphNodeEntry> nodes = new List<GraphNodeEntry>();
             List<GraphLineEntry> lines = new List<GraphLineEntry>();
 
             lock (_lockObject)
             {
-                foreach(GraphNodeEntry n in _nodes)
+                foreach (GraphNodeEntry n in _nodes)
                 {
                     nodesByGuid[n.Id] = n;
                 }
@@ -246,7 +246,7 @@ namespace CANAPE.NodeFactories
                     forward.Add(l);
                     backward.Add(l);
                 }
-                
+
                 HashSet<Guid> walkedNodes = new HashSet<Guid>();
 
                 walkedNodes.Add(rootNode);
@@ -329,9 +329,9 @@ namespace CANAPE.NodeFactories
         /// <returns>The constructed NetGraph</returns>
         public NetGraph Create(Logger logger, NetGraph parent, MetaDictionary globalMeta, MetaDictionary meta, PropertyBag connectionProperties)
         {
-            lock(_lockObject)
+            lock (_lockObject)
             {
-                return CreateGraph(Name, logger, parent, globalMeta, meta, _nodes, _lines, _props, connectionProperties, new Dictionary<string,object>());
+                return CreateGraph(Name, logger, parent, globalMeta, meta, _nodes, _lines, _props, connectionProperties, new Dictionary<string, object>());
             }
         }
 
@@ -416,7 +416,7 @@ namespace CANAPE.NodeFactories
         public GraphLineEntry[] Lines
         {
             get { return _lines; }
-            set 
+            set
             {
                 lock (_lockObject)
                 {
@@ -424,7 +424,7 @@ namespace CANAPE.NodeFactories
                 }
             }
         }
-        
+
         /// <summary>
         /// Update the factory from another
         /// </summary>
@@ -450,7 +450,7 @@ namespace CANAPE.NodeFactories
         public Dictionary<string, string> Properties
         {
             get { return _props; }
-            set 
+            set
             {
                 lock (_lockObject)
                 {

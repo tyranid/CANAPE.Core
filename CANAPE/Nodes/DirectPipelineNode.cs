@@ -16,7 +16,6 @@
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using CANAPE.DataFrames;
-using System.Threading;
 
 namespace CANAPE.Nodes
 {
@@ -24,14 +23,14 @@ namespace CANAPE.Nodes
     /// Simple node which writes input to output with no processing
     /// </summary>
     public class DirectPipelineNode : BasePipelineNode
-    {        
+    {
         /// <summary>
         /// Called when a new frame arrives (just forwards)
         /// </summary>
         /// <param name="frame"></param>
         protected override void OnInput(DataFrame frame)
-        {     
-            WriteOutput(frame);            
+        {
+            WriteOutput(frame);
         }
     }
 }

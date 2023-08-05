@@ -79,7 +79,7 @@ namespace CANAPE.Net.Protocols.Parser
         // Create a default header
         internal HttpRequestHeader() : this(null, new HttpHeader[0], "GET", "/", HttpVersion.Version10)
         {
-        }        
+        }
 
         internal HttpRequestHeader(DataReader reader, IEnumerable<HttpHeader> headers, string method, string path, HttpVersion version)
         {
@@ -88,9 +88,9 @@ namespace CANAPE.Net.Protocols.Parser
             Method = method;
             Path = path;
             Version = version;
-            
+
             // These methods can't have a content length
-            if(IsGet || IsHead)
+            if (IsGet || IsHead)
             {
                 ContentLength = 0;
             }
@@ -123,7 +123,7 @@ namespace CANAPE.Net.Protocols.Parser
                 chunk.ChunkNumber = chunkNumber++;
 
                 yield return chunk;
-            }   
+            }
 
             while (length > 0)
             {
@@ -134,7 +134,7 @@ namespace CANAPE.Net.Protocols.Parser
                 // While we are reading we wouldn't expect no data to be returned
                 if (data.Length == 0)
                 {
-                    throw new EndOfStreamException();                
+                    throw new EndOfStreamException();
                 }
 
                 length -= data.Length;
@@ -152,13 +152,13 @@ namespace CANAPE.Net.Protocols.Parser
         }
 
         private IEnumerable<HttpRequestDataChunk> ReadChunksConnect(HttpParserConfig config)
-        {            
-            int chunkNumber = 0;            
+        {
+            int chunkNumber = 0;
 
-            while(true)
+            while (true)
             {
                 byte[] data = _reader.ReadBytes(HttpParserConfig.DEFAULT_CHUNK_SIZE, false);
-                
+
                 if (data.Length == 0)
                 {
                     throw new EndOfStreamException();
@@ -171,14 +171,14 @@ namespace CANAPE.Net.Protocols.Parser
                 if (chunkNumber < int.MaxValue)
                 {
                     chunkNumber++;
-                }                
+                }
 
                 // Cast to length, really should just ignore any data set greater than a set amount
                 chunk.Body = data;
 
                 yield return chunk;
             }
-            
+
         }
 
         private IEnumerable<HttpRequestDataChunk> ReadChunksBuffered(HttpParserConfig config)
@@ -191,13 +191,13 @@ namespace CANAPE.Net.Protocols.Parser
             // If we are expecting 100 continue then we have to 
             // send the header first otherwise this will block if we have a length
             if (Headers.HasHeader("Expect", "100-continue") && (length > 0))
-            {                   
+            {
                 chunk.ChunkNumber = chunkNumber++;
 
                 yield return chunk;
 
                 chunk = new HttpRequestDataChunk(this);
-            }            
+            }
 
             chunk.ChunkNumber = chunkNumber;
             chunk.FinalChunk = true;
@@ -216,7 +216,7 @@ namespace CANAPE.Net.Protocols.Parser
         /// </summary>        
         /// <returns>An enumerable list of chunks</returns>
         public IEnumerable<HttpRequestDataChunk> ReadChunks(HttpParserConfig config)
-        {                   
+        {
             if (IsConnect)
             {
                 return ReadChunksConnect(config);
@@ -228,7 +228,7 @@ namespace CANAPE.Net.Protocols.Parser
             else
             {
                 return ReadChunksBuffered(config);
-            }            
+            }
         }
 
         /// <summary>

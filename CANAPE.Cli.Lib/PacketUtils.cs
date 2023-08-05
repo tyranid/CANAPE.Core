@@ -16,7 +16,6 @@
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using CANAPE.DataFrames;
-using CANAPE.Nodes;
 using CANAPE.Utils;
 using System;
 using System.Collections.Generic;
@@ -151,7 +150,7 @@ namespace CANAPE.Cli
             return String.Format("Time {0} - Tag '{1}' - Network '{2}'",
                     p.Timestamp.ToString(), p.Tag, p.Network);
         }
-                
+
         /// <summary>
         /// Convert a packet to a hex string format
         /// </summary>
@@ -188,10 +187,10 @@ namespace CANAPE.Cli
                 return ConvertTextPacketToString(p);
             }
             else
-			{
-				return ConvertBinaryPacketToString(p);
-			}
-		}
+            {
+                return ConvertBinaryPacketToString(p);
+            }
+        }
 
         private static ColorValue PickContrastingColor(ColorValue color)
         {

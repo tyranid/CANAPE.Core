@@ -15,10 +15,10 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System.Collections.Generic;
-using System.Text;
 using CANAPE.DataAdapters;
 using CANAPE.Utils;
+using System.Collections.Generic;
+using System.Text;
 
 namespace CANAPE.DataFrames
 {
@@ -46,36 +46,36 @@ namespace CANAPE.DataFrames
 
 
 
-		/// <summary>
-		/// Convert byte array to a data frame.
-		/// </summary>
-		/// <returns>The data frame.</returns>
-		/// <param name="data">The byte array to convert</param>
-		public static DataFrame ToDataFrame(this byte[] data)
-		{
-			return new ByteArrayDataFrame(data);
-		}
+        /// <summary>
+        /// Convert byte array to a data frame.
+        /// </summary>
+        /// <returns>The data frame.</returns>
+        /// <param name="data">The byte array to convert</param>
+        public static DataFrame ToDataFrame(this byte[] data)
+        {
+            return new ByteArrayDataFrame(data);
+        }
 
-		/// <summary>
-		/// Convert string a binary string data frame.
-		/// </summary>
-		/// <returns>The data frame.</returns>
-		/// <param name="data">The string to convert</param>
-		public static DataFrame ToDataFrame(this string data)
-		{
-			return ToDataFrame(data, BinaryEncoding.Instance);
-		}
+        /// <summary>
+        /// Convert string a binary string data frame.
+        /// </summary>
+        /// <returns>The data frame.</returns>
+        /// <param name="data">The string to convert</param>
+        public static DataFrame ToDataFrame(this string data)
+        {
+            return ToDataFrame(data, BinaryEncoding.Instance);
+        }
 
-		/// <summary>
-		/// Convert string a binary string data frame.
-		/// </summary>
-		/// <returns>The data frame.</returns>
-		/// <param name="data">The string to convert</param>
-		/// <param name="encoding">The string encoding</param>
-		public static DataFrame ToDataFrame(this string data, Encoding encoding)
-		{
-			return new StringDataFrame(data, encoding);
-		}
+        /// <summary>
+        /// Convert string a binary string data frame.
+        /// </summary>
+        /// <returns>The data frame.</returns>
+        /// <param name="data">The string to convert</param>
+        /// <param name="encoding">The string encoding</param>
+        public static DataFrame ToDataFrame(this string data, Encoding encoding)
+        {
+            return new StringDataFrame(data, encoding);
+        }
 
         /// <summary>
         /// Convert a data value to a frame.

@@ -15,10 +15,10 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System.Threading;
 using CANAPE.DataFrames;
 using CANAPE.Utils;
 using System;
+using System.Threading;
 
 namespace CANAPE.Nodes
 {
@@ -26,7 +26,7 @@ namespace CANAPE.Nodes
     /// Pipeline node which converts incoming data frames into a stream
     /// </summary>
     public abstract class BaseStreamPipelineNode : BasePipelineNode
-    {        
+    {
         private PipelineStream _input;
         private object _lockObject;
         private Thread _thread;
@@ -81,7 +81,7 @@ namespace CANAPE.Nodes
         protected override bool OnShutdown()
         {
             try
-            { 
+            {
                 _input.Enqueue(null);
             }
             catch (InvalidOperationException)
@@ -134,7 +134,7 @@ namespace CANAPE.Nodes
                 }
                 catch
                 {
-                }    
+                }
             }
         }
     }

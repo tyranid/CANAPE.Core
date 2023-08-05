@@ -15,9 +15,6 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using System.Collections.Generic;
-using System.IO;
 using CANAPE.DataAdapters;
 using CANAPE.DataFrames;
 using CANAPE.Net.Layers;
@@ -25,6 +22,9 @@ using CANAPE.Net.Protocols.Parser;
 using CANAPE.Net.Tokens;
 using CANAPE.Nodes;
 using CANAPE.Utils;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace CANAPE.Net.Servers
 {
@@ -65,8 +65,8 @@ namespace CANAPE.Net.Servers
             ReturnResponse(request, responseCode, message, method, version, new HttpHeader[0], stm);
         }
 
-        private void ReturnResponse(HttpRequestHeader request, int responseCode, string message, 
-                                    string method, HttpVersion version, IEnumerable<HttpHeader> sendHeaders, 
+        private void ReturnResponse(HttpRequestHeader request, int responseCode, string message,
+                                    string method, HttpVersion version, IEnumerable<HttpHeader> sendHeaders,
                                     DataAdapterToStream stm)
         {
             if (request != null)
@@ -125,7 +125,7 @@ namespace CANAPE.Net.Servers
             //    port = ((System.Net.IPEndPoint)tcpAdapter.Socket.Client.LocalEndPoint).Port;
             //}
 
-            if(!String.IsNullOrWhiteSpace(host))
+            if (!String.IsNullOrWhiteSpace(host))
             {
                 try
                 {
@@ -143,7 +143,7 @@ namespace CANAPE.Net.Servers
                         ret = new Uri("http://" + host);
                     }
                 }
-                catch(UriFormatException)
+                catch (UriFormatException)
                 {
                 }
             }
@@ -163,19 +163,19 @@ namespace CANAPE.Net.Servers
                 }
             }
 
-            Uri url = GetUri(host, tcpAdapter);            
+            Uri url = GetUri(host, tcpAdapter);
 
             if (url != null)
             {
                 // Use generic token so filters don't get used
                 IpProxyToken ret = new IpProxyToken(null, url.Host, url.Port, IpProxyToken.IpClientType.Tcp, false);
 
-                if(_config.SslConfig.Enabled)
+                if (_config.SslConfig.Enabled)
                 {
                     ret.Layers = new INetworkLayer[1];
                     ret.Layers[0] = new TlsNetworkLayer(new TlsNetworkLayerConfig(false, true) { Enabled = true });
                 }
-                
+
                 ret.State.Add("url", url);
                 ret.State.Add("stm", stm);
                 ret.State.Add("header", header);
@@ -185,7 +185,7 @@ namespace CANAPE.Net.Servers
             else
             {
                 _logger.LogError(CANAPE.Net.Properties.Resources.HttpProxyServer_InvalidUrl, header.Path);
-                
+
                 ReturnResponse(null, 400, "Bad Request", header.Method, header.Version, stm);
 
                 return null;
@@ -201,7 +201,7 @@ namespace CANAPE.Net.Servers
         /// <param name="service"></param>
         /// <returns></returns>
         public override ProxyToken Accept(IDataAdapter adapter, MetaDictionary meta, MetaDictionary globalMeta, ProxyNetworkService service)
-        {            
+        {
             ProxyToken token = null;
 
             TcpClientDataAdapter tcpAdapter = adapter as TcpClientDataAdapter;
@@ -216,13 +216,13 @@ namespace CANAPE.Net.Servers
             }
 
             DataAdapterToStream stm = new DataAdapterToStream(adapter);
-            DataReader reader = new DataReader(stm);            
+            DataReader reader = new DataReader(stm);
 
             try
             {
                 HttpRequestHeader header = HttpParser.ReadRequestHeader(reader, false, _logger);
-                
-                token = HandleOtherRequest(header, stm, tcpAdapter);                
+
+                token = HandleOtherRequest(header, stm, tcpAdapter);
             }
             catch (HttpStreamParserException ex)
             {
@@ -246,17 +246,17 @@ namespace CANAPE.Net.Servers
             private HttpRequestHeader _request;
             private IEnumerator<HttpRequestDataChunk> _chunks;
             private HttpParserConfig _config;
-            private Logger _logger;                        
+            private Logger _logger;
 
             public HttpProxyServerAdapter(DataAdapterToStream stm, HttpRequestHeader initialRequest, Logger logger)
             {
                 _stm = stm;
                 _writer = new DataWriter(_stm);
-                _request = initialRequest;                
+                _request = initialRequest;
                 _config = new HttpParserConfig();
                 _config.StreamBody = true;
                 _logger = logger;
-                
+
                 Description = stm.Description;
             }
 
@@ -266,7 +266,7 @@ namespace CANAPE.Net.Servers
                 {
                     if (_request == null)
                     {
-                        _request = HttpParser.ReadRequestHeader(new DataReader(_stm), false, _logger);                        
+                        _request = HttpParser.ReadRequestHeader(new DataReader(_stm), false, _logger);
                     }
 
                     if (_chunks == null)
@@ -303,7 +303,7 @@ namespace CANAPE.Net.Servers
 
             public override void Write(DataFrame data)
             {
-                _writer.WriteBytes(data.ToArray());                
+                _writer.WriteBytes(data.ToArray());
             }
 
             protected override void OnDispose(bool disposing)
