@@ -24,7 +24,7 @@ namespace CANAPE.Net.Protocols.Server
     /// Response data for HTTP server implementation
     /// </summary>
     public class HttpServerResponseData
-    {        
+    {
         /// <summary>
         /// Response code
         /// </summary>
@@ -81,9 +81,9 @@ namespace CANAPE.Net.Protocols.Server
         /// Constructor
         /// </summary>
         /// <param name="headers">Dictionary of headers</param>
-        public HttpServerResponseData(IDictionary<string, string> headers) 
+        public HttpServerResponseData(IDictionary<string, string> headers)
             : this(new byte[0], headers)
-        {                        
+        {
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace CANAPE.Net.Protocols.Server
         /// <param name="headers">Dictionary of headers</param>
         public HttpServerResponseData(string body, IDictionary<string, string> headers)
             : this(BinaryEncoding.Instance.GetBytes(body), headers)
-        {            
+        {
         }
 
         /// <summary>

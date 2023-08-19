@@ -31,21 +31,21 @@ namespace CANAPE.NodeLibrary.Server
         /// <summary>
         /// A HTTP path to match against
         /// </summary>
-        
+
         public string HttpPath { get; set; }
 
         /// <summary>
         /// Gets or sets the valid response data.
         /// </summary>
         /// <value>The valid response data.</value>
-        
+
         public byte[] ValidResponseData { get; set; }
 
         /// <summary>
         /// Gets or sets the not found response data.
         /// </summary>
         /// <value>The not found response data.</value>
-        
+
         public byte[] NotFoundResponseData { get; set; }
 
         /// <summary>
@@ -53,14 +53,14 @@ namespace CANAPE.NodeLibrary.Server
         /// close after sending.
         /// </summary>
         /// <value><c>true</c> if close after sending; otherwise, <c>false</c>.</value>
-        
+
         public bool CloseAfterSending { get; set; }
 
         /// <summary>
         /// Gets or sets the type of the content.
         /// </summary>
         /// <value>The type of the content.</value>
-        
+
         public string ContentType { get; set; }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace CANAPE.NodeLibrary.Server
     /// Http data server.
     /// </summary>
     public class HttpDataServer : BaseHttpDataServer<HttpDataServerConfig>
-    {    
+    {
         /// <summary>
         /// Handles the request.
         /// </summary>
@@ -91,7 +91,7 @@ namespace CANAPE.NodeLibrary.Server
         /// <param name="headers">Headers.</param>
         /// <param name="version">Version.</param>
         /// <param name="logger">Logger.</param>
-        protected override HttpServerResponseData HandleRequest(string method, string path, byte[] body, 
+        protected override HttpServerResponseData HandleRequest(string method, string path, byte[] body,
             Dictionary<string, string> headers, HttpVersion version, Logger logger)
         {
             Regex pathRegex = GeneralUtils.GlobToRegex(Config.HttpPath);
@@ -106,7 +106,7 @@ namespace CANAPE.NodeLibrary.Server
                 if (Config.ValidResponseData != null)
                 {
                     data.Body = Config.ValidResponseData;
-                }                
+                }
             }
             else
             {
@@ -115,7 +115,7 @@ namespace CANAPE.NodeLibrary.Server
                 if (Config.NotFoundResponseData != null)
                 {
                     data.Body = Config.NotFoundResponseData;
-                }                
+                }
             }
 
             data.Headers["Content-Type"] = Config.ContentType ?? "text/html";

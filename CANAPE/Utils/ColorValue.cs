@@ -64,7 +64,7 @@ namespace CANAPE.Utils
         /// <param name="r">Red value</param>
         /// <param name="g">Green value</param>
         /// <param name="b">Blue value</param>
-        public ColorValue(byte r, byte g, byte b) 
+        public ColorValue(byte r, byte g, byte b)
             : this(r, g, b, 255)
         {
         }
@@ -93,7 +93,7 @@ namespace CANAPE.Utils
             ColorValue left,
             ColorValue right
         )
-        {           
+        {
             return !(left == right);
         }
 
@@ -104,7 +104,7 @@ namespace CANAPE.Utils
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            if(obj is ColorValue)
+            if (obj is ColorValue)
             {
                 return this == (ColorValue)obj;
             }
@@ -143,7 +143,7 @@ namespace CANAPE.Utils
             foreach (PropertyInfo pi in typeof(ColorValue).GetTypeInfo().GetProperties(BindingFlags.Public | BindingFlags.Static))
             {
                 if (pi.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
-                { 
+                {
                     cv = (ColorValue)pi.GetValue(null, null);
 
                     return true;
@@ -171,7 +171,7 @@ namespace CANAPE.Utils
 
         private static bool ParseHex(string s, int index, out byte v)
         {
-            return byte.TryParse(s.Substring(index+1, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture, out v);
+            return byte.TryParse(s.Substring(index + 1, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture, out v);
         }
 
         /// <summary>

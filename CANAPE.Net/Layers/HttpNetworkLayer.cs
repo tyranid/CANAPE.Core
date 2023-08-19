@@ -15,16 +15,16 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading;
 using CANAPE.DataAdapters;
 using CANAPE.DataFrames;
 using CANAPE.Net.Protocols.Parser;
 using CANAPE.Net.Tokens;
 using CANAPE.Nodes;
 using CANAPE.Utils;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading;
 
 namespace CANAPE.Net.Layers
 {
@@ -33,8 +33,8 @@ namespace CANAPE.Net.Layers
     /// </summary>
     public class HttpNetworkLayer : INetworkLayer
     {
-        private HttpNetworkLayerConfig _config;        
-        private string _upgradeType;        
+        private HttpNetworkLayerConfig _config;
+        private string _upgradeType;
         private bool _upgrading;
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace CANAPE.Net.Layers
         /// </summary>
         public HttpNetworkLayer()
             : this(new HttpNetworkLayerConfig())
-        {                        
+        {
         }
 
         /// <summary>
@@ -51,24 +51,24 @@ namespace CANAPE.Net.Layers
         /// <param name="config">Layer configuration</param>
         public HttpNetworkLayer(HttpNetworkLayerConfig config)
         {
-            _config = config;            
-            _upgradeType = null;            
+            _config = config;
+            _upgradeType = null;
         }
 
         internal abstract class BaseHttpDataAdapter : BaseDataAdapter
-        {            
-            private int _isDisposed;            
-            protected Logger _logger;            
+        {
+            private int _isDisposed;
+            protected Logger _logger;
             protected HttpNetworkLayer _layer;
             protected IDataAdapter _adapter;
 
             protected BaseHttpDataAdapter(IDataAdapter adapter, Logger logger, HttpNetworkLayer layer)
             {
                 _adapter = adapter;
-                Description = _adapter.Description;                
+                Description = _adapter.Description;
                 _logger = logger;
-                _layer = layer;                
-            }            
+                _layer = layer;
+            }
 
             protected override void OnDispose(bool disposing)
             {
@@ -125,8 +125,8 @@ namespace CANAPE.Net.Layers
             MemoryStream _responseStream = new MemoryStream();
             bool _isTransparent;
 
-            public HttpRequestDataAdapter(IDataAdapter adapter, Logger logger, HttpNetworkLayer layer) 
-                : base(adapter, logger,layer)
+            public HttpRequestDataAdapter(IDataAdapter adapter, Logger logger, HttpNetworkLayer layer)
+                : base(adapter, logger, layer)
             {
                 _reader = new DataReader(adapter);
             }
@@ -154,15 +154,15 @@ namespace CANAPE.Net.Layers
                 DataFrame frame = null;
 
                 try
-                {                   
+                {
                     if (_chunks == null || !_chunks.MoveNext())
-                    {                        
+                    {
                         char firstChar = _reader.ReadChar();
 
                         // Check whether we need to upgrade the connection to raw data, could even at this point actually implement 
                         // TLS upgrade (and put back the HTTP parser on top?)                                                                      
                         if (_isTransparent)
-                        {                           
+                        {
                             // If transparent send the first chunk along and don't increment enumerator
                             _chunks = BaseHttpDataAdapter.ReadFrames(new byte[] { (byte)firstChar }.ToDataFrame(), _reader).GetEnumerator();
                         }
@@ -176,7 +176,7 @@ namespace CANAPE.Net.Layers
 
                                 int i = 0;
 
-                                while(i < _currentHeader.Headers.Count)
+                                while (i < _currentHeader.Headers.Count)
                                 {
                                     var header = _currentHeader.Headers[i];
 
@@ -199,8 +199,8 @@ namespace CANAPE.Net.Layers
                             }
 
                             _chunks = _currentHeader.ReadFrames(CreateConfig(_currentHeader)).GetEnumerator();
-                        }                        
-                        
+                        }
+
                         // Increment to next chunk
                         if (!_chunks.MoveNext())
                         {
@@ -210,7 +210,7 @@ namespace CANAPE.Net.Layers
 
                     frame = _chunks.Current;
                 }
-                catch(EndOfStreamException)
+                catch (EndOfStreamException)
                 {
                     frame = null;
                 }
@@ -224,7 +224,7 @@ namespace CANAPE.Net.Layers
                 if (!_isTransparent && _layer._upgrading)
                 {
                     // Wait for upgrade header
-                    
+
                     byte[] buf = data.ToArray();
 
                     lock (_responseStream)
@@ -259,15 +259,15 @@ namespace CANAPE.Net.Layers
                         catch (HttpStreamParserException)
                         {
                         }
-                    }                    
+                    }
                 }
-                
-                _adapter.Write(data);                
+
+                _adapter.Write(data);
             }
         }
 
         internal sealed class HttpResponseDataAdapter : BaseHttpDataAdapter
-        {            
+        {
             HttpResponseHeader _currentHeader;
             IEnumerator<DataFrame> _chunks;
             Queue<HttpRequestHeader> _requests;
@@ -288,10 +288,10 @@ namespace CANAPE.Net.Layers
 
                 HttpLayerConfigEntry entry = _layer._config.GetEntry(request, response);
 
-                config.ConvertToChunked = entry.ConvertToChunked;                
+                config.ConvertToChunked = entry.ConvertToChunked;
                 config.StreamBody = entry.ResponseStreamBody;
                 config.StreamChunkSize = _layer._config.ResponseStreamChunkSize;
-                config.StrictParsing = _layer._config.ResponseStrictParsing;                
+                config.StrictParsing = _layer._config.ResponseStrictParsing;
 
                 if (_layer._config.BufferedResponseMaxLength != 0 && (response.ContentLength > _layer._config.BufferedResponseMaxLength))
                 {
@@ -307,7 +307,7 @@ namespace CANAPE.Net.Layers
                 DataFrame frame = null;
 
                 try
-                {                        
+                {
                     if (_chunks == null || !_chunks.MoveNext())
                     {
                         if (_isTransparent)
@@ -377,7 +377,7 @@ namespace CANAPE.Net.Layers
 
                             _chunks = _currentHeader.ReadFrames(CreateConfig(_currentHeader, request)).GetEnumerator();
                         }
-                        
+
                         if (!_chunks.MoveNext())
                         {
                             throw new EndOfStreamException();
@@ -393,9 +393,9 @@ namespace CANAPE.Net.Layers
 
                 return frame;
             }
-            
+
             public override void Write(DataFrame frame)
-            {                
+            {
                 if (!_isTransparent)
                 {
                     var chunk = frame.GetValueNoThrow<HttpRequestDataChunk>();
@@ -447,7 +447,7 @@ namespace CANAPE.Net.Layers
         /// <param name="globalMeta"></param>
         /// <param name="properties"></param>
         /// <param name="defaultBinding"></param>
-        public void Negotiate(ref IDataAdapter server, ref IDataAdapter client, ProxyToken token, Logger logger, 
+        public void Negotiate(ref IDataAdapter server, ref IDataAdapter client, ProxyToken token, Logger logger,
             MetaDictionary meta, MetaDictionary globalMeta, PropertyBag properties, NetworkLayerBinding defaultBinding)
         {
             if (defaultBinding == NetworkLayerBinding.Default)
@@ -476,7 +476,7 @@ namespace CANAPE.Net.Layers
         /// </summary>
         public NetworkLayerBinding Binding
         {
-            get ; set;
+            get; set;
         }
     }
 }

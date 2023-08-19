@@ -15,73 +15,73 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using CANAPE.Utils;
 using System;
 using System.Text;
-using CANAPE.Utils;
 
 namespace CANAPE.DataFrames
 {
-	/// <summary>
-	/// String data frame.
-	/// </summary>
-	public sealed class StringDataFrame : DataFrame
-	{
+    /// <summary>
+    /// String data frame.
+    /// </summary>
+    public sealed class StringDataFrame : DataFrame
+    {
         private string _value;
-		private Encoding _encoding;
+        private Encoding _encoding;
 
-		/// <summary>
-		/// Gets the internal value.
-		/// </summary>
-		/// <returns>The internal value.</returns>
-		protected override object GetInternalValue()
-		{
-			return _value;
-		}
+        /// <summary>
+        /// Gets the internal value.
+        /// </summary>
+        /// <returns>The internal value.</returns>
+        protected override object GetInternalValue()
+        {
+            return _value;
+        }
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:CANAPE.DataFrames.StringDataFrame"/> class.
-		/// </summary>
-		internal StringDataFrame()
-			: this(String.Empty, BinaryEncoding.Instance)
-		{
-		}
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:CANAPE.DataFrames.StringDataFrame"/> class.
+        /// </summary>
+        internal StringDataFrame()
+            : this(String.Empty, BinaryEncoding.Instance)
+        {
+        }
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:CANAPE.DataFrames.StringDataFrame"/> class.
-		/// </summary>
-		/// <param name="value">The string value for Binary Encoding.</param>
-		internal StringDataFrame(string value)
-			: this(value, BinaryEncoding.Instance)
-		{
-		}
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:CANAPE.DataFrames.StringDataFrame"/> class.
+        /// </summary>
+        /// <param name="value">The string value for Binary Encoding.</param>
+        internal StringDataFrame(string value)
+            : this(value, BinaryEncoding.Instance)
+        {
+        }
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:CANAPE.DataFrames.StringDataFrame"/> class.
-		/// </summary>
-		/// <param name="data">The string value.</param>
-		/// <param name="encoding">Text encoding.</param>
-		public StringDataFrame(string data, Encoding encoding)
-		{
-			_value = data;
-			_encoding = encoding;
-		}
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:CANAPE.DataFrames.StringDataFrame"/> class.
+        /// </summary>
+        /// <param name="data">The string value.</param>
+        /// <param name="encoding">Text encoding.</param>
+        public StringDataFrame(string data, Encoding encoding)
+        {
+            _value = data;
+            _encoding = encoding;
+        }
 
-		/// <summary>
-		/// Convert to a data string.
-		/// </summary>
-		/// <returns>The data string.</returns>
-		public override string ToDataString()
-		{
-			return _value;
-		}
+        /// <summary>
+        /// Convert to a data string.
+        /// </summary>
+        /// <returns>The data string.</returns>
+        public override string ToDataString()
+        {
+            return _value;
+        }
 
-		/// <summary>
-		/// Converts to a byte array
-		/// </summary>
-		/// <returns>The byte array.</returns>
-		public override byte[] ToArray()
-		{
-			return _encoding.GetBytes(_value);
-		}
-	}
+        /// <summary>
+        /// Converts to a byte array
+        /// </summary>
+        /// <returns>The byte array.</returns>
+        public override byte[] ToArray()
+        {
+            return _encoding.GetBytes(_value);
+        }
+    }
 }

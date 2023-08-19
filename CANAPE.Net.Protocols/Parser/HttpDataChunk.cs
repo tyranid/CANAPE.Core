@@ -187,14 +187,14 @@ namespace CANAPE.Net.Protocols.Parser
                 if (!CanSendBody() || FinalChunk)
                 {
                     return true;
-                }                
+                }
             }
 
             return false;
         }
 
         private void WriteHeaders(DataWriter writer)
-        {            
+        {
             string writeHeader = OnWriteHeader();
 
             // null indicates that a response has no headers
@@ -233,7 +233,7 @@ namespace CANAPE.Net.Protocols.Parser
         }
 
         private void WriteBody(DataWriter writer)
-        {            
+        {
             byte[] body = GetBody();
 
             if (ChunkedEncoding)

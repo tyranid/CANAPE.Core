@@ -18,7 +18,6 @@
 using CANAPE.DataAdapters;
 using CANAPE.DataFrames;
 using CANAPE.Nodes;
-using CANAPE.Utils;
 
 namespace CANAPE.Net.Protocols.Endpoint
 {
@@ -39,7 +38,7 @@ namespace CANAPE.Net.Protocols.Endpoint
     /// Echo data endpoint.
     /// </summary>
     public class EchoDataEndpoint : BasePersistDataEndpoint<EchoDataEndpointConfig>
-    {       
+    {
         /// <summary>
         /// Run the specified adapter.
         /// </summary>
@@ -49,8 +48,8 @@ namespace CANAPE.Net.Protocols.Endpoint
         {
             DataFrame frame = adapter.Read();
 
-            while(frame != null)
-            {                
+            while (frame != null)
+            {
                 if (Config.ConvertToBasic)
                 {
                     frame = frame.ToArray().ToDataFrame();
@@ -59,7 +58,7 @@ namespace CANAPE.Net.Protocols.Endpoint
                 adapter.Write(frame);
 
                 frame = adapter.Read();
-            }            
+            }
         }
 
         /// <summary>

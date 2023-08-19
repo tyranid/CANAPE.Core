@@ -15,11 +15,6 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading;
 using CANAPE.DataAdapters;
 using CANAPE.DataFrames;
 using CANAPE.Net.Clients;
@@ -29,8 +24,12 @@ using CANAPE.Net.Tokens;
 using CANAPE.Net.Utils;
 using CANAPE.NodeFactories;
 using CANAPE.Nodes;
-using CANAPE.Security;
 using CANAPE.Utils;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading;
 
 namespace CANAPE.Net.Servers
 {
@@ -49,8 +48,8 @@ namespace CANAPE.Net.Servers
         private const string DATA_NAME = "Data";
 
         HttpProxyServerConfig _config;
-        NetGraphFactory _factory;        
-       
+        NetGraphFactory _factory;
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -66,11 +65,11 @@ namespace CANAPE.Net.Servers
             ClientEndpointFactory client = builder.AddClient("Client", Guid.NewGuid());
             ServerEndpointFactory server = builder.AddServer("Server", Guid.NewGuid());
 
-            DirectNodeFactory nop = builder.AddNode(new DirectNodeFactory("NOP", Guid.NewGuid()));            
+            DirectNodeFactory nop = builder.AddNode(new DirectNodeFactory("NOP", Guid.NewGuid()));
 
             builder.AddLines(client, nop, server, client);
 
-            _factory = builder.Factory;            
+            _factory = builder.Factory;
         }
 
         /// <summary>
@@ -78,7 +77,7 @@ namespace CANAPE.Net.Servers
         /// </summary>
         private class HttpProxyDataAdapter : CoupledDataAdapter
         {
-            public HttpProxyDataAdapter(Uri url, CancellationToken token) 
+            public HttpProxyDataAdapter(Uri url, CancellationToken token)
                 : base(token)
             {
                 Url = url;
@@ -94,10 +93,10 @@ namespace CANAPE.Net.Servers
             {
                 public NetGraph Graph { get; set; }
                 public HttpProxyDataAdapter DataAdapter { get; set; }
-                public IEnumerable<HttpResponseDataChunk> ResponseReader { get; set; }                                
+                public IEnumerable<HttpResponseDataChunk> ResponseReader { get; set; }
             }
 
-            FullHttpProxyServer _server;            
+            FullHttpProxyServer _server;
             LockedQueue<ProxyConnection> _conns;
             List<NetGraph> _graphs;
             Logger _logger;
@@ -107,10 +106,10 @@ namespace CANAPE.Net.Servers
 
             public HttpProxyClientDataAdapter(FullHttpProxyServer server, ProxyNetworkService service, Logger logger)
             {
-                _server = server;                     
+                _server = server;
                 _service = service;
                 _cancellationSource = new CancellationTokenSource();
-                _conns = new LockedQueue<ProxyConnection>(-1, _cancellationSource.Token);                
+                _conns = new LockedQueue<ProxyConnection>(-1, _cancellationSource.Token);
                 _logger = logger;
                 _graphs = new List<NetGraph>();
                 Description = "HTTP Proxy Server";
@@ -143,7 +142,7 @@ namespace CANAPE.Net.Servers
                 return response;
             }
 
-            private IEnumerable<HttpResponseDataChunk> GetResponse(ProxyConnection conn, Uri url, bool headRequest)                        
+            private IEnumerable<HttpResponseDataChunk> GetResponse(ProxyConnection conn, Uri url, bool headRequest)
             {
                 try
                 {
@@ -214,24 +213,24 @@ namespace CANAPE.Net.Servers
                         }
                     }
                 }
-            }           
+            }
 
             protected override IEnumerable<DataFrame> GetFrames()
-            {                
-                ProxyConnection conn = _conns.Dequeue();                
-                
+            {
+                ProxyConnection conn = _conns.Dequeue();
+
                 while (conn != null)
                 {
                     bool receivedFinal = false;
-                                             
+
                     foreach (HttpResponseDataChunk chunk in conn.ResponseReader)
                     {
                         receivedFinal = chunk.FinalChunk;
                         yield return chunk.ToDataFrame();
                     }
-                    
+
                     // If we didn't receive final chunk we have an error, start shutdown
-                    if(!receivedFinal)
+                    if (!receivedFinal)
                     {
                         _conns.Stop();
                         break;
@@ -265,7 +264,7 @@ namespace CANAPE.Net.Servers
                         }
 
                         break;
-                    }                    
+                    }
                 }
 
                 return graph;
@@ -276,7 +275,7 @@ namespace CANAPE.Net.Servers
             /// </summary>
             /// <param name="frame">The frame to write.</param>
             public override void Write(DataFrame frame)
-            {                
+            {
                 Uri currUri = null;
                 var chunk = frame.GetValue<HttpRequestDataChunk>().Clone();
 
@@ -315,7 +314,7 @@ namespace CANAPE.Net.Servers
                             }
                             else
                             {
-                                _currOutConn.ResponseReader = GetResponse(_currOutConn, 
+                                _currOutConn.ResponseReader = GetResponse(_currOutConn,
                                               currUri, chunk.Method.Equals("HEAD", StringComparison.OrdinalIgnoreCase));
                                 _conns.Enqueue(_currOutConn);
                             }
@@ -335,9 +334,9 @@ namespace CANAPE.Net.Servers
                         }
                     }
                 }
-                
+
                 if (_currOutConn != null)
-                {                    
+                {
                     DataWriter writer = new DataWriter(new DataAdapterToStream(_currOutConn.DataAdapter.Coupling));
 
                     chunk.WriteChunk(writer);
@@ -414,12 +413,12 @@ namespace CANAPE.Net.Servers
                 _logger = logger;
                 _requestQueue = new Queue<HttpRequestHeader>();
                 _requestQueue.Enqueue(_request);
-               
+
                 Description = stm.Description;
             }
 
             private void ProcessProxyRequestHeaders(HttpRequestHeader request)
-            {                
+            {
                 int i = 0;
 
                 // If we have a request for a client version which will close then ensure the job is done 
@@ -427,8 +426,8 @@ namespace CANAPE.Net.Servers
                 {
                     _closeConnection = true;
                 }
-                
-                while(i < request.Headers.Count)                    
+
+                while (i < request.Headers.Count)
                 {
                     HttpHeader pair = request.Headers[i];
 
@@ -437,7 +436,7 @@ namespace CANAPE.Net.Servers
                     {
                         request.Headers.RemoveAt(i);
                     }
-                    else if (pair.Name.Equals("Connection", StringComparison.OrdinalIgnoreCase) 
+                    else if (pair.Name.Equals("Connection", StringComparison.OrdinalIgnoreCase)
                         || pair.Name.Equals("Proxy-Connection", StringComparison.OrdinalIgnoreCase))
                     {
                         // If sender wants the connection close then signal it for next response
@@ -446,7 +445,7 @@ namespace CANAPE.Net.Servers
                             _closeConnection = true;
                         }
 
-                        request.Headers.RemoveAt(i);                     
+                        request.Headers.RemoveAt(i);
                     }
                     else
                     {
@@ -480,8 +479,8 @@ namespace CANAPE.Net.Servers
             public override DataFrame Read()
             {
                 try
-                {                   
-                    if(_request == null)
+                {
+                    if (_request == null)
                     {
                         _request = HttpParser.ReadRequestHeader(new DataReader(_stm), false, _logger);
 
@@ -490,7 +489,7 @@ namespace CANAPE.Net.Servers
                             _requestQueue.Enqueue(_request);
                         }
 
-                        ProcessProxyRequestHeaders(_request);            
+                        ProcessProxyRequestHeaders(_request);
                     }
 
                     if (_chunks == null)
@@ -536,7 +535,7 @@ namespace CANAPE.Net.Servers
                             chunk.Version = HttpVersion.Version10;
                         }
                         else
-                        {                            
+                        {
                             chunk.Version = request.Version;
                         }
 
@@ -547,7 +546,7 @@ namespace CANAPE.Net.Servers
                             _closeConnection = true;
                         }
                         else
-                        {                           
+                        {
                             // If not chunk encoding and no content-length then set close of end
                             if (!chunk.ChunkedEncoding)
                             {
@@ -637,7 +636,7 @@ namespace CANAPE.Net.Servers
 
             HttpResponseDataChunk response = new HttpResponseDataChunk();
 
-            if(_config.Version10Proxy && !version.IsVersionUnknown)
+            if (_config.Version10Proxy && !version.IsVersionUnknown)
             {
                 response.Version = HttpVersion.Version10;
             }
@@ -647,7 +646,7 @@ namespace CANAPE.Net.Servers
             }
 
             response.ResponseCode = responseCode;
-            response.Message = message;     
+            response.Message = message;
             response.FinalChunk = true;
             response.Body = new byte[0];
 
@@ -663,10 +662,10 @@ namespace CANAPE.Net.Servers
             response.Headers = headers.ToArray();
 
             if (method.Equals("HEAD", StringComparison.OrdinalIgnoreCase))
-            {                
+            {
                 response.HeadResponse = true;
-            }            
-            else if(method.Equals("CONNECT", StringComparison.OrdinalIgnoreCase))
+            }
+            else if (method.Equals("CONNECT", StringComparison.OrdinalIgnoreCase))
             {
                 response.ConnectResponse = true;
             }
@@ -696,13 +695,13 @@ namespace CANAPE.Net.Servers
                 if (port > 0)
                 {
                     ret = new IpProxyToken(null, hostName, port, IpProxyToken.IpClientType.Tcp, false);
-                    
+
                     ret.State.Add("stm", stm);
-                    ret.State.Add("header", header);                    
+                    ret.State.Add("header", header);
                 }
                 else
-                {                    
-                    ReturnResponse(null, 400, "Bad Request", header.Method, header.Version, stm); 
+                {
+                    ReturnResponse(null, 400, "Bad Request", header.Method, header.Version, stm);
                 }
             }
 
@@ -717,11 +716,11 @@ namespace CANAPE.Net.Servers
             {
                 // Use generic token so filters don't get used
                 ProxyToken ret = new ProxyToken();
-                
+
                 ret.State.Add("url", url);
                 ret.State.Add("stm", stm);
                 ret.State.Add("header", header);
-                
+
                 ret.Client = new HttpProxyDummyClient(this, service);
                 ret.Graph = _factory;
 
@@ -732,7 +731,7 @@ namespace CANAPE.Net.Servers
                 _logger.LogError(CANAPE.Net.Properties.Resources.HttpProxyServer_InvalidUrl, header.Path);
 
                 // TODO: Put in some decent error codes
-                ReturnResponse(null, 400, "Bad Request", header.Method, header.Version, stm); 
+                ReturnResponse(null, 400, "Bad Request", header.Method, header.Version, stm);
 
                 return null;
             }
@@ -764,7 +763,7 @@ namespace CANAPE.Net.Servers
                                 else
                                 {
                                     // Username case-insensitive, password case sensitive
-                                    ret = vs[0].Equals(_config.ProxyUsername, StringComparison.OrdinalIgnoreCase) 
+                                    ret = vs[0].Equals(_config.ProxyUsername, StringComparison.OrdinalIgnoreCase)
                                         && _config.ProxyPassword.Equals(vs.Length > 1 ? vs[1] : String.Empty);
                                 }
                             }
@@ -808,23 +807,23 @@ namespace CANAPE.Net.Servers
 
         private bool MustCloseConnection(HttpRequestHeader request)
         {
-            return request.Version.IsVersion10 
-                || request.Version.IsVersionUnknown 
-                || _config.Version10Proxy 
-                || request.Headers.HasHeader("Connection", "close") 
+            return request.Version.IsVersion10
+                || request.Version.IsVersionUnknown
+                || _config.Version10Proxy
+                || request.Headers.HasHeader("Connection", "close")
                 || request.Headers.HasHeader("Proxy-Connection", "close");
         }
-        
+
         private bool HandleProxyAuthentication(DataReader reader, DataAdapterToStream stm, ref HttpRequestHeader request)
         {
             if (_config.RequireAuth)
-            {                              
+            {
                 bool auth = ProcessProxyAuth(request);
 
                 if (!auth)
                 {
                     ReturnResponse(request, 407, "Proxy Authentication Required", request.Method, request.Version,
-                                   new HttpHeader[] { new HttpHeader("Proxy-Authenticate", 
+                                   new HttpHeader[] { new HttpHeader("Proxy-Authenticate",
                             String.Format("Basic realm=\"{0}\"", _config.AuthRealm ?? "canape.local")) }, stm);
 
                     if (!MustCloseConnection(request))
@@ -836,7 +835,7 @@ namespace CANAPE.Net.Servers
                         auth = ProcessProxyAuth(request);
                     }
                 }
-                
+
                 return auth;
             }
             else
@@ -858,12 +857,12 @@ namespace CANAPE.Net.Servers
             ProxyToken token = null;
 
             if (_config.SslConfig.Enabled)
-            {                
+            {
                 IDataAdapter client = null;
                 INetworkLayer ssl = new TlsNetworkLayer(_config.SslConfig);
 
                 ssl.Negotiate(ref adapter, ref client, null, _logger, null, null,
-                      new PropertyBag("Root"), NetworkLayerBinding.Server);                
+                      new PropertyBag("Root"), NetworkLayerBinding.Server);
             }
 
             if (adapter is HttpProxyDataAdapter)
@@ -872,7 +871,7 @@ namespace CANAPE.Net.Servers
 
                 token = new FullHttpProxyToken(proxyAdapter.Url.Host, proxyAdapter.Url.Port);
 
-                token.State.Add("adapter", adapter);                
+                token.State.Add("adapter", adapter);
             }
             else
             {
@@ -923,16 +922,16 @@ namespace CANAPE.Net.Servers
         /// <returns></returns>
         public override IDataAdapter Complete(ProxyToken token, MetaDictionary meta, MetaDictionary globalMeta, ProxyNetworkService service, IDataAdapter client)
         {
-            IDataAdapter ret = null;            
-                        
+            IDataAdapter ret = null;
+
             // An empty initial request indicates we are a full connection
             if (token.State.ContainsKey("header"))
-            {                
+            {
                 HttpRequestHeader initialRequest = (HttpRequestHeader)token.State["header"];
                 DataAdapterToStream stm = (DataAdapterToStream)token.State["stm"];
 
                 if (token.Status == NetStatusCodes.Success)
-                {                    
+                {
                     if (initialRequest.IsConnect)
                     {
                         ReturnResponse(null, 200, "Connection established", initialRequest.Method, initialRequest.Version, stm);
@@ -944,7 +943,7 @@ namespace CANAPE.Net.Servers
                     {
                         // Use a proxy adapter
                         ret = new HttpProxyServerAdapter(this, stm, initialRequest, _logger);
-                    }                    
+                    }
                 }
                 else
                 {

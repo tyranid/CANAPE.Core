@@ -53,7 +53,7 @@ namespace CANAPE.Nodes
 
         private dynamic GetMetaInternal(string name, dynamic defaultValue)
         {
-            dynamic ret = null;            
+            dynamic ret = null;
 
             if (!TryGetValue(name, out ret))
             {
@@ -67,7 +67,7 @@ namespace CANAPE.Nodes
         }
 
         private void SetMetaInternal(string name, dynamic value)
-        {            
+        {
             if (value != null)
             {
                 this[name] = value;

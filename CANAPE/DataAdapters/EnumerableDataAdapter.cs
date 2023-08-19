@@ -15,11 +15,8 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using CANAPE.DataFrames;
+using System.Collections.Generic;
 
 namespace CANAPE.DataAdapters
 {
@@ -41,13 +38,13 @@ namespace CANAPE.DataAdapters
         /// </summary>
         /// <returns>The frame, null on EOS</returns>
         public sealed override DataFrame Read()
-        {            
+        {
             if (_enumerator == null)
             {
                 _enumerator = GetFrames().GetEnumerator();
             }
-            
-            if(_enumerator.MoveNext())
+
+            if (_enumerator.MoveNext())
             {
                 return _enumerator.Current;
             }

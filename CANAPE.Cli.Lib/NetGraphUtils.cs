@@ -71,7 +71,7 @@ namespace CANAPE.Cli
                 if (!node.Enabled)
                 {
                     attrs.Add("style=dotted");
-                }                
+                }
 
                 if (attrs.Count > 0)
                 {

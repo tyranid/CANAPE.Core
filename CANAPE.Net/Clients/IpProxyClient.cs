@@ -15,16 +15,16 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using CANAPE.DataAdapters;
+using CANAPE.Net.DataAdapters;
+using CANAPE.Net.Tokens;
+using CANAPE.Net.Utils;
+using CANAPE.Nodes;
+using CANAPE.Utils;
 using System;
 using System.IO;
-using System.Net.Sockets;
-using CANAPE.DataAdapters;
-using CANAPE.Net.Tokens;
-using CANAPE.Utils;
-using CANAPE.Nodes;
 using System.Net;
-using CANAPE.Net.Utils;
-using CANAPE.Net.DataAdapters;
+using System.Net.Sockets;
 
 namespace CANAPE.Net.Clients
 {

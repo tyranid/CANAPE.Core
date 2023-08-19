@@ -25,7 +25,7 @@ namespace CANAPE.Net.Layers
     /// <summary>
     ///Base network layer class, makes implementation slightly simpler
     /// </summary>
-    public abstract class BaseNetworkLayer<T,R> : PersistNodeImpl<T, R>, INetworkLayer where R : class where T : class, R, new()
+    public abstract class BaseNetworkLayer<T, R> : PersistNodeImpl<T, R>, INetworkLayer where R : class where T : class, R, new()
     {
         /// <summary>
         /// Proxy token for this connection
@@ -76,7 +76,7 @@ namespace CANAPE.Net.Layers
         /// <param name="globalMeta">The assocaited global meta dictionary</param>
         /// <param name="properties">Property bag</param>
         /// <param name="defaultBinding">Default layer binding mode</param>
-        public void Negotiate(ref IDataAdapter server, ref IDataAdapter client, ProxyToken token, Logger logger, 
+        public void Negotiate(ref IDataAdapter server, ref IDataAdapter client, ProxyToken token, Logger logger,
             MetaDictionary meta, MetaDictionary globalMeta, PropertyBag properties, NetworkLayerBinding defaultBinding)
         {
             Token = token;

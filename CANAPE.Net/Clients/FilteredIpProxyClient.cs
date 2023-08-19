@@ -15,12 +15,11 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System.Text.RegularExpressions;
 using CANAPE.DataAdapters;
 using CANAPE.Net.Tokens;
 using CANAPE.Nodes;
-using CANAPE.Security;
 using CANAPE.Utils;
+using System.Text.RegularExpressions;
 
 namespace CANAPE.Net.Clients
 {

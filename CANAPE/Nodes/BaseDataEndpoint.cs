@@ -22,7 +22,7 @@ namespace CANAPE.Nodes
     /// <summary>
     /// Base data endpoint.
     /// </summary>
-    public abstract class BaseDataEndpoint<C> 
+    public abstract class BaseDataEndpoint<C>
         : BasePersistDataEndpoint<C> where C : class, new()
     {
         /// <summary>

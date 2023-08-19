@@ -15,16 +15,14 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using CANAPE.DataAdapters;
-using CANAPE.Net.Protocols.Parser;
 
 namespace CANAPE.Net.Tokens
 {
     internal class FullHttpProxyToken : IpProxyToken
-    {        
+    {
         public FullHttpProxyToken(string hostname, int port)
             : base(null, hostname, port, IpClientType.Tcp, false)
-        {                                                     
+        {
         }
     }
 }

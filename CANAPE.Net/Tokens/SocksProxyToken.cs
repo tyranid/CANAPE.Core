@@ -15,22 +15,22 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using System.Net;
 using CANAPE.DataAdapters;
 using CANAPE.Utils;
+using System;
+using System.Net;
 
 namespace CANAPE.Net.Tokens
-{    
+{
     internal class SocksProxyToken : IpProxyToken
     {
         public DataAdapterToStream Adapter { get; set; }
 
         public int Version { get; private set; }
 
-        public SocksProxyToken(IPAddress address, string hostname, 
-            int port, IpClientType clientType, bool ipv6, 
-            DataAdapterToStream adapter, int version) 
+        public SocksProxyToken(IPAddress address, string hostname,
+            int port, IpClientType clientType, bool ipv6,
+            DataAdapterToStream adapter, int version)
             : base(address, hostname, port, clientType, ipv6)
         {
             Adapter = adapter;
@@ -42,7 +42,7 @@ namespace CANAPE.Net.Tokens
             base.OnDispose(finalize);
 
             if (Adapter != null)
-            {                
+            {
                 try
                 {
                     Adapter.Dispose();

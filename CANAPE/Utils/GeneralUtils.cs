@@ -23,7 +23,6 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
 
 namespace CANAPE.Utils
 {
@@ -33,7 +32,7 @@ namespace CANAPE.Utils
     public static class GeneralUtils
     {
         private static Regex _formatRegex = new Regex("\\$[a-zA-Z_/.*][a-zA-Z0-9_/.*]*");
-        
+
         /// <summary>
         /// Generate a MD5 hex string from a byte array
         /// </summary>
@@ -51,7 +50,7 @@ namespace CANAPE.Utils
 
             return builder.ToString();
         }
-        
+
         /// <summary>
         /// Create a string from a byte array like python does
         /// </summary>
@@ -60,7 +59,7 @@ namespace CANAPE.Utils
         public static string MakeByteString(byte[] data)
         {
             if (data != null)
-            {                
+            {
                 return new BinaryEncoding().GetString(data);
             }
 
@@ -73,7 +72,7 @@ namespace CANAPE.Utils
         /// <param name="s">The string to convert (note any char values > 255 will be masked)</param>
         /// <returns>The byte array, null if s was null</returns>
         public static byte[] MakeByteArray(string s)
-        {            
+        {
             if (s != null)
             {
                 return new BinaryEncoding().GetBytes(s);
@@ -89,7 +88,7 @@ namespace CANAPE.Utils
         /// <returns>The line</returns>
         /// <exception cref="System.IO.EndOfStreamException">Throw when no more data availeble</exception>
         public static string ReadLine(Stream stm)
-        {         
+        {
             List<byte> reqBytes = new List<byte>();
             int ch = 0;
 
@@ -97,7 +96,7 @@ namespace CANAPE.Utils
             {
                 reqBytes.Add((byte)ch);
                 if (ch == 10)
-                {                    
+                {
                     break;
                 }
             }
@@ -359,7 +358,7 @@ namespace CANAPE.Utils
                 case BinaryStringEncoding.ShiftJIS:
                     ret = Encoding.GetEncoding(932);
                     break;
-                default:                                                                    
+                default:
                     ret = Encoding.GetEncoding((int)encoding);
                     break;
             }
@@ -449,7 +448,7 @@ namespace CANAPE.Utils
             else
             {
                 StringBuilder builder = new StringBuilder(s);
-                
+
                 int pos = 0;
 
                 while (pos < builder.Length)
@@ -485,15 +484,15 @@ namespace CANAPE.Utils
                                     throw new FormatException(String.Format(Properties.Resources.GeneralUtils_DecodeEscapedInvalidEscape, builder[pos]));
                             }
 
-                            builder[pos] = val;                            
+                            builder[pos] = val;
                         }
                         else
                         {
                             throw new FormatException(Properties.Resources.GeneralUtils_DecodeEscapedStringTrailingSlash);
                         }
-                    }                    
-                    
-                    pos++;                    
+                    }
+
+                    pos++;
                 }
 
                 return builder.ToString();
@@ -541,7 +540,7 @@ namespace CANAPE.Utils
             foreach (byte b in ba)
             {
                 hash = (hash * 13) + b;
-            }            
+            }
 
             return hash;
         }
@@ -553,9 +552,9 @@ namespace CANAPE.Utils
         /// <param name="packets">The packets</param>
         public static void WritePacketsToFile(string filename, IEnumerable<LogPacket> packets)
         {
-            using(var stream = File.OpenWrite(filename))
+            using (var stream = File.OpenWrite(filename))
             {
-                foreach(var packet in packets)
+                foreach (var packet in packets)
                 {
                     packet.WriteToStream(stream);
                 }
@@ -567,9 +566,9 @@ namespace CANAPE.Utils
         /// </summary>
         /// <returns>The packets from file.</returns>
         /// <param name="filename">The filename</param>
-        public static IEnumerable<LogPacket> ReadPacketsFromFile(string filename) 
+        public static IEnumerable<LogPacket> ReadPacketsFromFile(string filename)
         {
-            using(var stream = File.OpenRead(filename))
+            using (var stream = File.OpenRead(filename))
             {
                 List<LogPacket> packets = new List<LogPacket>();
                 try
@@ -579,7 +578,7 @@ namespace CANAPE.Utils
                         packets.Add(LogPacket.ReadFromStream(stream));
                     }
                 }
-                catch(EndOfStreamException)
+                catch (EndOfStreamException)
                 {
                 }
                 return packets;

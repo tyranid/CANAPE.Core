@@ -15,10 +15,10 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using System.IO;
 using CANAPE.DataFrames;
 using CANAPE.Nodes;
+using System;
+using System.IO;
 
 namespace CANAPE.Utils
 {
@@ -69,7 +69,7 @@ namespace CANAPE.Utils
         {
             get
             {
-                
+
                 return Frame.Hash;
             }
         }
@@ -127,8 +127,8 @@ namespace CANAPE.Utils
         /// <param name="network"></param>
         /// <param name="frame"></param>
         /// <param name="color"></param>
-        public LogPacket(string tag, Guid netid, string network, DataFrame frame, ColorValue color) 
-            : this(tag, netid, Guid.NewGuid(), network, frame, color, DateTime.Now)        
+        public LogPacket(string tag, Guid netid, string network, DataFrame frame, ColorValue color)
+            : this(tag, netid, Guid.NewGuid(), network, frame, color, DateTime.Now)
         {
         }
 
@@ -136,8 +136,8 @@ namespace CANAPE.Utils
         /// Constructor from an event object
         /// </summary>
         /// <param name="args">The event args</param>
-        public LogPacket(LogPacketEventArgs args) 
-            : this(args.Tag, args.NetId, Guid.NewGuid(), args.NetworkDescription, args.Frame, args.Color, args.Timestamp) 
+        public LogPacket(LogPacketEventArgs args)
+            : this(args.Tag, args.NetId, Guid.NewGuid(), args.NetworkDescription, args.Frame, args.Color, args.Timestamp)
         {
         }
 

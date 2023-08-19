@@ -15,7 +15,6 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using CANAPE.DataFrames;
 using CANAPE.Utils;
 using System;
 using System.Collections.Generic;
@@ -307,7 +306,7 @@ namespace CANAPE.Net.Protocols.Parser
             /// <summary>
             /// The CNAME
             /// </summary>
-            public string CName { get; set; }         
+            public string CName { get; set; }
 
             /// <summary>
             /// Constructor
@@ -334,7 +333,7 @@ namespace CANAPE.Net.Protocols.Parser
             /// <param name="stringCache">The string cache</param>
             public override void WriteData(DataWriter writer, Dictionary<string, int> stringCache)
             {
-                WriteString(CName, writer, stringCache);             
+                WriteString(CName, writer, stringCache);
             }
         }
 
@@ -426,7 +425,7 @@ namespace CANAPE.Net.Protocols.Parser
             /// <param name="writer">The writer</param>
             /// <param name="stringCache">The string cache</param>
             public override void WriteData(DataWriter writer, Dictionary<string, int> stringCache)
-            {               
+            {
                 if (Address.AddressFamily != System.Net.Sockets.AddressFamily.InterNetworkV6)
                 {
                     throw new ArgumentException("Must provide a IPv6 address for a AAAA record");
@@ -629,7 +628,7 @@ namespace CANAPE.Net.Protocols.Parser
             rr.Class = cls;
             rr.Type = type;
             rr.TimeToLive = ttl;
-            
+
             return rr;
         }
 
@@ -647,12 +646,12 @@ namespace CANAPE.Net.Protocols.Parser
 
         private static bool GetBooleanFlag(ushort flags, int pos)
         {
-            return ((flags >> (15-pos)) & 1) == 1;
+            return ((flags >> (15 - pos)) & 1) == 1;
         }
 
         private static int GetFlagValue(ushort flags, int pos)
         {
-            return (flags >> (15-pos-3)) & 0xF;
+            return (flags >> (15 - pos - 3)) & 0xF;
         }
 
         private static ushort SetBooleanFlag(ushort flags, int pos, bool value)
@@ -669,7 +668,7 @@ namespace CANAPE.Net.Protocols.Parser
 
         private static ushort SetFlagValue(ushort flags, int pos, int val)
         {
-            return (ushort)(flags | (val << (15 - pos - 3)));      
+            return (ushort)(flags | (val << (15 - pos - 3)));
         }
 
         /// <summary>
@@ -703,7 +702,7 @@ namespace CANAPE.Net.Protocols.Parser
             if (qdcount > 0)
             {
                 DNSQuestion[] questions = new DNSQuestion[qdcount];
-                
+
                 for (int i = 0; i < qdcount; i++)
                 {
                     questions[i] = ReadQuestion(data, reader);
@@ -713,7 +712,7 @@ namespace CANAPE.Net.Protocols.Parser
             }
 
             if (ancount > 0)
-            {                
+            {
                 ret.Answers = ReadResourceRecords(data, reader, ancount);
             }
 
@@ -767,7 +766,7 @@ namespace CANAPE.Net.Protocols.Parser
                     {
                         WriteStringPart(null, writer, stringCache);
                     }
-                }   
+                }
             }
         }
 
@@ -842,5 +841,5 @@ namespace CANAPE.Net.Protocols.Parser
 
             return stm.ToArray();
         }
-    }    
+    }
 }

@@ -29,7 +29,7 @@ namespace CANAPE.Net
         /// </summary>
         public NetServiceException()
             : base()
-        { 
+        {
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace CANAPE.Net
         /// <param name="message">Message</param>
         public NetServiceException(string message)
             : base(message)
-        { 
+        {
         }
 
         /// <summary>

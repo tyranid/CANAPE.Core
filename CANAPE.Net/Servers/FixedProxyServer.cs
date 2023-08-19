@@ -15,13 +15,13 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using System.Net;
 using CANAPE.DataAdapters;
 using CANAPE.Net.Layers;
 using CANAPE.Net.Tokens;
 using CANAPE.Nodes;
 using CANAPE.Utils;
+using System;
+using System.Net;
 
 namespace CANAPE.Net.Servers
 {
@@ -35,7 +35,7 @@ namespace CANAPE.Net.Servers
             public IDataAdapter Adapter { get; set; }
 
             public FixedProxyToken(IPAddress address, string hostname, int port,
-                IpClientType clientType, bool ipv6, IDataAdapter adapter) 
+                IpClientType clientType, bool ipv6, IDataAdapter adapter)
                 : base(address, hostname, port, clientType, ipv6)
             {
                 Adapter = adapter;
@@ -98,7 +98,7 @@ namespace CANAPE.Net.Servers
         public override IDataAdapter Complete(ProxyToken token, MetaDictionary meta, MetaDictionary globalMeta, ProxyNetworkService service, IDataAdapter client)
         {
             FixedProxyToken passToken = (FixedProxyToken)token;
-            
+
             IDataAdapter adapter = passToken.Adapter;
             if (token.Status != NetStatusCodes.Success)
             {
@@ -121,7 +121,7 @@ namespace CANAPE.Net.Servers
         /// <param name="clientType"></param>
         /// <param name="ipv6"></param>
         /// <param name="layers"></param>
-        public FixedProxyServer(Logger logger, string hostName, int port, IpProxyToken.IpClientType clientType, 
+        public FixedProxyServer(Logger logger, string hostName, int port, IpProxyToken.IpClientType clientType,
             bool ipv6, INetworkLayerFactory[] layers) : base(logger)
         {
             _hostName = hostName;

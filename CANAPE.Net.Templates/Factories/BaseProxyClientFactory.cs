@@ -17,7 +17,6 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using CANAPE.Net.Clients;
 using CANAPE.Utils;
-using System;
 
 namespace CANAPE.Net.Templates.Factories
 {

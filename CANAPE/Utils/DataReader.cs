@@ -19,8 +19,8 @@ using CANAPE.DataAdapters;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Reflection;
+using System.Text;
 
 namespace CANAPE.Utils
 {
@@ -51,9 +51,9 @@ namespace CANAPE.Utils
         /// Constructor
         /// </summary>
         /// <param name="data">Byte data to read</param>
-        public DataReader(byte[] data) 
+        public DataReader(byte[] data)
             : this(new MemoryStream(data))
-        {            
+        {
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace CANAPE.Utils
             int currLen = 0;
 
             if (_eof)
-            {                
+            {
                 throw new EndOfStreamException();
             }
 
@@ -98,7 +98,7 @@ namespace CANAPE.Utils
                     _eof = true;
                     break;
                 }
-                
+
                 if (readLen < nextLen)
                 {
                     Array.Resize<byte>(ref arr, readLen);
@@ -191,7 +191,7 @@ namespace CANAPE.Utils
             byte[] arr = null;
             int currLength = chunkSize;
 
-            while(currLength > 0)
+            while (currLength > 0)
             {
                 arr = ReadBytes(currLength, false, false);
 
@@ -204,7 +204,7 @@ namespace CANAPE.Utils
                 {
                     break;
                 }
-            }            
+            }
 
             return ret.ToArray();
         }
@@ -244,7 +244,7 @@ namespace CANAPE.Utils
         /// <param name="trail">The number of trailing characters or bytes</param>        
         /// <returns>The read bytes</returns>        
         public byte[] ReadToEndTrail(int trail)
-        {            
+        {
             byte[] ret = ReadToEnd();
 
             if (trail > 0)
@@ -266,7 +266,7 @@ namespace CANAPE.Utils
                 ResetStreamTrail(t);
             }
 
-            return ret;    
+            return ret;
         }
 
         /// <summary>
@@ -277,7 +277,7 @@ namespace CANAPE.Utils
         /// <param name="trail">The number of trailing characters or bytes</param>        
         /// <returns>The read string</returns>
         public string ReadToEndTrail(Encoding encoding, int trail)
-        {            
+        {
             string s = ReadToEnd(encoding);
 
             if (trail > 0)
@@ -298,7 +298,7 @@ namespace CANAPE.Utils
                 ResetStreamTrail(encoding.GetBytes(t));
             }
 
-            return s;            
+            return s;
         }
 
         /// <summary>
@@ -319,9 +319,9 @@ namespace CANAPE.Utils
                 for (int i = 0; i < data.Length; ++i)
                 {
                     data[i] = ReadByte();
-                    if (encoding.GetCharCount(data, 0, i+1) == 1)
+                    if (encoding.GetCharCount(data, 0, i + 1) == 1)
                     {
-                        return encoding.GetChars(data, 0, i+1)[0];
+                        return encoding.GetChars(data, 0, i + 1)[0];
                     }
                 }
             }
@@ -348,7 +348,7 @@ namespace CANAPE.Utils
         public string ReadString(int len, bool waitForAll, Encoding encoding)
         {
             if (encoding.IsSingleByte)
-            {                
+            {
                 // We can do it more simply for single byte encoded data
                 return encoding.GetString(ReadBytes(len, waitForAll));
             }
@@ -384,7 +384,7 @@ namespace CANAPE.Utils
         /// <returns>The read string</returns>
         public string ReadString(int len, bool waitForAll)
         {
-            return ReadString(len, waitForAll, new BinaryEncoding());            
+            return ReadString(len, waitForAll, new BinaryEncoding());
         }
 
         /// <summary>
@@ -517,16 +517,16 @@ namespace CANAPE.Utils
                             break;
                         }
 
-                        if(currChar == '\n')
+                        if (currChar == '\n')
                         {
-                            if(lineEnding == TextLineEnding.LineFeed)
+                            if (lineEnding == TextLineEnding.LineFeed)
                             {
                                 break;
                             }
-                            else if((lineEnding == TextLineEnding.CarriageReturnLineFeed) && hasCr)
+                            else if ((lineEnding == TextLineEnding.CarriageReturnLineFeed) && hasCr)
                             {
                                 break;
-                            }                            
+                            }
                         }
                         else if (currChar == '\r')
                         {
@@ -579,7 +579,7 @@ namespace CANAPE.Utils
                 _eof = true;
                 throw new EndOfStreamException();
             }
-            
+
             return (byte)currByte;
         }
 
@@ -587,7 +587,7 @@ namespace CANAPE.Utils
         /// Flush out any pending bits
         /// </summary>
         public void Flush()
-        {            
+        {
             _validBits = 0;
         }
 
@@ -730,7 +730,7 @@ namespace CANAPE.Utils
         {
             return ReadUInt64(false);
         }
-        
+
         /// <summary>
         /// Read a long from the stream with a specified endian
         /// </summary>
@@ -764,7 +764,7 @@ namespace CANAPE.Utils
 
             for (int i = 0; i < 3; ++i)
             {
-                data[i+ofs] = ReadByte();
+                data[i + ofs] = ReadByte();
             }
 
             // Sign the value
@@ -840,7 +840,7 @@ namespace CANAPE.Utils
         {
             byte[] data = ReadBytes(4);
 
-            return BitConverter.ToSingle(GeneralUtils.SwapBytes(data, littleEndian), 0); 
+            return BitConverter.ToSingle(GeneralUtils.SwapBytes(data, littleEndian), 0);
         }
 
         /// <summary>
@@ -948,7 +948,7 @@ namespace CANAPE.Utils
             }
 
             return ret;
-        }        
+        }
 
         /// <summary>
         /// Get the underlying stream object
@@ -959,7 +959,7 @@ namespace CANAPE.Utils
             // Clear bits, we cannot ever be certain this won't do harm
             _validBits = 0;
             return _stm;
-        }     
+        }
 
         /// <summary>
         /// Gets the number of bytes left in the stream, -1 if not supported
@@ -969,7 +969,7 @@ namespace CANAPE.Utils
             get
             {
                 try
-                {                    
+                {
                     return _stm.Length - _stm.Position;
                 }
                 catch (NotSupportedException)
@@ -1042,7 +1042,7 @@ namespace CANAPE.Utils
         /// <summary>
         /// Specifies how many bytes have been read since the last time the state was cleared
         /// </summary>
-        public long ByteCount 
+        public long ByteCount
         {
             get
             {

@@ -15,10 +15,10 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using System.Collections.Generic;
 using CANAPE.Nodes;
 using CANAPE.Utils;
+using System;
+using System.Collections.Generic;
 
 namespace CANAPE.NodeFactories
 {
@@ -26,7 +26,7 @@ namespace CANAPE.NodeFactories
     /// Base class for pipe node factories
     /// </summary>    
     public abstract class BaseNodeFactory
-    {                
+    {
         /// <summary>
         /// Id of the node
         /// </summary>

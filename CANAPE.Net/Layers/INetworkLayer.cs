@@ -16,9 +16,9 @@
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using CANAPE.DataAdapters;
-using CANAPE.Utils;
-using CANAPE.Nodes;
 using CANAPE.Net.Tokens;
+using CANAPE.Nodes;
+using CANAPE.Utils;
 
 namespace CANAPE.Net.Layers
 {
@@ -38,7 +38,7 @@ namespace CANAPE.Net.Layers
         /// <param name="meta">Meta dictionary</param>
         /// <param name="properties">The property bag to add any connection information to</param>
         /// <param name="defaultBinding">Indicates the current default binding mode, layers are free to ignore (at their peril)</param>
-        void Negotiate(ref IDataAdapter server, ref IDataAdapter client, ProxyToken token, Logger logger, MetaDictionary meta, 
+        void Negotiate(ref IDataAdapter server, ref IDataAdapter client, ProxyToken token, Logger logger, MetaDictionary meta,
             MetaDictionary globalMeta, PropertyBag properties, NetworkLayerBinding defaultBinding);
 
         /// <summary>

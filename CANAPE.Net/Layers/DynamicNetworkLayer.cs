@@ -15,10 +15,10 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System.Collections.Generic;
 using CANAPE.DataAdapters;
 using CANAPE.DataFrames;
 using CANAPE.Utils;
+using System.Collections.Generic;
 
 namespace CANAPE.Net.Layers
 {
@@ -157,9 +157,9 @@ namespace CANAPE.Net.Layers
         /// <param name="binding"></param>
         /// <returns></returns>
         protected override sealed bool OnConnect(IDataAdapter client, IDataAdapter server, NetworkLayerBinding binding)
-        {            
-            _clientEnum = ReadClientFrames(client).GetEnumerator();         
-            _serverEnum = ReadServerFrames(server).GetEnumerator();        
+        {
+            _clientEnum = ReadClientFrames(client).GetEnumerator();
+            _serverEnum = ReadServerFrames(server).GetEnumerator();
             _client = client;
             _server = server;
 

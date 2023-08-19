@@ -191,7 +191,7 @@ namespace CANAPE.Security.Cryptography.X509Certificates
 
             return swriter.ToString();
         }
-        
+
         /// <summary>
         /// Take an existing certificate, clone its details and resign with a new root CA
         /// </summary>
@@ -228,7 +228,7 @@ namespace CANAPE.Security.Cryptography.X509Certificates
         /// <returns></returns>
         public static X509Certificate2 CloneAndSignCertificate(X509Certificate toClone, X509Certificate2 rootCert, bool newSerial)
         {
-            return CloneAndSignCertificate(toClone, rootCert, 
+            return CloneAndSignCertificate(toClone, rootCert,
                 newSerial, 1024, CertificateHashAlgorithm.Sha1);
         }
 
@@ -246,7 +246,7 @@ namespace CANAPE.Security.Cryptography.X509Certificates
 
             exts.Add(new X509BasicConstraintsExtension(true, false, 0, false));
 
-            return CertificateBuilder.CreateCert(null, new X500DistinguishedName(subject), 
+            return CertificateBuilder.CreateCert(null, new X500DistinguishedName(subject),
                 null, rsaKeySize, hashAlgorithm, dt, dt.AddYears(10), exts);
         }
 
@@ -259,7 +259,7 @@ namespace CANAPE.Security.Cryptography.X509Certificates
         {
             return GenerateCACert(subject, 1024, CertificateHashAlgorithm.Sha1);
         }
-        
+
         /// <summary>
         /// Create a new certificate
         /// </summary>
@@ -320,7 +320,7 @@ namespace CANAPE.Security.Cryptography.X509Certificates
         /// <returns>The certificate</returns>
         public static X509Certificate2 ImportFromPFX(string file, string password)
         {
-            return new X509Certificate2(File.ReadAllBytes(file), 
+            return new X509Certificate2(File.ReadAllBytes(file),
                 password, X509KeyStorageFlags.Exportable);
         }
 
@@ -408,7 +408,7 @@ namespace CANAPE.Security.Cryptography.X509Certificates
                     {
                         throw new CryptographicException("Malformed ASN.1 Sequence");
                     }
-                    
+
                     RsaPrivateKeyStructure rsa = RsaPrivateKeyStructure.GetInstance(seq);
 
                     keyParams = new RsaPrivateCrtKeyParameters(

@@ -15,14 +15,14 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using CANAPE.DataFrames;
+using CANAPE.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using CANAPE.DataFrames;
-using CANAPE.Utils;
 
 namespace CANAPE.Nodes
 {
@@ -72,13 +72,13 @@ namespace CANAPE.Nodes
         private long _byteCount;
         private bool _breakpointHit;
         private int _isShutdown;
-        
+
         /// <summary>
         /// A flag to indicate that the input mechanism should never write to the output
         /// if disabled, it should just discard it
         /// </summary>
         protected bool _noWriteOutput;
-        
+
         /// <summary>
         /// The list of output nodes
         /// </summary>
@@ -95,11 +95,11 @@ namespace CANAPE.Nodes
         public BasePipelineNode[] Outputs
         {
             get
-            {                
+            {
                 lock (_output)
                 {
                     return _output.Select(n => n.Node).ToArray();
-                }                
+                }
             }
         }
 
@@ -109,7 +109,7 @@ namespace CANAPE.Nodes
             {
                 if (!node.WeakPath)
                 {
-                    node.Node._shutdownInputs.Add(this.Uuid);                    
+                    node.Node._shutdownInputs.Add(this.Uuid);
                 }
             }
         }
@@ -137,10 +137,10 @@ namespace CANAPE.Nodes
             {
                 OnInput(frame);
             }
-            else if(!_noWriteOutput)
+            else if (!_noWriteOutput)
             {
                 WriteOutput(frame);
-            }        
+            }
         }
 
         /// <summary>
@@ -255,7 +255,7 @@ namespace CANAPE.Nodes
         /// <param name="frame">The frame to write</param>
         /// <param name="includeNamed">Whether to include named outputs or just default</param>
         public void WriteOutput(DataFrame frame, bool includeNamed)
-        {           
+        {
             OutputNode[] nodes;
 
             if (includeNamed)
@@ -280,7 +280,7 @@ namespace CANAPE.Nodes
         {
             lock (_output)
             {
-                return _output.FindAll(n => !String.IsNullOrWhiteSpace(n.PathName) 
+                return _output.FindAll(n => !String.IsNullOrWhiteSpace(n.PathName)
                     && n.PathName.Equals(pathName, StringComparison.OrdinalIgnoreCase)).ToArray(); ;
             }
         }
@@ -319,7 +319,7 @@ namespace CANAPE.Nodes
         /// <param name="frame">The frame to write</param>
         /// <param name="pathName">The path name to write to</param>
         public void WriteOutput(DataFrame frame, string pathName)
-        {            
+        {
             WriteOutput(frame, GetNodesByName(pathName));
         }
 
@@ -340,7 +340,7 @@ namespace CANAPE.Nodes
         /// <returns>True if it has the named output</returns>
         public bool HasOutput(string pathName)
         {
-            return GetNodesByName(pathName).Length > 0;      
+            return GetNodesByName(pathName).Length > 0;
         }
 
         /// <summary>
@@ -451,7 +451,7 @@ namespace CANAPE.Nodes
         {
             OutputNode[] nodes;
 
-            lock(_output)
+            lock (_output)
             {
                 nodes = _output.ToArray();
             }
@@ -477,7 +477,7 @@ namespace CANAPE.Nodes
         {
             bool doShutdown = false;
 
-            lock(_shutdownInputs)
+            lock (_shutdownInputs)
             {
                 if (!IsShuttingdown)
                 {
@@ -496,14 +496,14 @@ namespace CANAPE.Nodes
             }
 
             if (doShutdown)
-            {             
+            {
                 // If true is returned we can safely pass along the shutdown
                 if (OnShutdown())
                 {
                     ShutdownOutputs();
                 }
             }
-        }        
+        }
 
         /// <summary>
         /// Indicates the node is shutdown
@@ -635,7 +635,7 @@ namespace CANAPE.Nodes
         /// <param name="args">The args</param>
         public void Log(Logger.LogEntryType entryType, string format, params object[] args)
         {
-            Graph.Logger.Log(entryType, Name, Uuid, format, args);            
+            Graph.Logger.Log(entryType, Name, Uuid, format, args);
         }
 
         /// <summary>
@@ -674,7 +674,7 @@ namespace CANAPE.Nodes
         /// <param name="args">The args</param>
         public void LogInfo(string format, params object[] args)
         {
-            Log(Logger.LogEntryType.Info, format, args);            
+            Log(Logger.LogEntryType.Info, format, args);
         }
 
         /// <summary>
@@ -683,7 +683,7 @@ namespace CANAPE.Nodes
         /// <param name="obj">The object to log</param>
         public void LogInfo(object obj)
         {
-            Log(Logger.LogEntryType.Info, obj);            
+            Log(Logger.LogEntryType.Info, obj);
         }
 
         /// <summary>
@@ -693,7 +693,7 @@ namespace CANAPE.Nodes
         /// <param name="args">The args</param>
         public void LogWarning(string format, params object[] args)
         {
-            Log(Logger.LogEntryType.Warning, format, args);            
+            Log(Logger.LogEntryType.Warning, format, args);
         }
 
         /// <summary>

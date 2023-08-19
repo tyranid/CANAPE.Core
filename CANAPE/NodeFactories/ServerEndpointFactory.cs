@@ -31,6 +31,6 @@ namespace CANAPE.NodeFactories
         public ServerEndpointFactory(string label, Guid guid)
             : base(label, guid)
         {
-        }        
+        }
     }
 }

@@ -136,7 +136,7 @@ namespace CANAPE.Net.Templates
             {
                 throw new NetServiceException(Properties.Resources.UnixSocketProxyTemplate_InvalidConnectPath);
             }
-            
+
             try
             {
                 var server = new PassThroughProxyServer(logger, Layers);

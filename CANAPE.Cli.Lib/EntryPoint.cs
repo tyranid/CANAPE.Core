@@ -17,10 +17,10 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using CANAPE.Net.Templates;
 using CANAPE.Utils;
+using McMaster.Extensions.CommandLineUtils;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
-using McMaster.Extensions.CommandLineUtils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -70,7 +70,7 @@ namespace CANAPE.Cli
             {
                 resolve_paths.Add(Path.GetDirectoryName(filename));
             }
-            
+
             Type template_type = typeof(FixedProxyTemplate);
             SourceFileResolver resolver = new SourceFileResolver(include_dirs.Concat(resolve_paths), base_path);
             ScriptMetadataResolver metadata_resolver = ScriptMetadataResolver.Default
@@ -80,7 +80,7 @@ namespace CANAPE.Cli
                                                      "CANAPE.Utils", "CANAPE.Nodes", "CANAPE.Net.Utils",
                                                      "CANAPE.DataFrames", "CANAPE.Net.Templates.Factories",
                                                      "CANAPE.Net.Templates", "CANAPE.Security.Cryptography.X509Certificates")
-                .WithReferences(template_type.GetTypeInfo().Assembly, 
+                .WithReferences(template_type.GetTypeInfo().Assembly,
                                 typeof(EntryPoint).GetTypeInfo().Assembly)
                 .WithSourceResolver(resolver)
                 .WithMetadataResolver(metadata_resolver);
@@ -98,7 +98,7 @@ namespace CANAPE.Cli
             var options = CreateScriptOptions(null, include_dirs, metadata_dirs);
             var state = await CSharpScript.RunAsync("static void quit() { Environment.Exit(0); }", options);
             Console.WriteLine("Type quit() to exit the console");
-            
+
             while (true)
             {
                 StringBuilder current_line = new StringBuilder();
@@ -124,7 +124,7 @@ namespace CANAPE.Cli
             }
         }
 
-        private static ScriptRunner<object> CompileScript(string filename, 
+        private static ScriptRunner<object> CompileScript(string filename,
             IEnumerable<string> include_dirs,
             IEnumerable<string> metadata_dirs)
         {
@@ -141,8 +141,8 @@ namespace CANAPE.Cli
             }
         }
 
-        private async static Task RunScript(string filename, 
-            IEnumerable<string> include_dirs, 
+        private async static Task RunScript(string filename,
+            IEnumerable<string> include_dirs,
             IEnumerable<string> metadata_dirs,
             IEnumerable<string> args)
         {
@@ -169,7 +169,7 @@ namespace CANAPE.Cli
                 Logger.SystemLogger = LogUtils.GetLogger(Console.Error);
                 Console.Error.WriteLine("CANAPE.Cli (c) 2017 James Forshaw, 2014 Context Information Security.");
                 CommandLineApplication app = new CommandLineApplication(false);
-                
+
                 CommandArgument script = app.Argument("script", "Specify a script file to run.");
                 CommandOption compile = app.Option(
                   "-c | --compile", "Compile script file only.",
@@ -193,7 +193,7 @@ namespace CANAPE.Cli
                     IEnumerable<string> include_dirs = include.HasValue() ? include.Values.Select(p => Path.GetFullPath(p)) : new string[0];
                     IEnumerable<string> metadata_dirs = libs.HasValue() ? libs.Values.Select(p => Path.GetFullPath(p)) : new string[0];
 
-                    ConsoleUtils.EnableColor = color.HasValue();                    
+                    ConsoleUtils.EnableColor = color.HasValue();
                     if (verbose.HasValue())
                     {
                         Logger.SystemLogger.LogLevel = Logger.LogEntryType.All;

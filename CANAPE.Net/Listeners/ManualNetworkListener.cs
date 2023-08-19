@@ -15,9 +15,9 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using CANAPE.DataAdapters;
 using CANAPE.Utils;
+using System;
 
 namespace CANAPE.Net.Listeners
 {
@@ -86,7 +86,7 @@ namespace CANAPE.Net.Listeners
                 _logger.LogVerbose(Properties.Resources.ManualNetworkListener_CreateLogString);
 
                 ClientConnected.Invoke(this, new ClientConnectedEventArgs(da));
-            } 
+            }
         }
 
         /// <summary>

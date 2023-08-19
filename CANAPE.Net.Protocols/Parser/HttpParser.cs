@@ -27,15 +27,15 @@ namespace CANAPE.Net.Protocols.Parser
     /// </summary>
     public static class HttpParser
     {
-		
-		/// <summary>
-		/// Check if has a header.
-		/// </summary>
-		/// <param name="headers">The list of headers</param>
-		/// <param name="header">The header to find</param>
-		/// <param name="values">Optional list of values to match</param>
-		/// <returns>True if the header exists and contains at least one of these values</returns>
-		public static bool HasHeader(this IEnumerable<HttpHeader> headers, string header, params string[] values)
+
+        /// <summary>
+        /// Check if has a header.
+        /// </summary>
+        /// <param name="headers">The list of headers</param>
+        /// <param name="header">The header to find</param>
+        /// <param name="values">Optional list of values to match</param>
+        /// <returns>True if the header exists and contains at least one of these values</returns>
+        public static bool HasHeader(this IEnumerable<HttpHeader> headers, string header, params string[] values)
         {
             bool ret = false;
 
@@ -90,7 +90,7 @@ namespace CANAPE.Net.Protocols.Parser
         }
 
         private static IEnumerable<HttpHeader> ReadHeaders(DataReader reader, bool strictParsing, Logger logger)
-        {            
+        {
             while (true)
             {
                 string line = reader.ReadLine();
@@ -122,10 +122,10 @@ namespace CANAPE.Net.Protocols.Parser
                 }
                 else
                 {
-                    if(values.Length > 0)
+                    if (values.Length > 0)
                     {
                         name = values[0];
-                        if(values.Length > 1)
+                        if (values.Length > 1)
                         {
                             value = values[1];
                         }
@@ -133,7 +133,7 @@ namespace CANAPE.Net.Protocols.Parser
                 }
 
                 yield return new HttpHeader(name.Trim(), value.Trim());
-            } 
+            }
         }
 
         /// <summary>
@@ -161,8 +161,8 @@ namespace CANAPE.Net.Protocols.Parser
         public static HttpRequestHeader ReadRequestHeader(DataReader reader, bool strictParsing, Logger logger, char[] prefix)
         {
             string header;
-            
-            if(prefix != null)
+
+            if (prefix != null)
             {
                 header = new string(prefix) + reader.ReadLine();
             }
@@ -171,7 +171,8 @@ namespace CANAPE.Net.Protocols.Parser
                 header = reader.ReadLine();
             }
 
-            if (header.Length == 0) {
+            if (header.Length == 0)
+            {
                 throw new EndOfStreamException();
             }
 
@@ -179,14 +180,14 @@ namespace CANAPE.Net.Protocols.Parser
             {
                 CheckLineEnding(header);
             }
-                        
+
             // Let us default to version unknown
             HttpVersion ver = HttpVersion.VersionUnknown;
             List<HttpHeader> headers = new List<HttpHeader>();
 
             string[] values = header.Trim().Split(new char[] { ' ' }, 3);
             if (values.Length < 2)
-            {                
+            {
                 throw new HttpStreamParserException(String.Format(Properties.Resources.HttpParser_RequestHeaderInvalid, header));
             }
 
@@ -252,8 +253,8 @@ namespace CANAPE.Net.Protocols.Parser
             {
                 // Case where server probably responded with simple response even when we sent a full one
                 return new HttpResponseHeader(reader, header);
-            }            
-        }        
+            }
+        }
 
         internal static long GetContentLength(IEnumerable<HttpHeader> headers)
         {
@@ -277,7 +278,7 @@ namespace CANAPE.Net.Protocols.Parser
         {
             foreach (var pair in headers)
             {
-                if (pair.Name.Equals("transfer-encoding", StringComparison.OrdinalIgnoreCase) 
+                if (pair.Name.Equals("transfer-encoding", StringComparison.OrdinalIgnoreCase)
                     && pair.Value.Equals("chunked", StringComparison.OrdinalIgnoreCase))
                 {
                     return true;

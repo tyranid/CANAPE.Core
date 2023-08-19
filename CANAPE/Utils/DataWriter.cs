@@ -15,11 +15,11 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using CANAPE.DataAdapters;
 using System;
 using System.IO;
-using System.Text;
 using System.Reflection;
-using CANAPE.DataAdapters;
+using System.Text;
 
 namespace CANAPE.Utils
 {
@@ -53,10 +53,10 @@ namespace CANAPE.Utils
         /// Initializes a new instance of the <see cref="T:CANAPE.Utils.DataWriter"/> class.
         /// </summary>
         /// <param name="adapter">The data adapter</param>
-        public DataWriter(IDataAdapter adapter) 
+        public DataWriter(IDataAdapter adapter)
             : this(new DataAdapterToStream(adapter))
         {
-            
+
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace CANAPE.Utils
         /// </summary>
         /// <param name="sb">The signed byte to write</param>
         public void WriteSByte(sbyte sb)
-        {            
+        {
             sbyte[] sbs = new sbyte[] { sb };
 
             Flush();
@@ -134,7 +134,7 @@ namespace CANAPE.Utils
         {
             WriteInt16(s, false);
         }
-        
+
         /// <summary>
         /// Write a 32bit integer to the stream
         /// </summary>
@@ -246,7 +246,7 @@ namespace CANAPE.Utils
             else
             {
                 WriteBytes(data, 1, 3);
-            }                
+            }
         }
 
         /// <summary>
@@ -265,7 +265,7 @@ namespace CANAPE.Utils
             else
             {
                 WriteBytes(data, 1, 3);
-            }  
+            }
         }
 
         /// <summary>
@@ -387,7 +387,7 @@ namespace CANAPE.Utils
         /// </summary>
         /// <param name="str">The binary encoded string</param>
         public void WriteString(string str)
-        {            
+        {
             WriteString(str, BinaryEncoding.Instance);
         }
 
@@ -441,7 +441,7 @@ namespace CANAPE.Utils
                     break;
                 case TextLineEnding.CarriageReturnLineFeed:
                     lineEndingString = "\r\n";
-                    break; 
+                    break;
             }
 
             WriteString(line, encoding);
@@ -705,23 +705,23 @@ namespace CANAPE.Utils
             }
             else if (t == typeof(sbyte))
             {
-                WriteSByte((sbyte)value);                
+                WriteSByte((sbyte)value);
             }
             else if (t == typeof(short))
             {
-                WriteInt16((short)value, littleEndian);                
+                WriteInt16((short)value, littleEndian);
             }
             else if (t == typeof(ushort))
             {
-                WriteUInt16((ushort)value, littleEndian);                
+                WriteUInt16((ushort)value, littleEndian);
             }
             else if (t == typeof(int))
             {
-                WriteInt32((int)value, littleEndian);             
+                WriteInt32((int)value, littleEndian);
             }
             else if (t == typeof(uint))
             {
-                WriteUInt32((uint)value, littleEndian);                
+                WriteUInt32((uint)value, littleEndian);
             }
             else if (t == typeof(long))
             {
@@ -762,7 +762,7 @@ namespace CANAPE.Utils
         /// </summary>
         public long BytesWritten
         {
-            get { return _stm.BytesWritten;  }
+            get { return _stm.BytesWritten; }
             set { _stm.BytesWritten = value; }
         }
     }

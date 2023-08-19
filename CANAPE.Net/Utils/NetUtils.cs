@@ -15,9 +15,9 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using CANAPE.Utils;
 using System.Net;
 using System.Net.Sockets;
-using CANAPE.Utils;
 
 namespace CANAPE.Net.Utils
 {
@@ -31,7 +31,7 @@ namespace CANAPE.Net.Utils
             IPEndPoint ip = ep as IPEndPoint;
             properties.AddValue(name, ep);
 
-            if(ip != null)
+            if (ip != null)
             {
                 properties.AddValue(name + "Address", ip.Address);
                 properties.AddValue(name + "Port", ip.Port);
@@ -60,7 +60,7 @@ namespace CANAPE.Net.Utils
 
             AddEndpoint("LocalEndpoint", sock.LocalEndPoint, properties);
         }
-        
+
         /// <summary>
         /// Method to get whether OS supports IPv4 here for compatibility with Mono
         /// </summary>

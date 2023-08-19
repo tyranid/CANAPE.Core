@@ -15,10 +15,10 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using System.Threading;
 using CANAPE.DataFrames;
 using CANAPE.Utils;
+using System;
+using System.Threading;
 
 namespace CANAPE.Nodes
 {
@@ -66,11 +66,11 @@ namespace CANAPE.Nodes
 
             // Stop anything more arriving
             _input.Stop();
-            
+
             if (!_isDisposed)
             {
                 ShutdownOutputs();
-            }            
+            }
         }
 
         private void EnsureThreadRunning()
@@ -115,7 +115,7 @@ namespace CANAPE.Nodes
             catch (OperationCanceledException)
             { }
         }
-        
+
         /// <summary>
         /// Overidden dispose method
         /// </summary>

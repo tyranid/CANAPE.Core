@@ -21,7 +21,7 @@ namespace CANAPE.Net.Protocols.Server
     /// Base HTTP server
     /// </summary>
     /// <typeparam name="T">The configuration type</typeparam>
-    public abstract class BaseHttpDataServer<T> : BaseHttpDataServerRef<T,T> where T : class, new()
+    public abstract class BaseHttpDataServer<T> : BaseHttpDataServerRef<T, T> where T : class, new()
     {
     }
 }

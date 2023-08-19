@@ -15,10 +15,10 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using System.Text.RegularExpressions;
 using CANAPE.Net.Tokens;
 using CANAPE.Utils;
+using System;
+using System.Text.RegularExpressions;
 
 namespace CANAPE.Net.Filters
 {
@@ -63,7 +63,7 @@ namespace CANAPE.Net.Filters
             IpProxyToken t = token as IpProxyToken;
 
             if (t != null)
-            {                
+            {
                 if (!String.IsNullOrWhiteSpace(RedirectAddress))
                 {
                     t.Hostname = RedirectAddress;

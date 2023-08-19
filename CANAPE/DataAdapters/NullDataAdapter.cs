@@ -15,8 +15,8 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System.Threading;
 using CANAPE.DataFrames;
+using System.Threading;
 
 namespace CANAPE.DataAdapters
 {
@@ -63,7 +63,7 @@ namespace CANAPE.DataAdapters
         /// </summary>
         /// <param name="disposing"></param>
         protected override void OnDispose(bool disposing)
-        { 
+        {
             _exitEvent.Dispose();
         }
     }

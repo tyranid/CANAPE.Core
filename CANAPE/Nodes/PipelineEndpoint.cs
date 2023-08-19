@@ -38,7 +38,7 @@ namespace CANAPE.Nodes
         public PipelineEndpoint()
         {
             _noWriteOutput = true;
-        }        
+        }
 
         /// <summary>
         /// Allows the reading of frames to be overriden
@@ -66,7 +66,7 @@ namespace CANAPE.Nodes
                             done = false;
                         }
                     }
-                }                
+                }
             }
             while (!done);
 
@@ -195,7 +195,7 @@ namespace CANAPE.Nodes
             {
                 Logger.SystemLogger.LogException(ex);
             }
-            
+
             return shutdown;
         }
 
@@ -219,9 +219,9 @@ namespace CANAPE.Nodes
                     }
                 }
                 catch
-                {                   
-                }                
-                
+                {
+                }
+
                 _thread = null;
             }
         }

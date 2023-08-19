@@ -15,9 +15,9 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System.IO;
 using CANAPE.DataFrames;
 using CANAPE.Utils;
+using System.IO;
 
 namespace CANAPE.Net.Layers
 {
@@ -118,7 +118,7 @@ namespace CANAPE.Net.Layers
             {
                 return ReadInbound(new DataReader(_client_stream));
             }
-            catch(EndOfStreamException)
+            catch (EndOfStreamException)
             {
                 return null;
             }
@@ -154,19 +154,19 @@ namespace CANAPE.Net.Layers
             return true;
         }
 
-		/// <summary>
-		/// Negotiates the protocol.
-		/// </summary>
-		/// <returns><c>true</c>, if protocol was negotiated, <c>false</c> otherwise.</returns>
-		/// <param name="outboundStream">Outbound stream.</param>
-		/// <param name="inboundStream">Inbound stream.</param>
+        /// <summary>
+        /// Negotiates the protocol.
+        /// </summary>
+        /// <returns><c>true</c>, if protocol was negotiated, <c>false</c> otherwise.</returns>
+        /// <param name="outboundStream">Outbound stream.</param>
+        /// <param name="inboundStream">Inbound stream.</param>
         /// <param name="binding">Binding.</param>
-		protected virtual bool NegotiateProtocol(Stream outboundStream, 
-                                                 Stream inboundStream, 
+        protected virtual bool NegotiateProtocol(Stream outboundStream,
+                                                 Stream inboundStream,
                                                  NetworkLayerBinding binding)
-		{
+        {
             return NegotiateProtocol(outboundStream, inboundStream);
-		}
+        }
 
         /// <summary>
         /// Ons the connect.
@@ -225,7 +225,7 @@ namespace CANAPE.Net.Layers
             {
                 return ReadOutbound(new DataReader(_server_stream));
             }
-            catch(EndOfStreamException)
+            catch (EndOfStreamException)
             {
                 return null;
             }

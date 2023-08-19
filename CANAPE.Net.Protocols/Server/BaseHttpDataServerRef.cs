@@ -30,8 +30,8 @@ namespace CANAPE.Net.Protocols.Server
     /// </summary>
     /// <typeparam name="T">Type of configuration class to persist</typeparam>
     /// <typeparam name="R">Reference type to access the configuration</typeparam>
-    public abstract class BaseHttpDataServerRef<T,R> : BasePersistDataEndpointRef<T,R> where R : class where T : class, R, new()
-    {       
+    public abstract class BaseHttpDataServerRef<T, R> : BasePersistDataEndpointRef<T, R> where R : class where T : class, R, new()
+    {
         /// <summary>
         /// Handle a HTTP request
         /// </summary>
@@ -42,7 +42,7 @@ namespace CANAPE.Net.Protocols.Server
         /// <param name="version">HTTP version</param>
         /// <param name="logger">A logger to log data to</param>
         /// <returns>A HTTP response data object, or null if no response</returns>
-        protected abstract HttpServerResponseData HandleRequest(string method, string path, byte[] body, 
+        protected abstract HttpServerResponseData HandleRequest(string method, string path, byte[] body,
             Dictionary<string, string> headers, HttpVersion version, Logger logger);
 
         /// <summary>
@@ -50,16 +50,16 @@ namespace CANAPE.Net.Protocols.Server
         /// </summary>
         /// <param name="adapter">The data adapter</param>
         public sealed override void Run(IDataAdapter adapter)
-        {            
+        {
             DataReader reader = new DataReader(new DataAdapterToStream(adapter));
 
             while (true)
             {
                 HttpRequestHeader request = HttpParser.ReadRequestHeader(reader, false, Logger);
-                HttpRequestDataChunk req = request.ReadRequest();                
+                HttpRequestDataChunk req = request.ReadRequest();
 
-                Dictionary<string, string> headers = new Dictionary<string,string>(StringComparer.OrdinalIgnoreCase);
-                foreach(HttpHeader pair in req.Headers)
+                Dictionary<string, string> headers = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                foreach (HttpHeader pair in req.Headers)
                 {
                     headers[pair.Name] = pair.Value;
                 }
@@ -67,16 +67,16 @@ namespace CANAPE.Net.Protocols.Server
                 HttpServerResponseData data = HandleRequest(req.Method, req.Path, req.Body, headers, req.Version, Logger);
 
                 HttpResponseDataChunk response = new HttpResponseDataChunk();
-                
+
                 response.Version = request.Version;
                 response.ResponseCode = data.ResponseCode;
                 response.Message = data.Message;
-                
+
                 List<HttpHeader> newHeaders = new List<HttpHeader>();
 
                 foreach (KeyValuePair<string, string> pair in data.Headers)
                 {
-                    newHeaders.Add(new HttpHeader(pair.Key, pair.Value));                    
+                    newHeaders.Add(new HttpHeader(pair.Key, pair.Value));
                 }
 
                 if (!data.Headers.ContainsKey("content-length"))
@@ -84,7 +84,7 @@ namespace CANAPE.Net.Protocols.Server
                     newHeaders.Add(new HttpHeader("Content-Length", data.Body.Length.ToString()));
                 }
 
-                response.Headers = newHeaders.ToArray();                
+                response.Headers = newHeaders.ToArray();
                 response.FinalChunk = true;
 
                 if (request.Method.Equals("HEAD", StringComparison.OrdinalIgnoreCase))

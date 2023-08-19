@@ -15,13 +15,13 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+using CANAPE.Net.DataAdapters;
+using CANAPE.Net.Utils;
+using CANAPE.Utils;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
-using CANAPE.Net.DataAdapters;
-using CANAPE.Utils;
-using CANAPE.Net.Utils;
 using System.Threading.Tasks;
 
 namespace CANAPE.Net.Listeners

@@ -15,11 +15,8 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using CANAPE.Net.Protocols.Parser;
+using System;
 
 namespace CANAPE.Net.Layers
 {
@@ -83,11 +80,11 @@ namespace CANAPE.Net.Layers
         public HttpNetworkLayerConfig()
         {
             ConfigEntries = new HttpLayerConfigEntry[0];
-            DefaultEntry = new HttpLayerConfigEntry();            
+            DefaultEntry = new HttpLayerConfigEntry();
         }
 
         private HttpLayerConfigEntry GetEntry(Func<HttpLayerConfigEntry, bool> matcher)
-        {            
+        {
             foreach (HttpLayerConfigEntry entry in ConfigEntries)
             {
                 if (matcher(entry))

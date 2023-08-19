@@ -15,10 +15,9 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System;
 using CANAPE.DataAdapters;
-using CANAPE.Net.Protocols.Parser;
 using CANAPE.Utils;
+using System;
 
 namespace CANAPE.Net.Tokens
 {
@@ -41,7 +40,7 @@ namespace CANAPE.Net.Tokens
         /// The original HTTP request headers (minus request line)
         /// </summary>
         public string[] Headers { get; private set; }
-        
+
         /// <summary>
         /// The URL associated with this connection
         /// </summary>
@@ -59,7 +58,7 @@ namespace CANAPE.Net.Tokens
 
         public HttpProxyToken(string hostname, int port, bool connect, string[] headers, Uri url, DataAdapterToStream adapter)
             : base(null, hostname, port, IpClientType.Tcp, false)
-        {                             
+        {
             Connect = connect;
             Headers = headers;
             Url = url;

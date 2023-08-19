@@ -15,55 +15,55 @@
 //
 //    You should have received a copy of the GNU General Public License
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-using System.IO;
 using CANAPE.Utils;
+using System.IO;
 
 namespace CANAPE.DataFrames
 {
-	/// <summary>
-	/// Complex data frame class.
-	/// </summary>
-	public sealed class ComplexDataFrame<T> : DataFrame where T : IDataValue<T>
-	{
+    /// <summary>
+    /// Complex data frame class.
+    /// </summary>
+    public sealed class ComplexDataFrame<T> : DataFrame where T : IDataValue<T>
+    {
         private T _value;
 
-		/// <summary>
-		/// Gets the internal value.
-		/// </summary>
-		/// <returns>The internal value.</returns>
-		protected override object GetInternalValue()
-		{
-			return _value;
-		}
+        /// <summary>
+        /// Gets the internal value.
+        /// </summary>
+        /// <returns>The internal value.</returns>
+        protected override object GetInternalValue()
+        {
+            return _value;
+        }
 
-		/// <summary>
-		/// Method called on clone
-		/// </summary>
-		protected override void OnClone()
-		{
+        /// <summary>
+        /// Method called on clone
+        /// </summary>
+        protected override void OnClone()
+        {
             _value = _value.Clone();
-		}
+        }
 
-		/// <summary>
-		/// Convert the frame to a byte array
-		/// </summary>
-		// <returns>The data as an array</returns>
-		public override byte[] ToArray()
-		{
-			MemoryStream stm = new MemoryStream();
+        /// <summary>
+        /// Convert the frame to a byte array
+        /// </summary>
+        // <returns>The data as an array</returns>
+        public override byte[] ToArray()
+        {
+            MemoryStream stm = new MemoryStream();
 
-			_value.ToWriter(new DataWriter(stm));
+            _value.ToWriter(new DataWriter(stm));
 
-			return stm.ToArray();
-		}
+            return stm.ToArray();
+        }
 
-		/// <summary>
-		/// Constructor, creates a basic frame with a known root
-		/// </summary>
-		internal ComplexDataFrame(T value)
-		{
-			_value = value;
-		}
+        /// <summary>
+        /// Constructor, creates a basic frame with a known root
+        /// </summary>
+        internal ComplexDataFrame(T value)
+        {
+            _value = value;
+        }
 
         /// <summary>
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:CANAPE.DataFrames.ComplexDataFrame`1"/>.
@@ -73,5 +73,5 @@ namespace CANAPE.DataFrames
         {
             return _value.ToString();
         }
-	}
+    }
 }

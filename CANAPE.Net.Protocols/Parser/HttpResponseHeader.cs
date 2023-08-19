@@ -41,7 +41,7 @@ namespace CANAPE.Net.Protocols.Parser
         /// <summary>
         /// 
         /// </summary>
-        public HttpVersion Version { get; private set; }        
+        public HttpVersion Version { get; private set; }
         /// <summary>
         /// 
         /// </summary>
@@ -53,7 +53,7 @@ namespace CANAPE.Net.Protocols.Parser
         /// <summary>
         /// 
         /// </summary>
-        public bool ChunkedEncoding { get; private set; }        
+        public bool ChunkedEncoding { get; private set; }
         /// <summary>
         /// 
         /// </summary>
@@ -93,18 +93,18 @@ namespace CANAPE.Net.Protocols.Parser
         private DataReader _reader;
         private string _initialData;
 
-        internal HttpResponseHeader(DataReader reader, string initialData) 
+        internal HttpResponseHeader(DataReader reader, string initialData)
             : this(reader, new HttpHeader[0], 200, String.Empty, HttpVersion.VersionUnknown)
-        {            
+        {
             _initialData = initialData;
         }
 
-        internal HttpResponseHeader(DataReader reader, IEnumerable<HttpHeader> headers, 
+        internal HttpResponseHeader(DataReader reader, IEnumerable<HttpHeader> headers,
                                     int responseCode, string message, HttpVersion version)
         {
             _reader = reader;
             Headers = new List<HttpHeader>(headers);
-            ResponseCode = responseCode;            
+            ResponseCode = responseCode;
             Message = message;
             Version = version;
 
@@ -114,13 +114,13 @@ namespace CANAPE.Net.Protocols.Parser
                 ChunkedEncoding = HttpParser.IsChunkedEncoding(Headers);
                 HasBody = true;
             }
-            
+
             // Always trust a content-length if it exists
             if (Headers.Count(p => p.Name.Equals("Content-Length", StringComparison.OrdinalIgnoreCase)) == 0)
             {
                 // Otherwise if version unknown, 1.0 or connection will close set then indicate we will read to the end
                 if (Version.IsVersionUnknown || Version.IsVersion10 || (Headers.Count(p => p.Name.Equals("Connection", StringComparison.OrdinalIgnoreCase) && p.Value.Equals("close", StringComparison.OrdinalIgnoreCase)) > 0))
-                {                
+                {
                     ReadToEnd = true;
                 }
             }
@@ -205,8 +205,8 @@ namespace CANAPE.Net.Protocols.Parser
                 // Remove any content-length and existing Transfer-Encoding chunked
                 foreach (HttpHeader pair in ret.Headers)
                 {
-                    if (!(pair.Name.Equals("Content-Length", StringComparison.OrdinalIgnoreCase) 
-                        || (pair.Name.Equals("Transfer-Encoding", StringComparison.OrdinalIgnoreCase) 
+                    if (!(pair.Name.Equals("Content-Length", StringComparison.OrdinalIgnoreCase)
+                        || (pair.Name.Equals("Transfer-Encoding", StringComparison.OrdinalIgnoreCase)
                         && pair.Value.Equals("chunked", StringComparison.OrdinalIgnoreCase))))
                     {
                         headers.Add(pair);
@@ -218,7 +218,7 @@ namespace CANAPE.Net.Protocols.Parser
             }
 
 
-            return ret;    
+            return ret;
         }
 
         private IEnumerable<HttpResponseDataChunk> ReadChunksStreamedLength(HttpParserConfig config)
@@ -229,7 +229,7 @@ namespace CANAPE.Net.Protocols.Parser
             int chunkNumber = 0;
 
             // Can only convert if returning HTTP/1.1
-            bool convertToChunked = config.ConvertToChunked && Version.IsVersion11;            
+            bool convertToChunked = config.ConvertToChunked && Version.IsVersion11;
 
             if (chunkSize <= 0)
             {
@@ -243,7 +243,7 @@ namespace CANAPE.Net.Protocols.Parser
                 {
                     List<byte> block = new List<byte>(BinaryEncoding.Instance.GetBytes(_initialData));
 
-                    if(!_reader.Eof)
+                    if (!_reader.Eof)
                     {
                         // Worst case you will get chunkSize + 4
                         block.AddRange(waitForAll ? _reader.ReadToEnd(chunkSize) : _reader.ReadBytes(chunkSize, false));
@@ -252,7 +252,7 @@ namespace CANAPE.Net.Protocols.Parser
                     yield return CreateChunk(block.ToArray(), chunkNumber++, _reader.Eof, convertToChunked);
                 }
 
-                while(!_reader.Eof)
+                while (!_reader.Eof)
                 {
                     byte[] block = waitForAll ? _reader.ReadToEnd(chunkSize) : _reader.ReadBytes(chunkSize, false);
 
@@ -311,7 +311,7 @@ namespace CANAPE.Net.Protocols.Parser
         }
 
         private IEnumerable<HttpResponseDataChunk> ReadChunksStreamedChunked(HttpParserConfig config)
-        {            
+        {
             string extension;
             int chunkNumber = 0;
 
@@ -320,7 +320,7 @@ namespace CANAPE.Net.Protocols.Parser
             if (config.DowngradeChunkedToHttp10)
             {
                 int i = 0;
-                while(i < headers.Count)
+                while (i < headers.Count)
                 {
                     if (headers[i].Name.Equals("transfer-encoding", StringComparison.OrdinalIgnoreCase)
                         && headers[i].Value.Equals("chunked", StringComparison.OrdinalIgnoreCase))
@@ -345,7 +345,7 @@ namespace CANAPE.Net.Protocols.Parser
                 if (config.DowngradeChunkedToHttp10)
                 {
                     chunk.Headers = headers.ToArray();
-                    chunk.Version = HttpVersion.Version10;                    
+                    chunk.Version = HttpVersion.Version10;
                 }
                 else
                 {
@@ -355,12 +355,12 @@ namespace CANAPE.Net.Protocols.Parser
                 chunk.ChunkExtension = extension;
                 ret = ReadChunkedEncoding(_reader, out extension);
                 chunk.FinalChunk = ret.Length == 0;
-                
+
                 yield return chunk;
             }
             while (ret.Length > 0);
         }
-        
+
         private IEnumerable<HttpResponseDataChunk> ReadChunksBuffered(HttpParserConfig config)
         {
             HttpResponseDataChunk chunk = new HttpResponseDataChunk(this);
