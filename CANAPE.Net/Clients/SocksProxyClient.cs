@@ -34,11 +34,11 @@ namespace CANAPE.Net.Clients
     /// </summary>
     public class SocksProxyClient : IpProxyClient
     {
-        private string _hostname;
-        private int _port;
-        private bool _ipv6;
-        private bool _sendHostName;
-        private SupportedVersion _version;
+        private readonly string _hostname;
+        private readonly int _port;
+        private readonly bool _ipv6;
+        private readonly bool _sendHostName;
+        private readonly SupportedVersion _version;
 
         /// <summary>
         /// Supported versions for SOCKS proxy client
